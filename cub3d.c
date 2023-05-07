@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:35 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/07 16:59:45 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/07 17:03:06 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,5 @@ int	main(int ac, char *av[])
 	(void)ac;
 	(void)av;
 	printf("Hi\n");
+	printf("Weclcome To The Shit\n");
 }
