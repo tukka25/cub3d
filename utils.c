@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/07 15:55:35 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/07 17:55:58 by abdamoha         ###   ########.fr       */
+/*   Created: 2023/05/07 20:00:47 by abdamoha          #+#    #+#             */
+/*   Updated: 2023/05/07 20:02:09 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int ac, char *av[])
+int	ft_strlen_2d(char **str)
 {
-	t_cub	cub;
+	int		i;
 
-	if (ac == 2)
-	{
-		pars(av, &cub);
-	}
-	else
-		ft_putstr_fd("INVALID INPUTS\n", 2);
-	return (0);
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+		i++;
+	return (i);
 }

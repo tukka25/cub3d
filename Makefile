@@ -1,6 +1,11 @@
 NAME = cud3d
 
-SRCS = cub3d.c
+SRCS =	cub3d.c              \
+		parsing.c            \
+		error_free_exit.c    \
+		contents_parsing.c   \
+		utils.c              \
+		utils2.c
 
 OBJS = $(SRCS:.c=.o)
 
