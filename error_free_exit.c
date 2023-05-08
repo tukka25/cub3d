@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 17:49:18 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/07 20:05:22 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/08 04:11:11 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,17 @@ void	free_strings(char **str)
 		i++;
 	}
 	free(str);
+}
+
+void	free_and_exit(t_cub *cub, char *str)
+{
+	if (cub->c_colors)
+		free(cub->c_colors);
+	if (cub->f_colors)
+		free(cub->f_colors);
+	if (cub->map)
+		free_strings(cub->map);
+	if (str)
+		ft_putstr_fd(str, 2);
+	exit (1);
 }

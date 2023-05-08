@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 18:53:12 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/08 03:59:20 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/08 04:19:41 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,8 @@ static void	insert_to_array(char **str, int *arr)
 void	check_req(t_cub *cub, char *line)
 {
 	char	**str;
-	int		i;
 
 	cub->tmp = NULL;
-	i = 0;
-	str = NULL;
 	str = ft_split(line, ' ');
 	if (!str)
 		return ;
@@ -110,18 +107,5 @@ void	check_map(t_cub *cub, char *av)
 	if (!cub->map)
 		exit(0);
 	insert_map(cub, av);
-	// cub->line = get_next_line(cub->fd);
-	// while (cub->line)
-	// {
-	// 	cub->tmp = ft_split(cub->line, ' ');
-	// 	if (cub->tmp)
-	// 	{
-	// 		if (ft_strcmp("SO", cub->line) && ft_strcmp("NO", cub->tmp[0]) && ft_strcmp("WE", cub->tmp[0]) && ft_strcmp("EA", cub->tmp[0]) && ft_strcmp("F", cub->tmp[0]) && ft_strcmp("C", cub->tmp[0]))
-	// 		{
-				
-	// 		}
-	// 	}
-	// 	free(cub->line);
-	// 	cub->line = get_next_line(cub->fd);
-	// }
+	map_pars(cub);
 }

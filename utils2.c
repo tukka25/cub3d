@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 02:02:59 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/08 03:59:31 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/08 04:17:46 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	all_spaces(char *str)
 	int	i;
 
 	i = 0;
-	// if (!str)
-	// 	return (1);
+	if (!str)
+		return (1);
 	while ((str[i] == ' ' || str[i] == '\t') && str[i])
 	{
 		i++;
@@ -66,6 +66,31 @@ void	insert_map(t_cub *cub, char *av)
 	while (cub->map[cub->i])
 	{
 		printf("%s\n", cub->map[cub->i]);
+		cub->i++;
+	}
+}
+
+void	map_pars(t_cub *cub)
+{
+	cub->i = 0;
+	cub->j = 0;
+	while (cub->map[cub->i])
+	{
+		cub->j = 0;
+		while (cub->map[cub->i][cub->j])
+		{
+			if (cub->map[cub->i][cub->j] != '1' && cub->map[cub->i][cub->j] != '0'
+				&& cub->map[cub->i][cub->j] != 'N'
+				&& cub->map[cub->i][cub->j] != 'E'
+				&& cub->map[cub->i][cub->j] != 'S'
+				&& cub->map[cub->i][cub->j] != 'W'
+				&& cub->map[cub->i][cub->j] != ' '
+				&& cub->map[cub->i][cub->j] != '\t')
+			{
+				free_and_exit(cub, "Invalid Map Content\n");
+			}
+			cub->j++;
+		}
 		cub->i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/08 03:59:38 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/08 04:12:39 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,6 @@ void	check_map(t_cub *cub, char *av);
 int		all_spaces(char *str);
 int		len_till_nl(char *str);
 void	insert_map(t_cub *cub, char *av);
+void	map_pars(t_cub *cub);
+void	free_and_exit(t_cub *cub, char *str);
 #endif
