@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 17:49:18 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/08 04:11:11 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/08 04:32:32 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	free_strings(char **str)
 	int		i;
 
 	i = 0;
+	if (!str)
+		return ;
 	while (str[i] != NULL)
 	{
 		free(str[i]);

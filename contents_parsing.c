@@ -6,15 +6,16 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 18:53:12 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/08 04:19:41 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/09 17:19:34 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	insert_to_array(char **str, int *arr)
+static int	*insert_to_array(char **str)
 {
 	int	i;
+	int	*arr;
 
 	i = 0;
 	if (ft_strlen_2d(str) > 3)
@@ -24,7 +25,7 @@ static void	insert_to_array(char **str, int *arr)
 	}
 	arr = malloc(4 * sizeof(int));
 	if (!arr)
-		return ;
+		return (NULL);
 	while (str[i])
 	{
 		arr[i] = ft_atoi(str[i]);
@@ -37,6 +38,7 @@ static void	insert_to_array(char **str, int *arr)
 		i++;
 	}
 	arr[i] = '\0';
+	return (arr);
 }
 
 void	check_req(t_cub *cub, char *line)
@@ -55,7 +57,7 @@ void	check_req(t_cub *cub, char *line)
 			error_exit("Floor Wrong Inputs\n");
 		}
 		cub->tmp = ft_split(str[1], ',');
-		insert_to_array(cub->tmp, cub->f_colors);
+		cub->f_colors = insert_to_array(cub->tmp);
 	}
 	if (ft_strcmp("C", str[0]) == 0)
 	{
@@ -65,10 +67,10 @@ void	check_req(t_cub *cub, char *line)
 			error_exit("Ceiling Wrong Inputs\n");
 		}
 		cub->tmp = ft_split(str[1], ',');
-		insert_to_array(cub->tmp, cub->c_colors);
+		cub->c_colors = insert_to_array(cub->tmp);
 	}
-	free(cub->tmp);
-	free(str);
+	free_strings(cub->tmp);
+	free_strings(str);
 }
 
 static int	map_length(int fd, t_cub *cub)
@@ -108,4 +110,6 @@ void	check_map(t_cub *cub, char *av)
 		exit(0);
 	insert_map(cub, av);
 	map_pars(cub);
+	// printf("px = %c\n", cub->map[cub->m.py_index][cub->m.px_index]);
+	// printf("py = %d\n", cub->m.py_index);
 }

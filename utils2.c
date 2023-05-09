@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 02:02:59 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/08 04:17:46 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/09 17:17:08 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,23 @@ int	len_till_nl(char *str)
 	return (i);
 }
 
+static void	init_map_sizes(t_cub *cub)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	cub->m.height = 0;
+	while (cub->map[i])
+		i++;
+	cub->m.height = i;
+	i = 0;
+	while (cub->map[i][j])
+		j++;
+	cub->m.width = j;
+}
+
 void	insert_map(t_cub *cub, char *av)
 {
 	cub->i = 0;
@@ -68,6 +85,10 @@ void	insert_map(t_cub *cub, char *av)
 		printf("%s\n", cub->map[cub->i]);
 		cub->i++;
 	}
+	init_map_sizes(cub);
+	printf("l = %d\n", cub->m.height);
+	printf("w = %d\n", cub->m.width);
+	close(cub->fd);
 }
 
 void	map_pars(t_cub *cub)
@@ -88,6 +109,12 @@ void	map_pars(t_cub *cub)
 				&& cub->map[cub->i][cub->j] != '\t')
 			{
 				free_and_exit(cub, "Invalid Map Content\n");
+			}
+			if (cub->map[cub->i][cub->j] == 'N' || cub->map[cub->i][cub->j] == 'S'
+			|| cub->map[cub->i][cub->j] == 'E' || cub->map[cub->i][cub->j] == 'W')
+			{
+				cub->m.px_index = cub->j;
+				cub->m.py_index = cub->i;
 			}
 			cub->j++;
 		}
