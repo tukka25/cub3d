@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/09 17:50:54 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/22 13:15:03 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 
 typedef struct s_map
 {
+	int		dir_len;
+	int		cam_plane;
 	char	cord;
 	int		height;
 	int		width;
@@ -68,4 +70,5 @@ void	insert_map(t_cub *cub, char *av);
 void	map_pars(t_cub *cub);
 void	free_and_exit(t_cub *cub, char *str);
 void	drawing(t_cub *cub);
+int		key_hook(int keycode, t_cub *cub);
 #endif

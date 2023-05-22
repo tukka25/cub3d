@@ -6,7 +6,8 @@ SRCS =	cub3d.c              \
 		contents_parsing.c   \
 		utils.c              \
 		utils2.c             \
-		drawing.c
+		drawing.c            \
+		hooks.c
 
 OBJS = $(SRCS:.c=.o)
 
