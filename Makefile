@@ -6,7 +6,7 @@
 #    By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 00:30:54 by talsaiaa          #+#    #+#              #
-#    Updated: 2023/03/15 11:32:08 by talsaiaa         ###   ########.fr        #
+#    Updated: 2023/05/22 15:01:27 by talsaiaa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,7 @@ OBJS	=	$(SRCS:.c=.o)
 
 LIBFT	=	cd Libft && make
 
-MLX		=	cd mlx && make
-
 LIB		=	Libft/libft.a
-
-INCLUDE	=	-I mlx
-
-LINKS	=	-L mlx -l mlx -framework OpenGL -framework AppKit
 
 GCC		=	gcc
 
@@ -85,28 +79,23 @@ all: comp_start $(NAME)
 	@printf '                        ▓▓████▓▓██    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓██                                    \n'
 
 $(NAME): $(OBJS)
-	@$(GCC) $(FLAGS) $(OBJS) $(LINKS) $(LIB) -o $(NAME)
+	@$(GCC) $(FLAGS) $(OBJS) $(LIB) -o $(NAME)
 	@tput setaf 2
 	@printf 'Executable ready\n'
 	@tput setaf 7
 
 comp_start:
-	@$(MLX)
-	@tput setaf 2
-	@printf 'MLX Compiled\n'
-	@tput setaf 7
 	@$(LIBFT)
 	@tput setaf 2
 	@printf 'LIBFT Compiled\n'
 	@tput setaf 7
 
 .c.o:
-	@$(GCC) $(FLAGS) $(INCLUDE) -c $< -o $(<:.c=.o)
+	@$(GCC) $(FLAGS) -c $< -o $(<:.c=.o)
 
 clean:
 	@rm -rf $(OBJS)
 	@cd Libft && make clean
-	@cd mlx && make clean
 	@tput setaf 2
 	@printf '.o files are removed\n'
 	@tput setaf 7
