@@ -1,0 +1,82 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/22 12:33:32 by abdamoha          #+#    #+#             */
+/*   Updated: 2023/05/22 13:59:59 by abdamoha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+int	key_hook(int keycode, t_cub *cub)
+{
+	(void)cub;
+	if (keycode == 123 || keycode == 124 || keycode == 125
+		|| keycode == 126 || keycode == 0 || keycode == 1
+		|| keycode == 2 || keycode == 13)
+	{
+		if (keycode == 13)
+			move_up(cub);
+		else if (keycode == 2)
+			move_forward(cub);
+		else if (keycode == 1)
+			move_down(cub);
+		else if (keycode == 0)
+			move_back(cub);
+	}
+	else if (keycode == 53)
+		exit(0);
+	return (0);
+}
+
+void	move_up(t_cub *cub)
+{
+	if (cub->map[cub->m.px_index - 1][cub->m.py_index] != '1')
+	{
+		cub->map[cub->m.px_index][cub->m.py_index] = '0';
+		cub->map[cub->m.px_index - 1][cub->m.py_index] = 'N';
+		cub->m.px_index -= 1;
+		mlx_clear_window(cub->mlx.mlx, cub->mlx.mlx_win);
+		drawing(cub);
+	}
+}
+
+void	move_down(t_cub *cub)
+{
+	if (cub->map[cub->m.px_index + 1][cub->m.py_index] != '1')
+	{
+		cub->map[cub->m.px_index][cub->m.py_index] = '0';
+		cub->map[cub->m.px_index + 1][cub->m.py_index] = 'N';
+		cub->m.px_index += 1;
+		mlx_clear_window(cub->mlx.mlx, cub->mlx.mlx_win);
+		drawing(cub);
+	}
+}
+
+void	move_forward(t_cub *cub)
+{
+	if (cub->map[cub->m.px_index][cub->m.py_index + 1] != '1')
+	{
+		cub->map[cub->m.px_index][cub->m.py_index] = '0';
+		cub->map[cub->m.px_index][cub->m.py_index + 1] = 'N';
+		cub->m.py_index += 1;
+		mlx_clear_window(cub->mlx.mlx, cub->mlx.mlx_win);
+		drawing(cub);
+	}
+}
+
+void	move_back(t_cub *cub)
+{
+	if (cub->map[cub->m.px_index][cub->m.py_index - 1] != '1')
+	{
+		cub->map[cub->m.px_index][cub->m.py_index] = '0';
+		cub->map[cub->m.px_index][cub->m.py_index - 1] = 'N';
+		cub->m.py_index -= 1;
+		mlx_clear_window(cub->mlx.mlx, cub->mlx.mlx_win);
+		drawing(cub);
+	}
+}
