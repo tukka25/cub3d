@@ -1,0 +1,3 @@
+difference between mlx_hook and mlx_key_hook is mlx_key_hook the x_event is already
+set to 3 (i.e. key release) but mlx_hook x_event is unset. mlx_key_hook is an alias
+mlx_hook on event 3.

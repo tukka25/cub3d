@@ -3,90 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 14:50:36 by abdamoha          #+#    #+#             */
-/*   Updated: 2022/10/24 17:11:38 by abdamoha         ###   ########.fr       */
+/*   Created: 2021/10/03 01:00:40 by talsaiaa          #+#    #+#             */
+/*   Updated: 2021/10/16 03:37:36 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	string_len(const char *s, int j, char c)
+static int	word_count(char const *s, char c)
 {
-	j = 0;
-	while (s[j])
-	{
-		if (s[j] != c && (s[j + 1] == c || !s[j]))
-			return (j + 1);
-		j++;
-	}
-	return (j);
-}
-
-static char	*mem_allocation_of_strings(const char *s, char c)
-{
-	int		i;
-	int		j;
-	char	*tmp;
-	int		count;
+	int	i;
+	int	counter;
 
 	i = 0;
-	j = 0;
-	count = 0;
-	j = string_len(s, j, c);
-	tmp = malloc((j + 1) * sizeof(char));
-	if (!tmp)
-		return (NULL);
-	while (s[i] != '\0' && s[i] != c)
+	counter = 0;
+	while (s[i])
 	{
-		tmp[count++] = s[i++];
+		while (s[i] == c)
+			i++;
+		if (s[i] != '\0')
+			counter++;
+		while (s[i] && s[i] != c)
+			i++;
 	}
-	tmp[count] = '\0';
-	return (tmp);
-}
-
-static int	count_string(const char *s, char c)
-{
-	int		i;
-	int		len;
-
-	len = 0;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if ((s[i] != c && s[i + 1] == c) || (s[i] != c && !s[i + 1]))
-			len++;
-		i++;
-	}
-	return (len);
+	return (counter);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**str;
-	int		len;
+	int		i;
 	int		j;
+	int		k;
+	char	**split;
 
-	if (!s)
-		return (NULL);
-	len = count_string(s, c);
-	str = malloc((len + 1) * sizeof(char *));
-	j = 0;
-	if (!str)
-		return (NULL);
-	while (*s != '\0')
+	i = 0;
+	k = 0;
+	split = (char **)malloc((word_count(s, c) + 1) * sizeof(char **));
+	if (split == 0)
+		return (0);
+	while (s[i])
 	{
-		while (*s && *s == c)
-			s++;
-		if (*s && *s != c)
+		while (s[i] == c)
+			i++;
+		j = i;
+		while (s[i] && s[i] != c)
+			i++;
+		if (i > j)
 		{
-			str[j] = mem_allocation_of_strings(s, c);
-			while (*s && *s != c)
-				s++;
-			j++;
+			split[k] = ft_substr(s, j, i - j);
+			k++;
 		}
 	}
-	str[j] = NULL;
-	return (str);
+	split[k] = 0;
+	return (split);
 }

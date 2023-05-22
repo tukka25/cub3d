@@ -3,40 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/29 17:04:46 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/01/09 23:45:08 by abdamoha         ###   ########.fr       */
+/*   Created: 2021/10/03 01:03:40 by talsaiaa          #+#    #+#             */
+/*   Updated: 2022/04/04 00:26:05 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
 #include "libft.h"
-#include <stdio.h>
-#include <string.h>
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t		i;
-	char		*new_dst;
-	char		*new_src;
-
-	i = 0;
-	new_dst = (char *)dst;
-	new_src = (char *)src;
-	if (!src && !dst)
-		return (NULL);
-	if (new_dst > new_src)
+	if (dst == 0 && src == 0)
+		return (0);
+	if (dst == src)
+		return (dst);
+	if (dst > src)
 	{
-		while (len-- > 0)
-			new_dst[len] = new_src[len];
+		while (len > 0)
+		{
+			((char *)dst)[len - 1] = ((char *)src)[len - 1];
+			len--;
+		}
+		return (dst);
 	}
 	else
 	{
-		while (i < len)
-		{
-			new_dst[i] = new_src[i];
-			i++;
-		}
+		ft_memcpy(dst, src, len);
+		return (dst);
 	}
-	return (new_dst);
 }

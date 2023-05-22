@@ -3,48 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 15:12:33 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/07 21:26:27 by abdamoha         ###   ########.fr       */
+/*   Created: 2021/09/28 01:36:18 by talsaiaa          #+#    #+#             */
+/*   Updated: 2021/10/03 01:27:26 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-static int	ignore_zero(const char *str, int j)
+int	ft_atoi(char *str)
 {
-	if ((str[j] == '+' || str[j] == '-') && str[j + 1] != '\0')
-		++j;
-	while (str[j] == '0')
-		j++;
-	return (j);
-}
+	int	s;
+	int	res;
 
-int	ft_atoi(const char *str)
-{
-	int					sign;
-	int					j;
-	unsigned long long	result;
-
-	j = 0;
-	result = 0;
-	sign = 1;
-	while ((str[j] >= 9 && str[j] <= 13) || (str[j] == ' '))
-		j++;
-	if (str[j] == '-')
-		return (-1);
-	j = ignore_zero(str, j);
-	while (str[j] >= '0' && str[j] <= '9')
+	s = 1;
+	res = 0;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
 	{
-		result = result * 10 + str[j++] - '0';
-		if (((result > INT_MAX && sign == 1)
-				|| (result > 2147483648 && sign == -1)))
-			return (-1);
+		str++;
 	}
-	if ((str[j] >= ' ' && str[j] <= '/')
-		|| (str[j] >= ':' && str[j] < 127)
-		|| !ft_isascii(str[j]))
-		return (-1);
-	return (result * sign);
+	while (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			s *= -1;
+		str++;
+		break ;
+	}
+	while (*str >= '0' && *str <= '9')
+	{
+		res = (*str - '0') + (res * 10);
+		str++;
+	}
+	return (res * s);
 }

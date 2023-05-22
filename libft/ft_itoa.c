@@ -3,70 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/09 16:19:11 by abdamoha          #+#    #+#             */
-/*   Updated: 2022/10/24 20:24:40 by abdamoha         ###   ########.fr       */
+/*   Created: 2021/10/03 00:58:31 by talsaiaa          #+#    #+#             */
+/*   Updated: 2021/10/17 02:34:15 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
-static int	number_of_digits(int n)
+static int	digit_counter(int n)
 {
 	int	i;
 
 	i = 0;
+	if (n == -2147483648)
+		return (11);
 	if (n < 0)
+		i = 1;
+	if (n == 0)
+		return (1);
+	while (n)
 	{
-		n = n * -1;
-		i++;
-	}
-	while ((n / 10) != 0)
-	{
-		i++;
 		n = n / 10;
+		i++;
 	}
-	i++;
 	return (i);
 }
 
-static char	*printing(long nb, int len, char *str)
+static char	*mallocating(int n)
 {
-	char	result;
+	int		i;
+	char	*itoa;
 
-	while (nb > 0)
-	{
-		result = (nb % 10) + '0';
-		str[len - 1] = result;
-		nb = nb / 10;
-		len--;
-	}
-	return (str);
+	i = digit_counter(n);
+	itoa = (char *)malloc(i + 1);
+	if (itoa == NULL)
+		return (NULL);
+	itoa[i] = '\0';
+	return (itoa);
 }
 
 char	*ft_itoa(int n)
 {
 	int		len;
-	char	*str;
-	long	nb;
+	char	*itoa;
 
-	nb = n;
-	len = number_of_digits(nb);
-	str = malloc(len * (sizeof(char)) + 1);
-	if (!str)
-		return (NULL);
-	str[len] = '\0';
-	if (nb == 0)
+	len = digit_counter(n) - 1;
+	itoa = mallocating(n);
+	if (n == -2147483648)
 	{
-		str[0] = '0';
-		return (str);
+		itoa[len] = '8';
+		len = len - 1;
+		n = -214748364;
 	}
-	if (nb < 0)
+	if (n < 0)
 	{
-		str[0] = '-';
-		nb = nb * -1;
+		itoa[0] = '-';
+		n = n * -1;
 	}
-	str = printing(nb, len, str);
-	return (str);
+	while (n > 9)
+	{
+		itoa[len--] = n % 10 + 48;
+		n = n / 10;
+	}
+	if (n <= 9)
+		itoa[len] = n + 48;
+	return (itoa);
 }
