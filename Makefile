@@ -1,4 +1,4 @@
-NAME = cud3d
+NAME = cub3d
 
 SRCS =	cub3d.c              \
 		parsing.c            \

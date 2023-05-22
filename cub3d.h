@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/22 13:15:03 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/22 13:57:17 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,8 @@ void	map_pars(t_cub *cub);
 void	free_and_exit(t_cub *cub, char *str);
 void	drawing(t_cub *cub);
 int		key_hook(int keycode, t_cub *cub);
+void	move_up(t_cub *cub);
+void	move_back(t_cub *cub);
+void	move_down(t_cub *cub);
+void	move_forward(t_cub *cub);
 #endif
