@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:33:32 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/22 13:59:59 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:04:21 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	key_hook(int keycode, t_cub *cub)
 	}
 	else if (keycode == 53)
 		exit(0);
+	mlx_destroy_image(cub->mlx.mlx, cub->img.img);
+	drawing(cub);
 	return (0);
 }
 
@@ -40,8 +42,6 @@ void	move_up(t_cub *cub)
 		cub->map[cub->m.px_index][cub->m.py_index] = '0';
 		cub->map[cub->m.px_index - 1][cub->m.py_index] = 'N';
 		cub->m.px_index -= 1;
-		mlx_clear_window(cub->mlx.mlx, cub->mlx.mlx_win);
-		drawing(cub);
 	}
 }
 
@@ -52,8 +52,6 @@ void	move_down(t_cub *cub)
 		cub->map[cub->m.px_index][cub->m.py_index] = '0';
 		cub->map[cub->m.px_index + 1][cub->m.py_index] = 'N';
 		cub->m.px_index += 1;
-		mlx_clear_window(cub->mlx.mlx, cub->mlx.mlx_win);
-		drawing(cub);
 	}
 }
 
@@ -64,8 +62,6 @@ void	move_forward(t_cub *cub)
 		cub->map[cub->m.px_index][cub->m.py_index] = '0';
 		cub->map[cub->m.px_index][cub->m.py_index + 1] = 'N';
 		cub->m.py_index += 1;
-		mlx_clear_window(cub->mlx.mlx, cub->mlx.mlx_win);
-		drawing(cub);
 	}
 }
 
@@ -76,7 +72,5 @@ void	move_back(t_cub *cub)
 		cub->map[cub->m.px_index][cub->m.py_index] = '0';
 		cub->map[cub->m.px_index][cub->m.py_index - 1] = 'N';
 		cub->m.py_index -= 1;
-		mlx_clear_window(cub->mlx.mlx, cub->mlx.mlx_win);
-		drawing(cub);
 	}
 }

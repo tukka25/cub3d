@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/22 13:57:17 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/23 12:56:33 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ typedef struct s_img
 {
 	void	*background_img;
 	void	*wall_img;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }	t_img;
 
 typedef struct s_cub
@@ -75,4 +80,7 @@ void	move_up(t_cub *cub);
 void	move_back(t_cub *cub);
 void	move_down(t_cub *cub);
 void	move_forward(t_cub *cub);
+void	draw_wall(t_cub *cub, int x, int y);
+void	render(t_cub *cub);
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 #endif

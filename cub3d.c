@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:35 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/22 13:45:38 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:04:50 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,13 @@ int	main(int ac, char *av[])
 		first_init(&cub);
 		pars(av, &cub);
 		cub.mlx.mlx = mlx_init();
-		cub.mlx.mlx_win = mlx_new_window(cub.mlx.mlx, cub.m.width * 64, cub.m.height * 64, "cub3d");
-		cub.img.background_img = mlx_xpm_file_to_image(cub.mlx.mlx, "./img/pixels.xpm", &x, &x);
-		if (!cub.img.background_img)
-		{
-			printf("error1\n");
-			exit(1);
-		}
-		cub.img.wall_img = mlx_xpm_file_to_image(cub.mlx.mlx,
-				"./img/wallll.xpm", &x, &x);
-		if (!cub.img.wall_img)
-		{
-			printf("error2\n");
-			exit(1);
-		}
-		mlx_hook(cub.mlx.mlx_win, 2, 0, key_hook, &cub);
+		cub.mlx.mlx_win = mlx_new_window(cub.mlx.mlx, cub.m.width * 64,
+				cub.m.height * 64, "cub3d");
+		// my_mlx_pixel_put(&cub.img, 5, 5, 0xFFFFFFF);
+		// mlx_put_image_to_window(cub.mlx.mlx, cub.mlx.mlx_win, 
+		// 	cub.img.img, 0, 0);
 		drawing(&cub);
+		mlx_hook(cub.mlx.mlx_win, 2, 0, key_hook, &cub);
 		mlx_loop(cub.mlx.mlx);
 	}
 	else

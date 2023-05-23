@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 23:35:38 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/22 13:25:05 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:12:59 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,40 +131,115 @@ void	drawing(t_cub *cub)
 	i = 0;
 	j = 0;
 	y = 0;
-	while (cub->map[x])
+	cub->img.img = mlx_new_image(cub->mlx.mlx, cub->m.width * 64,
+				cub->m.height * 64);
+	cub->img.addr = mlx_get_data_addr(cub->img.img, &cub->img.bits_per_pixel,
+			&cub->img.line_length, &cub->img.endian);
+	while (cub->map[y])
 	{
 		j = 0;
-		y = 0;
-		while (cub->map[x][y])
+		x = 0;
+		while (cub->map[y][x])
 		{
-			if (cub->map[x][y] == 'N' || cub->map[x][y] == 'S'
-				|| cub->map[x][y] == 'W' || cub->map[x][y] == 'E')
+			if (cub->map[y][x] == 'N' || cub->map[y][x] == 'S'
+				|| cub->map[y][x] == 'W' || cub->map[y][x] == 'E')
 			{
-				mlx_pixel_put(cub->mlx.mlx, cub->mlx.mlx_win,
-					j, i, 0x0000FF00);
-				mlx_pixel_put(cub->mlx.mlx, cub->mlx.mlx_win,
-					j + 1, i, 0x0000FF00);
-				mlx_pixel_put(cub->mlx.mlx, cub->mlx.mlx_win,
-					j + 2, i, 0x0000FF00);
-				mlx_pixel_put(cub->mlx.mlx, cub->mlx.mlx_win,
-					j, i + 1, 0x0000FF00);
-				mlx_pixel_put(cub->mlx.mlx, cub->mlx.mlx_win,
-					j + 1, i + 1, 0x0000FF00);
-				mlx_pixel_put(cub->mlx.mlx, cub->mlx.mlx_win,
-					j + 2, i + 1, 0x0000FF00);
-				mlx_pixel_put(cub->mlx.mlx, cub->mlx.mlx_win,
-					j, i + 2, 0x0000FF00);
-				mlx_pixel_put(cub->mlx.mlx, cub->mlx.mlx_win,
-					j + 1, i + 2, 0x0000FF00);
-				mlx_pixel_put(cub->mlx.mlx, cub->mlx.mlx_win,
-					j + 2, i + 2, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32, i +32, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + 1, i +32, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + 2, i +32, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32, i +32 + 1, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + 1, i +32 + 1, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + 2, i +32 + 1, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32, i +32 + 2, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + 1, i +32 + 2, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + 2, i +32 + 2, 0x0000FF00);
 				// bb(cub, cub->map[x][y]);
 			}
-			y++;
+			else if (cub->map[y][x] == '1')
+			{
+				// printf("x = %d\n", x);
+				draw_wall(cub, x, y);
+			}
+			x++;
 			j += 64;
 		}
-		x++;
+		y++;
+		i += 64;
+	}
+	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.mlx_win, 
+		cub->img.img, 0, 0);
+}
+
+void	render(t_cub *cub)
+{
+	int		i;
+	int		j;
+	int		x;
+	int		y;
+
+	x = 0;
+	i = 0;
+	j = 0;
+	y = 0;
+	while (cub->map[y])
+	{
+		j = 0;
+		x = 0;
+		while (cub->map[y][x])
+		{
+			if (cub->map[y][x] == 'N' || cub->map[y][x] == 'S'
+				|| cub->map[y][x] == 'W' || cub->map[y][x] == 'E')
+			{
+				my_mlx_pixel_put(&cub->img, j, i, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 1, i, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 2, i, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j, i + 1, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 1, i + 1, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 2, i + 1, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j, i + 2, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 1, i + 2, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 2, i + 2, 0x0000FF00);
+			}
+			x++;
+			j += 64;
+		}
+		y++;
 		i += 64;
 	}
 }
 
+void	draw_wall(t_cub *cub, int x, int y)
+{
+	int		i;
+	int		j;
+	int		x1;
+	int		y1;
+
+	i = 0;
+	j = 0;
+	x1 = 0;
+	y1 = 0;
+	x1 = 64 * x;
+	y1 = 64 * y;
+	while (i < 63)
+	{
+		j = 0;
+		x1 = 64 * x;
+		while (j < 63)
+		{
+			my_mlx_pixel_put(&cub->img, x1, y1, 0xFFFFFF);
+			j++;
+			x1++;
+		}
+		i++;
+		y1++;
+	}
+}
+
+// void	my_my_mlx_pixel_put(&t_datimg, color)
+// {
+// 	char	*dst;
+
+// 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+// 	*(unsigned int*)dst = color;
+// }
