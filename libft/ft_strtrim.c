@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 23:24:35 by talsaiaa          #+#    #+#             */
-/*   Updated: 2021/10/10 05:37:03 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:13:01 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
+
+/* Allocates (with malloc(3)) and returns a copy of ’s1’ with the characters
+specified in ’set’ removed from the beginning and the end of the string.*/
 
 static	int	check_start(char const *s1, char const *set)
 {

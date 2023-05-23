@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 04:58:15 by talsaiaa          #+#    #+#             */
-/*   Updated: 2021/10/16 01:21:31 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:08:31 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <string.h>
+
+/* Function that searches for string needle in string haystack no more than len
+	and returns if found the whole string*/
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {

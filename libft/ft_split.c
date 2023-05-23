@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 01:00:40 by talsaiaa          #+#    #+#             */
-/*   Updated: 2021/10/16 03:37:36 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:14:27 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ static int	word_count(char const *s, char c)
 	}
 	return (counter);
 }
+
+/* Allocates (with malloc(3)) and returns an array of strings obtained by
+splitting ’s’ using the character ’c’ as a delimiter.*/
 
 char	**ft_split(char const *s, char c)
 {

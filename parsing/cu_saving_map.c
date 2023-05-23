@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:47:00 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/03/15 12:47:45 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:31:36 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	cu_saving_map(t_game *game)
 {
-	
+	return ;
 }

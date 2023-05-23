@@ -6,22 +6,12 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 01:13:37 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/22 16:34:22 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:22:04 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-
-// extern int WIN_H;
-// extern int WIN_W;
-
-// # define FORWARD 13
-// # define BACKWARD 1
-// # define LEFT 0
-// # define RIGHT 2
-// # define LOOK_LEFT 123
-// # define LOOK_RIGHT 124
 
 # include "Libft/libft.h"
 # include "gnl/get_next_line.h"
@@ -41,12 +31,12 @@ typedef struct s_map
 typedef struct s_file
 {
 	int		fd;
-	int		fileLen;
+	int		file_len;
 	int		nline;
 	int		linelen;
 	char	*line;
-	char	*fileArray;
-	char	**file2D;
+	char	*file_array;
+	char	**file_2d;
 }				t_file;
 
 typedef struct s_game

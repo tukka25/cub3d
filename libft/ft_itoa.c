@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 00:58:31 by talsaiaa          #+#    #+#             */
-/*   Updated: 2021/10/17 02:34:15 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:15:24 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ static char	*mallocating(int n)
 	itoa[i] = '\0';
 	return (itoa);
 }
+
+/* Allocates (with malloc(3)) and returns a string representing the integer
+received as an argument. Negative numbers are handled.*/
 
 char	*ft_itoa(int n)
 {
