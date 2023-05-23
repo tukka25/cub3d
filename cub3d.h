@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 01:13:37 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/23 16:22:04 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/23 18:03:28 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ typedef struct s_game
 	t_file	file;
 }				t_game;
 
-void	cu_print_error(char *msg);
-void	cu_args_check(int ac, char *av);
-void	cu_saving_file(t_game *game);
+void			cu_print_error(char *msg);
+void			cu_args_check(int ac, char *av);
+void			cu_saving_file(t_game *game);
+unsigned int	cu_file_line_counter(int fd);
 
 #endif
