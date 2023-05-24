@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 23:35:38 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/23 23:04:33 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/24 22:16:11 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,10 +144,10 @@ void	drawing(t_cub *cub)
 			if (cub->map[y][x] == 'N' || cub->map[y][x] == 'S'
 				|| cub->map[y][x] == 'W' || cub->map[y][x] == 'E')
 			{
-				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 2, i + 32 + cub->move_y - 1, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 2, i + 32 + cub->move_y - 2, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 2, i + 32 + cub->move_y - 3, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 2, i + 32 + cub->move_y - 4, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, (int)((j + 32 + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + 32 + cub->move_y - 1) + cub->ray_c.pdy), 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, (int)((j + 32 + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + 32 + cub->move_y - 2) + cub->ray_c.pdy), 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, (int)((j + 32 + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + 32 + cub->move_y - 3) + cub->ray_c.pdy), 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, (int)((j + 32 + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + 32 + cub->move_y - 4) + cub->ray_c.pdy), 0x0000FF00);
 				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x, i + 32 + cub->move_y, 0x0000FF00);
 				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 1, i + 32 + cub->move_y, 0x0000FF00);
 				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 2, i + 32 + cub->move_y, 0x0000FF00);
@@ -247,10 +247,10 @@ void	draw_wall(t_cub *cub, int x, int y)
 	}
 }
 
-// void	my_my_mlx_pixel_put(&t_datimg, color)
+// void	draw_line(t_cub *cub, int s[], int e[])
 // {
-// 	char	*dst;
-
-// 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-// 	*(unsigned int*)dst = color;
+// 	my_mlx_pixel_put(&cub->img, (int)((j + 32 + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + 32 + cub->move_y - 1) + cub->ray_c.pdy), 0x0000FF00);
+// 	my_mlx_pixel_put(&cub->img, (int)((j + 32 + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + 32 + cub->move_y - 2) + cub->ray_c.pdy), 0x0000FF00);
+// 	my_mlx_pixel_put(&cub->img, (int)((j + 32 + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + 32 + cub->move_y - 3) + cub->ray_c.pdy), 0x0000FF00);
+// 	my_mlx_pixel_put(&cub->img, (int)((j + 32 + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + 32 + cub->move_y - 4) + cub->ray_c.pdy), 0x0000FF00);
 // }

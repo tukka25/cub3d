@@ -6,14 +6,14 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/24 16:07:44 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/24 22:16:00 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define Speed 2
+# define Speed 8
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -97,4 +97,5 @@ void	render(t_cub *cub);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	rotate_right(t_cub *cub);
 void	rotate_left(t_cub *cub);
+float	deg_to_rad(int i, t_cub *cub);
 #endif

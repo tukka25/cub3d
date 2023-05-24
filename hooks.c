@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:33:32 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/24 15:52:45 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/24 23:33:59 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,28 @@ int	key_hook(int keycode, t_cub *cub)
 void	move_up(t_cub *cub)
 {
 	if (cub->map[cub->m.px_index - 1][cub->m.py_index] != '1')
-		cub->move_y -= 4 * Speed;
+	{
+		cub->move_y -= Speed * sin(cub->ray_c.angle); 
+		cub->move_x += Speed * cos(cub->ray_c.angle); 
+	}
 }
 
 void	move_down(t_cub *cub)
 {
 	if (cub->map[cub->m.px_index + 1][cub->m.py_index] != '1')
-		cub->move_y += 4 * Speed;
+	{
+		cub->move_y += Speed;
+	}
 }
 
 void	move_forward(t_cub *cub)
 {
 	if (cub->map[cub->m.px_index][cub->m.py_index + 1] != '1')
-		cub->move_x += 4 * Speed;
+		cub->move_x += Speed;
 }
 
 void	move_back(t_cub *cub)
 {
 	if (cub->map[cub->m.px_index][cub->m.py_index - 1] != '1')
-		cub->move_x -= 4 * Speed;
+		cub->move_x -= Speed;
 }
