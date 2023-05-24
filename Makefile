@@ -7,7 +7,8 @@ SRCS =	cub3d.c              \
 		utils.c              \
 		utils2.c             \
 		drawing.c            \
-		hooks.c
+		hooks.c              \
+		rotation.c
 
 OBJS = $(SRCS:.c=.o)
 

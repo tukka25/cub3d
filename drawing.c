@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 23:35:38 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/23 16:12:59 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/23 23:04:33 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,15 +144,26 @@ void	drawing(t_cub *cub)
 			if (cub->map[y][x] == 'N' || cub->map[y][x] == 'S'
 				|| cub->map[y][x] == 'W' || cub->map[y][x] == 'E')
 			{
-				my_mlx_pixel_put(&cub->img, j + 32, i +32, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + 32 + 1, i +32, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + 32 + 2, i +32, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + 32, i +32 + 1, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + 32 + 1, i +32 + 1, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + 32 + 2, i +32 + 1, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + 32, i +32 + 2, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + 32 + 1, i +32 + 2, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + 32 + 2, i +32 + 2, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 2, i + 32 + cub->move_y - 1, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 2, i + 32 + cub->move_y - 2, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 2, i + 32 + cub->move_y - 3, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 2, i + 32 + cub->move_y - 4, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x, i + 32 + cub->move_y, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 1, i + 32 + cub->move_y, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 2, i + 32 + cub->move_y, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 3, i + 32 + cub->move_y, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x, i + 32 + cub->move_y + 1, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 1, i + 32 + cub->move_y + 1, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 2, i + 32 + cub->move_y + 1, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 3, i + 32 + cub->move_y + 1, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x, i + 32 + cub->move_y + 2, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 1, i + 32 + cub->move_y + 2, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 2, i + 32 + cub->move_y + 2, 0x0000FF00);
+				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 3, i + 32 + cub->move_y + 2, 0x0000FF00);
+				// my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x, i + 32 + cub->move_y + 3, 0x0000FF00);
+				// my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 1, i + 32 + cub->move_y + 3, 0x0000FF00);
+				// my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 2, i + 32 + cub->move_y + 3, 0x0000FF00);
+				// my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 3, i + 32 + cub->move_y + 3, 0x0000FF00);
 				// bb(cub, cub->map[x][y]);
 			}
 			else if (cub->map[y][x] == '1')
@@ -166,7 +177,7 @@ void	drawing(t_cub *cub)
 		y++;
 		i += 64;
 	}
-	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.mlx_win, 
+	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.mlx_win,
 		cub->img.img, 0, 0);
 }
 

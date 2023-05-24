@@ -6,19 +6,27 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/23 12:56:33 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:07:44 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# define Speed 2
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include "libft/libft.h"
 # include "mlx/mlx.h"
 # include <math.h>
+
+typedef struct s_ray_c
+{
+	float	pdx;
+	float	pdy;
+	float	angle;
+}	t_ray_c;
 
 typedef struct s_map
 {
@@ -58,9 +66,13 @@ typedef struct s_cub
 	char	**map;
 	int		*f_colors;
 	int		*c_colors;
+	int		move_x;
+	int		move_y;
+	float	pi;
 	t_map	m;
 	t_mlx	mlx;
 	t_img	img;
+	t_ray_c	ray_c;
 }	t_cub;
 
 void	pars(char **argv, t_cub *cub);
@@ -83,4 +95,6 @@ void	move_forward(t_cub *cub);
 void	draw_wall(t_cub *cub, int x, int y);
 void	render(t_cub *cub);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+void	rotate_right(t_cub *cub);
+void	rotate_left(t_cub *cub);
 #endif

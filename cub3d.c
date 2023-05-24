@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:35 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/23 16:04:50 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:07:56 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ static void	first_init(t_cub *cub)
 	cub->f_colors = NULL;
 	cub->c_colors = NULL;
 	cub->map = NULL;
+	cub->move_x = 0;
+	cub->move_y = 0;
+	cub->pi = 3.14159265359;
+	cub->ray_c.angle = 90 * cub->pi;
+	cub->ray_c.pdx = 0;
+	cub->ray_c.pdy = 0;
 }
 
 int	main(int ac, char *av[])
