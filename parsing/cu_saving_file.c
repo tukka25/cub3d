@@ -6,13 +6,13 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 10:56:24 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/25 20:04:41 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/25 22:30:55 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char	**cu_2d_maker(char **tmp, char *line, int nline)
+char	**cu_2d_maker(char **tmp, char *line, int nline, t_game *game)
 {
 	char	**dest;
 	int		i;
@@ -20,7 +20,7 @@ char	**cu_2d_maker(char **tmp, char *line, int nline)
 	i = 0;
 	dest = (char **)malloc(sizeof(char *) * (nline + 1));
 	if (!dest)
-		cu_print_error("Malloc error");
+		cu_print_error("Malloc error", game);
 	while (tmp && tmp[i])
 	{
 		dest[i] = ft_strdup(tmp[i]);
@@ -43,7 +43,7 @@ void	cu_saving_file(t_game *game)
 	{
 		game->file.nline++;
 		game->file.file_2d = cu_2d_maker(game->file.file_2d, game->file.line,
-				game->file.nline);
+				game->file.nline, game);
 		game->file.line = get_next_line(game->file.fd);
 	}
 }

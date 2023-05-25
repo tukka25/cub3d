@@ -6,7 +6,7 @@
 #    By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 00:30:54 by talsaiaa          #+#    #+#              #
-#    Updated: 2023/05/25 20:01:50 by talsaiaa         ###   ########.fr        #
+#    Updated: 2023/05/25 22:01:31 by talsaiaa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIB		=	Libft/libft.a
 
 GCC		=	gcc
 
-FLAGS	=	-fsanitize=address -g -Wall -Wextra -Werror
+FLAGS	=	-g -Wall -Wextra -Werror
 
 all: comp_start $(NAME) 
 	@printf '		          ▓▓▓▓▓▓▓▓                                                                 \n'
