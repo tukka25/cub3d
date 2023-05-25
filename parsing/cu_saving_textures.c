@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 23:15:04 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/26 01:54:30 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/26 01:55:28 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static void	cu_check_duplicate(char *iden, t_game *game)
 	return ;
 }
 
+// gotta check if file is .xpm as well
 static char	*cu_checking_texture(char *line, char *iden, t_game *game)
 {
 	char	**path;
