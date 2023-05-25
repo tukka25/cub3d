@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:33:32 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/25 15:02:57 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/25 17:39:26 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,44 @@ int	key_hook(int keycode, t_cub *cub)
 
 void	move_up(t_cub *cub)
 {
-	if (cub->map[cub->m.px_index - 1][cub->m.py_index] != '1')
-	{
+	// if (cub->map[cub->m.px_index - 1][cub->m.py_index] != '1')
+	// {
 		cub->move_y -= Speed * sin(cub->ray_c.angle); 
 		cub->move_x += Speed * cos(cub->ray_c.angle); 
-	}
+	// }
 }
 
 void	move_down(t_cub *cub)
 {
-	if (cub->map[cub->m.px_index + 1][cub->m.py_index] != '1')
-	{
+	// if (cub->map[cub->m.px_index + 1][cub->m.py_index] != '1')
+	// {
 		cub->move_y += Speed * sin(cub->ray_c.angle);
 		cub->move_x -= Speed * cos(cub->ray_c.angle);
-	}
+	// }
 }
 
 void	move_right(t_cub *cub)
 {
-	if (cub->map[cub->m.px_index][cub->m.py_index + 1] != '1')
+	int		a;
+
+	a = rad_to_deg(cub->ray_c.angle, cub);
+	// printf("a = %d\n", a);
+	if ((a == 90) || (a == 270))
+	{
+		// printf("heeere\n");
+		cub->move_x += Speed;
+		// cub->move_y = Speed * sin(cub->ray_c.angle);
+	}
+	else if ((a >= 178 && a <= 182) || (a == 0))
+	{
+		cub->move_y -= Speed;
+	}
+	else if (a > 90)
+	{
+		cub->move_y -= Speed * sin(cub->ray_c.angle);
+		cub->move_x -= Speed * cos(cub->ray_c.angle);
+	}
+	else
 	{
 		cub->move_x += Speed * cos(cub->ray_c.angle);
 		cub->move_y += Speed * sin(cub->ray_c.angle);
@@ -66,9 +85,26 @@ void	move_right(t_cub *cub)
 
 void	move_left(t_cub *cub)
 {
-	if (cub->map[cub->m.px_index][cub->m.py_index - 1] != '1')
+	int		a;
+
+	a = rad_to_deg(cub->ray_c.angle, cub);
+	if ((a >= 88 && a <= 92) || (a >= 268 && a <= 272))
+	{
+		cub->move_x -= Speed;
+	}
+	else if ((a >= 178 && a <= 182) || (a == 0))
+	{
+		cub->move_y += Speed;
+	}
+	else if (a > 90)
+	{
+		cub->move_y += Speed * sin(cub->ray_c.angle);
+		cub->move_x += Speed * cos(cub->ray_c.angle);
+	}
+	else
 	{
 		cub->move_x -= Speed * cos(cub->ray_c.angle);
 		cub->move_y -= Speed * sin(cub->ray_c.angle);
 	}
+
 }
