@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/24 22:16:00 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/25 15:01:08 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ void	free_and_exit(t_cub *cub, char *str);
 void	drawing(t_cub *cub);
 int		key_hook(int keycode, t_cub *cub);
 void	move_up(t_cub *cub);
-void	move_back(t_cub *cub);
+void	move_left(t_cub *cub);
 void	move_down(t_cub *cub);
-void	move_forward(t_cub *cub);
+void	move_right(t_cub *cub);
 void	draw_wall(t_cub *cub, int x, int y);
 void	render(t_cub *cub);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
