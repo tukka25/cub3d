@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 13:14:46 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/25 22:29:38 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/26 01:28:18 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int ac, char **av)
 	game.file.fd = open(av[1], O_RDONLY);
 	cu_args_check(av[1], &game);
 	cu_saving_file(&game);
+	cu_saving_textures(&game);
 	close (game.file.fd);
 	return (0);
 }

@@ -1,18 +1,16 @@
-NO ./path_to_the_north_texture
+NO ./textures/GRAYBIG.xpm
 
 
 
-SO ./path_to_the_south_texture
+SO ./textures/MARBLE2.xpm
 
 
 
-WE ./path_to_the_west_texture
+WE ./textures/SKULWAL3.xpm
 
 
 
-EA ./path_to_the_east_texture
-
-
+EA ./textures/STONE3.xpm
 
 
 

@@ -1,12 +1,13 @@
-1̶.̶ ̶t̶h̶e̶ ̶a̶r̶g̶u̶m̶e̶n̶t̶ ̶h̶a̶s̶ ̶t̶o̶ ̶b̶e̶ ̶a̶ ̶.̶c̶u̶b̶ ̶f̶i̶l̶e̶.̶ done.
-2. Allowed characters of the map: 0, 1, N, S, E, W.
-3. Map must be surrounded by walls.
-4. Other than the map, each type of element can be seperated by one or more empty lines.
-5. The map content has to be the last. Other elements can be in any order.
-6. Other than the map, info of element can be seperated by one or more space.
-7. Spaces are a valid part of the map.
-8. Other than the map, the elements first info must be the type identifier, composed of
+1.	t̶h̶e̶ ̶a̶r̶g̶u̶m̶e̶n̶t̶ ̶h̶a̶s̶ ̶t̶o̶ ̶b̶e̶ ̶a̶ ̶.̶c̶u̶b̶ ̶f̶i̶l̶e̶.̶
+4.	Other than the map, each type of element can be seperated by one or more empty lines.
+6.	Other than the map, info of element can be seperated by one or more space.
+8.	Other than the map, the elements first info must be the type identifier, composed of
 	one or two characters (NO, SO, WE, EA), followed by specific info for that object.
+11.	textures has to be .xpm files
+2.	Allowed characters of the map: 0, 1, N, S, E, W.
+3.	Map must be surrounded by walls.
+5.	The map content has to be the last. Other elements can be in any order.
+7.	Spaces are a valid part of the map.
 9.	Execution needs player x & y coordinates.
 10.	Need to save colors and textures in variables for use in execution.
 

@@ -6,13 +6,13 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 10:56:24 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/25 22:30:55 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/26 01:37:35 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char	**cu_2d_maker(char **tmp, char *line, int nline, t_game *game)
+static char	**cu_file_to_2d(char **tmp, char *line, int nline, t_game *game)
 {
 	char	**dest;
 	int		i;
@@ -42,7 +42,7 @@ void	cu_saving_file(t_game *game)
 	while(game->file.line)
 	{
 		game->file.nline++;
-		game->file.file_2d = cu_2d_maker(game->file.file_2d, game->file.line,
+		game->file.file_2d = cu_file_to_2d(game->file.file_2d, game->file.line,
 				game->file.nline, game);
 		game->file.line = get_next_line(game->file.fd);
 	}

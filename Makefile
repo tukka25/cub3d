@@ -6,15 +6,15 @@
 #    By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 00:30:54 by talsaiaa          #+#    #+#              #
-#    Updated: 2023/05/25 22:01:31 by talsaiaa         ###   ########.fr        #
+#    Updated: 2023/05/25 23:39:08 by talsaiaa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	cub3d
 
 SRCS	=	main.c \
-			parsing/cu_args_check.c parsing/cu_print_error.c parsing/cu_saving_file.c \
 			gnl/get_next_line.c gnl/get_next_line_utils.c \
+			parsing/cu_args_check.c parsing/cu_print_error.c parsing/cu_saving_file.c parsing/cu_saving_textures.c\
 
 OBJS	=	$(SRCS:.c=.o)
 
@@ -24,7 +24,7 @@ LIB		=	Libft/libft.a
 
 GCC		=	gcc
 
-FLAGS	=	-g -Wall -Wextra -Werror
+FLAGS	=	-fsanitize=address -g -Wall -Wextra -Werror
 
 all: comp_start $(NAME) 
 	@printf '		          ▓▓▓▓▓▓▓▓                                                                 \n'
@@ -110,5 +110,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all comp_start clean fclean re
-
-                                                                                          

@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 01:13:37 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/25 22:38:12 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/26 01:27:59 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <stdlib.h>
+# include <stdbool.h>
 
 typedef struct s_map
 {
@@ -40,10 +41,17 @@ typedef struct s_game
 {
 	t_map	map;
 	t_file	file;
+	char	*NO;
+	char	*SO;
+	char	*WE;
+	char	*EA;
+	int		F;
+	int		C;
 }				t_game;
 
-void			cu_print_error(char *msg, t_game *game);
-void			cu_args_check(char *av, t_game *game);
-void			cu_saving_file(t_game *game);
+void	cu_print_error(char *msg, t_game *game);
+void	cu_args_check(char *av, t_game *game);
+void	cu_saving_file(t_game *game);
+void	cu_saving_textures(t_game* game);
 
 #endif
