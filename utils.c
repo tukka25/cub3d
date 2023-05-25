@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 20:00:47 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/25 16:12:02 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/25 21:59:30 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,11 @@ int		rad_to_deg(float i, t_cub *cub)
 	s = i * 180 / cub->pi;
 	// printf("s = %d\n", s);
 	return (s);
+}
+
+int	exit_w(t_cub *cub)
+{
+	(void)cub;
+	exit(0);
+	return (0);
 }

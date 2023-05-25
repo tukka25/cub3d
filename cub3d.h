@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/25 16:02:43 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/25 21:59:40 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,5 @@ void	rotate_right(t_cub *cub);
 void	rotate_left(t_cub *cub);
 float	deg_to_rad(int i, t_cub *cub);
 int		rad_to_deg(float i, t_cub *cub);
+int		exit_w(t_cub *cub);
 #endif

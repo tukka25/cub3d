@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:35 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/24 18:23:04 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/25 21:58:27 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	main(int ac, char *av[])
 		// 	cub.img.img, 0, 0);
 		drawing(&cub);
 		mlx_hook(cub.mlx.mlx_win, 2, 0, key_hook, &cub);
+		mlx_hook(cub.mlx.mlx_win, 17, 0, exit_w, &cub);
 		mlx_loop(cub.mlx.mlx);
 	}
 	else
