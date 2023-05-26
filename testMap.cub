@@ -1,16 +1,8 @@
-NO ./textures/GRAYBIG.xpm
+     NO ./textures/GRAYBIG.xpm      
+    SO    ./textures/MARBLE2.xpm     
+    WE    ./textures/SKULWAL3.xpm    
+    EA    ./textures/STONE3.xpm
 
-
-
-SO ./textures/MARBLE2.xpm
-
-
-
-WE ./textures/SKULWAL3.xpm
-
-
-
-EA ./textures/STONE3.xpm
 
 
 

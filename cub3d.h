@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 01:13:37 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/26 01:27:59 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/26 23:58:57 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,9 @@ void	cu_print_error(char *msg, t_game *game);
 void	cu_args_check(char *av, t_game *game);
 void	cu_saving_file(t_game *game);
 void	cu_saving_textures(t_game* game);
+void	cu_freedom(t_game *game);
+void	cu_init(t_game *game);
+char	*cu_strtrimchar(char const *str, int const c);
+void	cu_free_2d(char **str_2d);
 
 #endif

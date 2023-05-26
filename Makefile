@@ -6,7 +6,7 @@
 #    By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 00:30:54 by talsaiaa          #+#    #+#              #
-#    Updated: 2023/05/25 23:39:08 by talsaiaa         ###   ########.fr        #
+#    Updated: 2023/05/26 23:35:44 by talsaiaa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME	=	cub3d
 
 SRCS	=	main.c \
 			gnl/get_next_line.c gnl/get_next_line_utils.c \
-			parsing/cu_args_check.c parsing/cu_print_error.c parsing/cu_saving_file.c parsing/cu_saving_textures.c\
+			parsing/cu_args_check.c parsing/cu_print_error.c parsing/cu_saving_file.c \
+			parsing/cu_saving_textures.c parsing/freedom.c parsing/cu_init.c parsing/cu_strtrimchar.c \
 
 OBJS	=	$(SRCS:.c=.o)
 
@@ -24,7 +25,7 @@ LIB		=	Libft/libft.a
 
 GCC		=	gcc
 
-FLAGS	=	-fsanitize=address -g -Wall -Wextra -Werror
+FLAGS	=	-g -Wall -Wextra -Werror
 
 all: comp_start $(NAME) 
 	@printf '		          ▓▓▓▓▓▓▓▓                                                                 \n'

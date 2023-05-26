@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cu_print_error.c                                   :+:      :+:    :+:   */
+/*   cu_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/14 11:21:45 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/26 21:14:29 by talsaiaa         ###   ########.fr       */
+/*   Created: 2023/05/26 18:28:51 by talsaiaa          #+#    #+#             */
+/*   Updated: 2023/05/26 18:37:38 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	cu_print_error(char *msg, t_game *game)
+void	cu_init(t_game *game)
 {
-	printf("Error\n");
-	printf("%s\n", msg);
-	if (game->file.fd > 0)
-		close(game->file.fd);
-	cu_freedom(game);
-	exit (1);
+	game->NO = NULL;
+	game->SO = NULL;
+	game->WE = NULL;
+	game->EA = NULL;
+	game->F = 0;
+	game->C = 0;
+	game->file.fd = 0;
+	game->file.nline = 0;
+	game->file.line = NULL;
+	game->file.file_2d = NULL;
 }

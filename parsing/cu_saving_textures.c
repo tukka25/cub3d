@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 23:15:04 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/26 01:55:28 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/27 00:00:54 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,52 +55,60 @@ static void	cu_check_duplicate(char *iden, t_game *game)
 // gotta check if file is .xpm as well
 static char	*cu_checking_texture(char *line, char *iden, t_game *game)
 {
-	char	**path;
+	char	**tmp;
+	char	*path;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
 	cu_check_duplicate(iden, game);
-	path = ft_split(line, ' ');
-	if (path[2] || !path[1])
-		cu_print_error("Invalid identifier", game);
-	while (path && path[i])
+	tmp = ft_split(line, ' ');
+	if (tmp[2] && tmp[2][0] != '\n')
 	{
-		if (cu_is_whtspace(path[i][j]))
+		cu_free_2d(tmp);
+		cu_print_error("Invalid identifier", game);
+	}
+	while (tmp && tmp[i])
+	{
+		if (cu_is_whtspace(tmp[i][j]))
+		{
+			cu_free_2d(tmp);
 			cu_print_error("Invalid white space", game);
+		}
 		j++;
-		if (!path[i][j])
+		if (!tmp[i][j])
 		{
 			j = 0;
 			i++;
 		}
 	}
-	path[1][ft_strlen(path[1]) - 1] = '\0'; //to get rid of new line, but may cause problems later.
-	cu_check_texture_file(path[1], game);
-	return (ft_strtrim(path[1], " "));
+	path = ft_strdup(tmp[1]);
+	cu_free_2d(tmp);
+	cu_check_texture_file(path, game);
+	return (path);
 }
 
 void	cu_saving_textures(t_game* game)
 {
-	int	i;
+	int		i;
+	char	*tmp;
 
 	i = 0;
-	game->NO = NULL;
-	game->SO = NULL;
-	game->WE = NULL;
-	game->EA = NULL;
+	tmp = NULL;
 	while (game->file.file_2d && game->file.file_2d[i])
 	{
-		if (cu_cmp_id(game->file.file_2d[i], "NO "))
-			game->NO = cu_checking_texture(game->file.file_2d[i], "NO ", game);
-		if (cu_cmp_id(game->file.file_2d[i], "SO "))
-			game->SO = cu_checking_texture(game->file.file_2d[i], "SO ", game);
-		if (cu_cmp_id(game->file.file_2d[i], "WE "))
-			game->WE = cu_checking_texture(game->file.file_2d[i], "WE ", game);
-		if (cu_cmp_id(game->file.file_2d[i], "EA "))
-			game->EA = cu_checking_texture(game->file.file_2d[i], "EA ", game);
+		tmp = cu_strtrimchar(game->file.file_2d[i], ' ');
+		if (cu_cmp_id(tmp, "NO "))
+			game->NO = cu_checking_texture(tmp, "NO ", game);
+		if (cu_cmp_id(tmp, "SO "))
+			game->SO = cu_checking_texture(tmp, "SO ", game);
+		if (cu_cmp_id(tmp, "WE "))
+			game->WE = cu_checking_texture(tmp, "WE ", game);
+		if (cu_cmp_id(tmp, "EA "))
+			game->EA = cu_checking_texture(tmp, "EA ", game);
 		i++;
+		free(tmp);
 	}
 	if (!game->NO || !game->SO || !game->WE || !game->EA)
 		cu_print_error("Texture identifier not found", game);

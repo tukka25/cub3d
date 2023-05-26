@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 10:56:24 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/26 01:37:35 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/26 18:33:17 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ static char	**cu_file_to_2d(char **tmp, char *line, int nline, t_game *game)
 
 void	cu_saving_file(t_game *game)
 {	
-	game->file.nline = 0;
-	game->file.file_2d = NULL;
 	game->file.line = get_next_line(game->file.fd);
 	while(game->file.line)
 	{

@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 23:24:35 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/26 00:46:36 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/26 22:56:35 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	start = check_start(s1, set);
 	len = ft_strlen(s1);
 	end = check_end(s1, set, start, len);
-	if (!start && !end)
-		return (ft_strdup(s1));
 	trim = (char *)malloc((end - start) + 1);
 	if (trim == 0)
 		return (0);
