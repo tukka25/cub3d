@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 13:14:46 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/26 18:37:46 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/27 20:36:46 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int ac, char **av)
 {
 	t_game	game;
-	
+
 	cu_init(&game);
 	if (ac != 2)
 		cu_print_error("Invalid number of arguments", &game);
