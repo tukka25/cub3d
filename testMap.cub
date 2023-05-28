@@ -1,18 +1,17 @@
 
 
 
+    SO    ./textures/MARBLE2.xpm
 
 
 NO ./textures/GRAYBIG.xpm
 
 
 
-    SO    ./textures/MARBLE2.xpm
-
-
-
 
     WE    ./textures/SKULWAL3.xpm
+
+
 
 
 
@@ -22,7 +21,7 @@ NO ./textures/GRAYBIG.xpm
 
 
 
-F 220,100,0
+F 220, 100, 0
 C 225,30,0
 
 

@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 23:15:04 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/27 20:41:35 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/28 18:48:39 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,18 @@ void	cu_saving_textures(t_game *game)
 	while (game->file.file_2d && game->file.file_2d[i])
 	{
 		split = ft_split(game->file.file_2d[i], ' ');
-		if (cu_cmp_id(split[0], "NO"))
+		if (cu_cmp_id(split[0], "NO", 2))
 			game->north = cu_checking_texture(split, "NO", game);
-		else if (cu_cmp_id(split[0], "SO"))
+		else if (cu_cmp_id(split[0], "SO", 2))
 			game->south = cu_checking_texture(split, "SO", game);
-		else if (cu_cmp_id(split[0], "WE"))
+		else if (cu_cmp_id(split[0], "WE", 2))
 			game->west = cu_checking_texture(split, "WE", game);
-		else if (cu_cmp_id(split[0], "EA"))
+		else if (cu_cmp_id(split[0], "EA", 2))
 			game->east = cu_checking_texture(split, "EA", game);
+		else if (cu_cmp_id(split[0], "F", 1))
+			;//game->floor = function to check and save floor color;
+		else if (cu_cmp_id(split[0], "C", 1))
+			;//game->ceiling = function to check and save ceiling color;
 		i++;
 		cu_free_2d(split);
 	}
