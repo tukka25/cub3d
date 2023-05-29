@@ -6,17 +6,21 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 23:15:04 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/29 20:26:33 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/29 21:09:38 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	cu_check_file_extension(char *file, t_game *game)
+void	cu_check_file_extension(char **args, char *file, t_game *game)
 {
 	if (!ft_strchr(file, '.')
 		|| ft_strncmp("xpm", (file + ft_strlen(file) - 3), 3))
+	{
+		free(file);
+		cu_free_2d(args);
 		cu_print_error("Texture must be an existing .xpm file", game);
+	}
 	return ;
 }
 
@@ -33,8 +37,8 @@ static char	*cu_checking_texture(char **args, char *iden, t_game *game)
 	path = ft_strdup(args[1]);
 	if (path[ft_strlen(path) - 1] == '\n')
 		path[ft_strlen(path) - 1] = 0;
-	cu_check_texture_file(path, game);
-	cu_check_file_extension(path, game);
+	cu_check_texture_file(args, path, game);
+	cu_check_file_extension(args, path, game);
 	return (path);
 }
 

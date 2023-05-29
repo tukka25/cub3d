@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 01:13:37 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/29 20:25:03 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/29 21:08:27 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*cu_strtrimchar(char const *str, int const c);
 void	cu_free_2d(char **str_2d);
 bool	cu_cmp_id(char *line, char *identifier, int len);
 bool	cu_is_whtspace(int c);
-void	cu_check_texture_file(char *path, t_game *game);
+void	cu_check_texture_file(char **args, char *path, t_game *game);
 bool	cu_is_duplicate(char *iden, t_game *game);
 void	cu_check_texture_args(char **args, t_game *game);
 int		cu_atoi(char *str);

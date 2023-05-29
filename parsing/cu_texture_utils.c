@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 20:40:40 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/29 20:24:58 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/29 21:08:08 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	cu_is_whtspace(int c)
 	return (false);
 }
 
-void	cu_check_texture_file(char *path, t_game *game)
+void	cu_check_texture_file(char **args, char *path, t_game *game)
 {
 	int	fd;
 
@@ -34,11 +34,17 @@ void	cu_check_texture_file(char *path, t_game *game)
 	if (fd > 0)
 	{
 		close(fd);
+		free(path);
+		cu_free_2d(args);
 		cu_print_error("Texture cannot be a directory", game);
 	}
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
+	{
+		free(path);
+		cu_free_2d(args);
 		cu_print_error("Texture file does not exist", game);
+	}
 	close (fd);
 	return ;
 }

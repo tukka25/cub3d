@@ -1,15 +1,15 @@
 1.	t̶h̶e̶ ̶a̶r̶g̶u̶m̶e̶n̶t̶ ̶h̶a̶s̶ ̶t̶o̶ ̶b̶e̶ ̶a̶ ̶.̶c̶u̶b̶ ̶f̶i̶l̶e̶.̶
-4.	Other than the map, each type of element can be seperated by one or more empty lines.
-6.	Other than the map, info of element can be seperated by one or more space.
-8.	Other than the map, the elements first info must be the type identifier, composed of
-	one or two characters (NO, SO, WE, EA), followed by specific info for that object.
-11.	textures has to be .xpm files
+4.	O̶t̶h̶e̶r̶ ̶t̶h̶a̶n̶ ̶t̶h̶e̶ ̶m̶a̶p̶,̶ ̶e̶a̶c̶h̶ ̶t̶y̶p̶e̶ ̶o̶f̶ ̶e̶l̶e̶m̶e̶n̶t̶ ̶c̶a̶n̶ ̶b̶e̶ ̶s̶e̶p̶e̶r̶a̶t̶e̶d̶ ̶b̶y̶ ̶o̶n̶e̶ ̶o̶r̶ ̶m̶o̶r̶e̶ ̶e̶m̶p̶t̶y̶ ̶l̶i̶n̶e̶s̶.̶
+6.	O̶t̶h̶e̶r̶ ̶t̶h̶a̶n̶ ̶t̶h̶e̶ ̶m̶a̶p̶,̶ ̶i̶n̶f̶o̶ ̶o̶f̶ ̶e̶l̶e̶m̶e̶n̶t̶ ̶c̶a̶n̶ ̶b̶e̶ ̶s̶e̶p̶e̶r̶a̶t̶e̶d̶ ̶b̶y̶ ̶o̶n̶e̶ ̶o̶r̶ ̶m̶o̶r̶e̶ ̶s̶p̶a̶c̶e̶.̶
+8.	O̶t̶h̶e̶r̶ ̶t̶h̶a̶n̶ ̶t̶h̶e̶ ̶m̶a̶p̶,̶ ̶t̶h̶e̶ ̶e̶l̶e̶m̶e̶n̶t̶s̶ ̶f̶i̶r̶s̶t̶ ̶i̶n̶f̶o̶ ̶m̶u̶s̶t̶ ̶b̶e̶ ̶t̶h̶e̶ ̶t̶y̶p̶e̶ ̶i̶d̶e̶n̶t̶i̶f̶i̶e̶r̶,̶ ̶c̶o̶m̶p̶o̶s̶e̶d̶ ̶o̶f̶
+̶	̶o̶n̶e̶ ̶o̶r̶ ̶t̶w̶o̶ ̶c̶h̶a̶r̶a̶c̶t̶e̶r̶s̶ ̶(̶N̶O̶,̶ ̶S̶O̶,̶ ̶W̶E̶,̶ ̶E̶A̶)̶,̶ ̶f̶o̶l̶l̶o̶w̶e̶d̶ ̶b̶y̶ ̶s̶p̶e̶c̶i̶f̶i̶c̶ ̶i̶n̶f̶o̶ ̶f̶o̶r̶ ̶t̶h̶a̶t̶ ̶o̶b̶j̶e̶c̶t̶.̶
+11.	t̶e̶x̶t̶u̶r̶e̶s̶ ̶h̶a̶s̶ ̶t̶o̶ ̶b̶e̶ ̶.̶x̶p̶m̶ ̶f̶i̶l̶e̶s̶
 2.	Allowed characters of the map: 0, 1, N, S, E, W.
 3.	Map must be surrounded by walls.
 5.	The map content has to be the last. Other elements can be in any order.
 7.	Spaces are a valid part of the map.
 9.	Execution needs player x & y coordinates.
-10.	Need to save colors and textures in variables for use in execution.
+10.	N̶e̶e̶d̶ ̶t̶o̶ ̶s̶a̶v̶e̶ ̶c̶o̶l̶o̶r̶s̶ ̶a̶n̶d̶ ̶t̶e̶x̶t̶u̶r̶e̶s̶ ̶i̶n̶ ̶v̶a̶r̶i̶a̶b̶l̶e̶s̶ ̶f̶o̶r̶ ̶u̶s̶e̶ ̶i̶n̶ ̶e̶x̶e̶c̶u̶t̶i̶o̶n̶.̶
 
 * Example of a valid map:
 
