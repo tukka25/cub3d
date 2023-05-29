@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:04:48 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/27 20:39:43 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:57:33 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,12 @@ void	cu_freedom(t_game *game)
 	cu_free_2d(game->file.file_2d);
 	if (game->file.line)
 		free(game->file.line);
-	free(game->north);
-	free(game->south);
-	free(game->west);
-	free(game->east);
+	if (game->north)
+		free(game->north);
+	if (game->south)
+		free(game->south);
+	if (game->west)
+		free(game->west);
+	if (game->east)
+		free(game->east);
 }

@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 23:15:04 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/29 19:02:37 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/29 20:26:33 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ static char	*cu_checking_texture(char **args, char *iden, t_game *game)
 {
 	char	*path;
 
-	cu_check_duplicate(iden, game);
+	if (cu_is_duplicate(iden, game))
+	{
+		cu_free_2d(args);
+		cu_print_error("Duplicate texture found", game);
+	}
 	cu_check_texture_args(args, game);
 	path = ft_strdup(args[1]);
 	if (path[ft_strlen(path) - 1] == '\n')
@@ -53,7 +57,7 @@ void	cu_saving_textures(char *line, t_game *game)
 
 void	cu_saving_components(t_game *game)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (game->file.file_2d && game->file.file_2d[i])

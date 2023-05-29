@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:14:04 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/29 19:02:14 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/29 20:28:05 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,11 @@ int	cu_check_color_args(char *line, t_game *game)
 
 int	cu_checking_color(char *line, char *cmp, t_game *game)
 {
-	cu_check_duplicate(cmp, game);
+	if (cu_is_duplicate(cmp, game))
+	{
+		free(line);
+		cu_print_error("Duplicate color found", game);
+	}
 	return (cu_check_color_args(line, game));
 }
 
@@ -60,6 +64,12 @@ void	cu_saving_colors(char *line, t_game *game)
 		game->floor = cu_checking_color(tmp, "F", game);
 	else if (tmp[0] == 'C' && tmp[1] == ' ')
 		game->ceiling = cu_checking_color(tmp, "C", game);
+	else if ((tmp[0] == 'F' && tmp[1] != ' ')
+		|| (tmp[0] == 'C' && tmp[1] != ' '))
+	{
+		free(tmp);
+		cu_print_error("Invalid color identifier", game);
+	}
 	free(tmp);
 	return ;
 }

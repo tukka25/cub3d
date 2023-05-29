@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 20:40:40 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/29 16:42:29 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/29 20:24:58 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	cu_check_texture_file(char *path, t_game *game)
 	return ;
 }
 
-void	cu_check_duplicate(char *iden, t_game *game)
+bool	cu_is_duplicate(char *iden, t_game *game)
 {
 	if ((cu_cmp_id(iden, "NO", 2) && game->north)
 		|| (cu_cmp_id(iden, "SO", 2) && game->south)
@@ -51,8 +51,8 @@ void	cu_check_duplicate(char *iden, t_game *game)
 		|| (cu_cmp_id(iden, "EA", 2) && game->east)
 		|| (cu_cmp_id(iden, "F", 1) && game->floor != -1)
 		|| (cu_cmp_id(iden, "C", 1) && game->ceiling != -1))
-		cu_print_error("Duplicate identifier found", game);
-	return ;
+		return (true);
+	return (false);
 }
 
 void	cu_check_texture_args(char **args, t_game *game)
