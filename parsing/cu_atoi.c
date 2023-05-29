@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:12:12 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/29 18:49:59 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/29 21:20:50 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,16 @@ int	cu_atoi(char *str)
 	while (tmp[i])
 	{
 		if (!ft_isdigit(tmp[i]))
+		{
+			free(tmp);
 			return (-1);
+		}
 		res = (tmp[i] - '0') + (res * 10);
 		if (res > 255)
+		{
+			free(tmp);
 			return (-1);
+		}
 		i++;
 	}
 	free(tmp);
