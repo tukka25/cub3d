@@ -6,15 +6,15 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 20:40:40 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/29 21:08:08 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/29 21:37:32 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-bool	cu_cmp_id(char *line, char *identifier, int len)
+bool	cu_cmp_id(char *iden, char *cmp, int len)
 {
-	if (!ft_strncmp(line, identifier, len))
+	if (!ft_strncmp(iden, cmp, len))
 		return (true);
 	return (false);
 }

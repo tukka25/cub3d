@@ -6,32 +6,32 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 10:56:24 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/29 19:59:15 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/29 21:35:49 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static char	**cu_file_to_2d(char **tmp, char *line, int nline, t_game *game)
+static char	**cu_file_to_2d(char **pre, char *line, int nline, t_game *game)
 {
-	char	**dest;
+	char	**new;
 	int		i;
 
 	i = 0;
-	dest = (char **)malloc(sizeof(char *) * (nline + 1));
-	if (!dest)
+	new = (char **)malloc(sizeof(char *) * (nline + 1));
+	if (!new)
 		cu_print_error("Malloc error", game);
-	while (tmp && tmp[i])
+	while (pre && pre[i])
 	{
-		dest[i] = ft_strdup(tmp[i]);
-		free(tmp[i]);
+		new[i] = ft_strdup(pre[i]);
+		free(pre[i]);
 		i++;
 	}
-	dest[i] = ft_strdup(line);
-	dest[i + 1] = NULL;
-	free(tmp);
+	new[i] = ft_strdup(line);
+	new[i + 1] = 0;
+	free(pre);
 	free(line);
-	return (dest);
+	return (new);
 }
 
 void	cu_saving_file(t_game *game)
