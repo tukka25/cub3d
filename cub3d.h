@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 01:13:37 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/30 19:17:43 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/30 20:03:37 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 typedef struct s_map
 {
 	int		map_pos;
+	int		nline;
 	char	**map_2d;
 }				t_map;
 
