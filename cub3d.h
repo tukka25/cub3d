@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 01:13:37 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/29 21:08:27 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/30 19:17:43 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,8 @@
 
 typedef struct s_map
 {
-	int		nline;
-	int		linelen;
-	char	*a;
-	char	*one_d;
-	char	**two_d;
+	int		map_pos;
+	char	**map_2d;
 }				t_map;
 
 typedef struct s_file
@@ -65,5 +62,7 @@ void	cu_check_texture_args(char **args, t_game *game);
 int		cu_atoi(char *str);
 void	cu_saving_textures(char *line, t_game *game);
 void	cu_saving_colors(char *line, t_game *game);
+char	**cu_file_to_2d(char **pre, char *line, int nline, t_game *game);
+void	cu_saving_map(char *line, int map_start, t_game *game);
 
 #endif

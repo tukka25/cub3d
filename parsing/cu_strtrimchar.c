@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:57:08 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/27 19:33:41 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/30 19:56:49 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ static int	check_start(char const *str, int const c)
 	return (i);
 }
 
-static int	check_end(char const *str, int const c, int len)
+static int	check_end(char const *str, int const c, int start, int len)
 {
 	int	end;
 
 	end = len - 1;
-	while (str[end] && str[end] == c)
+	while (end > start && str[end] == c)
 	{
 		end--;
 	}
@@ -46,11 +46,11 @@ char	*cu_strtrimchar(char const *str, int const c)
 	int		len;
 
 	i = 0;
-	if (!str)
+	if (!str || !str[i])
 		return (NULL);
 	start = check_start(str, c);
 	len = ft_strlen(str);
-	end = check_end(str, c, len);
+	end = check_end(str, c, start, len);
 	if (!start && !end)
 	{
 		trim = ft_strdup(str);

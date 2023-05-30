@@ -6,13 +6,13 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 10:56:24 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/29 21:35:49 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/30 18:34:36 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static char	**cu_file_to_2d(char **pre, char *line, int nline, t_game *game)
+char	**cu_file_to_2d(char **pre, char *line, int nline, t_game *game)
 {
 	char	**new;
 	int		i;

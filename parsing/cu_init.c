@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:28:51 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/29 16:38:45 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/30 19:17:55 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ void	cu_init(t_game *game)
 	game->file.nline = 0;
 	game->file.line = NULL;
 	game->file.file_2d = NULL;
+	game->map.map_2d = NULL;
+	game->map.map_pos = -1;
 	return ;
 }

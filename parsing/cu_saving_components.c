@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 23:15:04 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/29 21:38:31 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/05/30 19:40:01 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	cu_saving_components(t_game *game)
 	{
 		cu_saving_textures(game->file.file_2d[i], game);
 		cu_saving_colors(game->file.file_2d[i], game);
+		cu_saving_map(game->file.file_2d[i], i, game);
 		i++;
 	}
 	if (!game->north || !game->south || !game->west || !game->east
@@ -79,5 +80,7 @@ void	cu_saving_components(t_game *game)
 	printf("east: %s\n", game->east);
 	printf("floor: %d\n", game->floor);
 	printf("ceiling: %d\n", game->ceiling);
+	for (int i = 0; game->map.map_2d[i]; i++)
+		printf("%s", game->map.map_2d[i]);
 	return ;
 }
