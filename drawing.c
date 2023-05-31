@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 23:35:38 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/24 22:16:11 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/05/31 13:29:55 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,15 +160,9 @@ void	drawing(t_cub *cub)
 				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 1, i + 32 + cub->move_y + 2, 0x0000FF00);
 				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 2, i + 32 + cub->move_y + 2, 0x0000FF00);
 				my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 3, i + 32 + cub->move_y + 2, 0x0000FF00);
-				// my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x, i + 32 + cub->move_y + 3, 0x0000FF00);
-				// my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 1, i + 32 + cub->move_y + 3, 0x0000FF00);
-				// my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 2, i + 32 + cub->move_y + 3, 0x0000FF00);
-				// my_mlx_pixel_put(&cub->img, j + 32 + cub->move_x + 3, i + 32 + cub->move_y + 3, 0x0000FF00);
-				// bb(cub, cub->map[x][y]);
 			}
 			else if (cub->map[y][x] == '1')
 			{
-				// printf("x = %d\n", x);
 				draw_wall(cub, x, y);
 			}
 			x++;
@@ -177,6 +171,7 @@ void	drawing(t_cub *cub)
 		y++;
 		i += 64;
 	}
+	// cast_rays(cub);
 	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.mlx_win,
 		cub->img.img, 0, 0);
 }
@@ -247,10 +242,7 @@ void	draw_wall(t_cub *cub, int x, int y)
 	}
 }
 
-// void	draw_line(t_cub *cub, int s[], int e[])
+// void	cast_rays(t_cub *cub)
 // {
-// 	my_mlx_pixel_put(&cub->img, (int)((j + 32 + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + 32 + cub->move_y - 1) + cub->ray_c.pdy), 0x0000FF00);
-// 	my_mlx_pixel_put(&cub->img, (int)((j + 32 + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + 32 + cub->move_y - 2) + cub->ray_c.pdy), 0x0000FF00);
-// 	my_mlx_pixel_put(&cub->img, (int)((j + 32 + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + 32 + cub->move_y - 3) + cub->ray_c.pdy), 0x0000FF00);
-// 	my_mlx_pixel_put(&cub->img, (int)((j + 32 + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + 32 + cub->move_y - 4) + cub->ray_c.pdy), 0x0000FF00);
+	
 // }
