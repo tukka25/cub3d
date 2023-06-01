@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:33:32 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/31 20:12:29 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/01 17:09:50 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	move_right(t_cub *cub)
 	} 
 	else if (a > 180 && a < 270)
 	{
-		cub->move_x -= Speed * sin(cub->ray_c.angle);
-		cub->move_y -= Speed * cos(cub->ray_c.angle);
+		cub->move_x += Speed * sin(cub->ray_c.angle);
+		cub->move_y += Speed * cos(cub->ray_c.angle);
 	}
 	else if (a > 270 && a < 360)
 	{
@@ -79,10 +79,7 @@ void	move_right(t_cub *cub)
 		cub->move_y += Speed * cos(cub->ray_c.angle);
 	}
 	else
-	{
-		// printf("kl\n");
 		cub->move_x += Speed;
-	}
 }
 
 void	move_left(t_cub *cub)
@@ -90,13 +87,9 @@ void	move_left(t_cub *cub)
 	int		a;
 
 	a = rad_to_deg(cub->ray_c.angle, cub);
-	printf("a = %d\n", a);
 	if (a == 0 || a == 360)
-	{
-		printf("jjk\n");
 		cub->move_y -= Speed;
-	}
-	if ((a > 0 && a < 90))
+	else if ((a > 0 && a < 90))
 	{
 		cub->move_x -= Speed * sin(cub->ray_c.angle);
 		cub->move_y -= Speed * cos(cub->ray_c.angle);
@@ -108,8 +101,8 @@ void	move_left(t_cub *cub)
 	}
 	else if (a > 180 && a < 270)
 	{
-		cub->move_x += Speed * sin(cub->ray_c.angle);
-		cub->move_y += Speed * cos(cub->ray_c.angle);
+		cub->move_x += -Speed * sin(cub->ray_c.angle);
+		cub->move_y += -Speed * cos(cub->ray_c.angle);
 	}
 	else if (a > 270 && a < 360)
 	{
