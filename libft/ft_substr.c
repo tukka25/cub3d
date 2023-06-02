@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 00:58:10 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/23 16:11:34 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/02 20:55:48 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	i = 0;
 	if (!s)
 		return (0);
-	if (len > ft_strlen(s))
-		len = ft_strlen(s);
-	if (len > ft_strlen(s) - start)
-		len = ft_strlen(s) - start;
-	if (start > ft_strlen(s))
+	if (len > (size_t) ft_strlen(s))
+		len = (size_t) ft_strlen(s);
+	if (len > (size_t) ft_strlen(s) - start)
+		len = (size_t) ft_strlen(s) - start;
+	if (start > (size_t) ft_strlen(s))
 		len = 0;
 	substr = (char *)malloc(len + 1);
 	if (!substr)
 		return (0);
-	if ((size_t) start < ft_strlen(s))
+	if ((size_t) start < (size_t) ft_strlen(s))
 	{
 		while (len--)
 		{

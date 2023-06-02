@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 23:15:04 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/30 19:40:01 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/02 20:45:13 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,7 @@ void	cu_saving_components(t_game *game)
 		cu_saving_map(game->file.file_2d[i], i, game);
 		i++;
 	}
-	if (!game->north || !game->south || !game->west || !game->east
-		|| game->floor == -1 || game->ceiling == -1)
-		cu_print_error("Texture identifier not found", game);
+	cu_check_missing(game);
 	printf("north: %s\n", game->north);
 	printf("south: %s\n", game->south);
 	printf("west: %s\n", game->west);
@@ -82,5 +80,6 @@ void	cu_saving_components(t_game *game)
 	printf("ceiling: %d\n", game->ceiling);
 	for (int i = 0; game->map.map_2d[i]; i++)
 		printf("%s", game->map.map_2d[i]);
+	printf("p_x: %d, p_y: %d, p_direction: %c\n", game->map.p_x, game->map.p_y, game->map.p_direction);
 	return ;
 }

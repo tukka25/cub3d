@@ -6,7 +6,7 @@
 #    By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 00:30:54 by talsaiaa          #+#    #+#              #
-#    Updated: 2023/05/30 18:47:01 by talsaiaa         ###   ########.fr        #
+#    Updated: 2023/06/02 20:11:04 by talsaiaa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@ NAME	=	cub3d
 
 SRCS	=	main.c \
 			gnl/get_next_line.c gnl/get_next_line_utils.c \
-			parsing/cu_args_check.c parsing/cu_print_error.c \
-			parsing/cu_saving_file.c parsing/cu_saving_components.c \
-			parsing/freedom.c parsing/cu_init.c parsing/cu_strtrimchar.c \
-			parsing/cu_texture_utils.c parsing/cu_atoi.c \
+			parsing/cu_utils.c parsing/cu_saving_file.c \
+			parsing/cu_saving_components.c parsing/freedom.c \
+			parsing/cu_strtrimchar.c parsing/cu_texture_utils.c \
 			parsing/cu_saving_colors.c parsing/cu_saving_map.c \
+			parsing/cu_check_map.c parsing/cu_map_utils.c \
 
 OBJS	=	$(SRCS:.c=.o)
 

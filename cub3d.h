@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 01:13:37 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/30 20:03:37 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/02 20:35:42 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ typedef struct s_map
 {
 	int		map_pos;
 	int		nline;
+	int		p_x;
+	int		p_y;
+	char	p_direction;
 	char	**map_2d;
 }				t_map;
 
@@ -47,23 +50,32 @@ typedef struct s_game
 	int		ceiling;
 }				t_game;
 
-void	cu_print_error(char *msg, t_game *game);
 void	cu_args_check(char *av, t_game *game);
-void	cu_saving_file(t_game *game);
-void	cu_saving_components(t_game *game);
-void	cu_freedom(t_game *game);
+int		cu_atoi(char *str);
 void	cu_init(t_game *game);
+void	cu_print_error(char *msg, t_game *game);
+void	cu_check_space(int y, int x, t_game *game);
+void	cu_check_edge(char *line, t_game *game);
+void	cu_is_valid_character(int y, int c, t_game *game);
+void	cu_is_player(int c, int y, int x, t_game *game);
+void	cu_is_space(int c, int y, int x, t_game *game);
 char	*cu_strtrimchar(char const *str, int const c);
-void	cu_free_2d(char **str_2d);
-bool	cu_cmp_id(char *line, char *identifier, int len);
+bool	cu_cmp_id(char *iden, char *cmp, int len);
 bool	cu_is_whtspace(int c);
 void	cu_check_texture_file(char **args, char *path, t_game *game);
 bool	cu_is_duplicate(char *iden, t_game *game);
 void	cu_check_texture_args(char **args, t_game *game);
-int		cu_atoi(char *str);
-void	cu_saving_textures(char *line, t_game *game);
+void	cu_freedom(t_game *game);
+void	cu_free_2d(char **str_2d);
+void	cu_saving_file(t_game *game);
+void	cu_saving_components(t_game *game);
 void	cu_saving_colors(char *line, t_game *game);
-char	**cu_file_to_2d(char **pre, char *line, int nline, t_game *game);
-void	cu_saving_map(char *line, int map_start, t_game *game);
+void	cu_saving_map(char *line, int index, t_game *game);
+void	cu_check_map(t_game *game);
+char	*cu_dup_and_trim(char *line);
+bool	cu_is_map_begininng(char *line);
+char	**cu_2d_dup(char **arrays, int start, int nline);
+int		cu_2d_len(char **arrays);
+void	cu_check_missing(t_game *game);
 
 #endif

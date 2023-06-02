@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:57:08 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/30 19:56:49 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/02 20:26:03 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ char	*cu_strtrimchar(char const *str, int const c)
 	int		end;
 	char	*trim;
 	int		i;
-	int		len;
 
 	i = 0;
 	if (!str || !str[i])
 		return (NULL);
 	start = check_start(str, c);
-	len = ft_strlen(str);
-	end = check_end(str, c, start, len);
+	if (start == ft_strlen(str))
+		return (NULL);
+	end = check_end(str, c, start, ft_strlen(str));
 	if (!start && !end)
 	{
 		trim = ft_strdup(str);
