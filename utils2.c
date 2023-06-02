@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 02:02:59 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/22 13:50:59 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:02:51 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,12 @@ void	map_pars(t_cub *cub)
 			if (cub->map[cub->i][cub->j] == 'N' || cub->map[cub->i][cub->j] == 'S'
 			|| cub->map[cub->i][cub->j] == 'E' || cub->map[cub->i][cub->j] == 'W')
 			{
-				cub->m.px_index = cub->i;
-				cub->m.py_index = cub->j;
+				cub->m.px_index = cub->j;
+				printf("px = %d\n", cub->m.px_index);
+				cub->m.px_pix = cub->j * 64;
+				cub->m.py_index = cub->i;
+				printf("py = %d\n", cub->m.py_index);
+				cub->m.py_pix = cub->i * 64;
 			}
 			cub->j++;
 		}
