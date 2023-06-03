@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 01:13:37 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/02 20:35:42 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:06:08 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ bool	cu_is_map_begininng(char *line);
 char	**cu_2d_dup(char **arrays, int start, int nline);
 int		cu_2d_len(char **arrays);
 void	cu_check_missing(t_game *game);
+void	cu_is_2_commas(char *line, t_game *game);
 
 #endif

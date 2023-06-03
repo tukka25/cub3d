@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:14:04 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/29 21:44:57 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:06:37 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	cu_saving_rgb_cmpnt(char *line, char *rgb_cmpnt, char **rgb, t_game *game)
 	{
 		free(line);
 		cu_free_2d(rgb);
-		cu_print_error("Invalid color identifier", game);
+		cu_print_error("Invalid color numbers", game);
 	}
 	return (cmpnt);
 }
@@ -46,7 +46,7 @@ int	cu_check_color_args(char *line, t_game *game)
 	{
 		free(line);
 		cu_free_2d(split);
-		cu_print_error("Invalid color identifier", game);
+		cu_print_error("Invalid color args", game);
 	}
 	r = cu_saving_rgb_cmpnt(line, split[0], split, game);
 	g = cu_saving_rgb_cmpnt(line, split[1], split, game);
@@ -62,6 +62,7 @@ int	cu_checking_color(char *line, char *iden, t_game *game)
 		free(line);
 		cu_print_error("Duplicate color found", game);
 	}
+	cu_is_2_commas(line, game);
 	return (cu_check_color_args(line, game));
 }
 

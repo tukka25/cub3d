@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 23:15:04 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/02 20:45:13 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:11:35 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	cu_check_file_extension(char **args, char *file, t_game *game)
 {
 	if (!ft_strchr(file, '.')
-		|| ft_strncmp("xpm", (file + ft_strlen(file) - 3), 3))
+		|| ft_strncmp(".xpm", (file + ft_strlen(file) - 4), 4))
 	{
 		free(file);
 		cu_free_2d(args);
@@ -37,8 +37,8 @@ static char	*cu_checking_texture(char **args, char *iden, t_game *game)
 	path = ft_strdup(args[1]);
 	if (path[ft_strlen(path) - 1] == '\n')
 		path[ft_strlen(path) - 1] = 0;
-	cu_check_texture_file(args, path, game);
 	cu_check_file_extension(args, path, game);
+	cu_check_texture_file(args, path, game);
 	return (path);
 }
 
@@ -59,6 +59,27 @@ void	cu_saving_textures(char *line, t_game *game)
 	return ;
 }
 
+void	cu_check_identifier(char *line, t_game *game)
+{
+	char	**tmp;
+	int		len;
+
+	if (cu_is_map_begininng(line))
+		return ;
+	tmp = ft_split(line, ' ');
+	len = ft_strlen(tmp[0]);
+	if (!cu_cmp_id(tmp[0], "NO", len) && !cu_cmp_id(tmp[0], "SO", len)
+		&& !cu_cmp_id(tmp[0], "WE", len) && !cu_cmp_id(tmp[0], "EA", len)
+		&& !cu_cmp_id(tmp[0], "F", len) && !cu_cmp_id(tmp[0], "C", len)
+		&& !cu_cmp_id(tmp[0], "\n", len))
+	{
+		cu_free_2d(tmp);
+		cu_print_error("Invalid identifier", game);
+	}
+	cu_free_2d(tmp);
+	return ;
+}
+
 void	cu_saving_components(t_game *game)
 {
 	int	i;
@@ -66,6 +87,7 @@ void	cu_saving_components(t_game *game)
 	i = 0;
 	while (game->file.file_2d && game->file.file_2d[i])
 	{
+		cu_check_identifier(game->file.file_2d[i], game);
 		cu_saving_textures(game->file.file_2d[i], game);
 		cu_saving_colors(game->file.file_2d[i], game);
 		cu_saving_map(game->file.file_2d[i], i, game);
@@ -80,6 +102,6 @@ void	cu_saving_components(t_game *game)
 	printf("ceiling: %d\n", game->ceiling);
 	for (int i = 0; game->map.map_2d[i]; i++)
 		printf("%s", game->map.map_2d[i]);
-	printf("p_x: %d, p_y: %d, p_direction: %c\n", game->map.p_x, game->map.p_y, game->map.p_direction);
+	printf("\np_x: %d, p_y: %d, p_direction: %c\n", game->map.p_x, game->map.p_y, game->map.p_direction);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:47:00 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/02 17:08:05 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:09:36 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,18 @@ bool	cu_is_map_begininng(char *line)
 	i = 0;
 	tmp = cu_dup_and_trim(line);
 	if (!tmp)
+	{
+		free(tmp);
 		return (false);
+	}
 	while (tmp[i])
 	{
-		if (tmp[i] != '1' && tmp[i] != ' ')
+		if (tmp[i] != '1' && tmp[i] != ' ' && tmp[i] != '0' && tmp[i] != 'N'
+			&& tmp[i] != 'S' && tmp[i] != 'W' && tmp[i] != 'E')
+		{
+			free(tmp);
 			return (false);
+		}
 		i++;
 	}
 	free(tmp);
@@ -87,8 +94,8 @@ void	cu_saving_map(char *line, int index, t_game *game)
 		return ;
 	if (game->map.map_pos != -1)
 		return ;
-	if (!game->north && !game->south && !game->west && !game->east
-		&& game->floor == -1 && game->ceiling == -1)
+	if (!game->north || !game->south || !game->west || !game->east
+		|| game->floor == -1 || game->ceiling == -1)
 		cu_print_error("Map should be the last thing in the file", game);
 	if (game->map.map_pos == -1)
 	{
@@ -98,8 +105,5 @@ void	cu_saving_map(char *line, int index, t_game *game)
 	}
 	game->map.nline = cu_2d_len(game->map.map_2d);
 	cu_check_map(game);
-	/* after making sure the last line is correct, run this check
-	if (game->map.nline + game->map.map_pos != game->file.nline)
-		cu_print_error("Map should be the last thing in the file", game); */
 	return ;
 }
