@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/03 03:07:29 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/03 06:58:20 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ void	check_horizontal(t_cub *cub)
 
 	xs = 0;
 	ys = 64;
-	xs = tan(cub->ray_c.angle) * ys;
+	xs = ys / tan(cub->ray_c.angle);
+	printf("xs = %d\n", xs);
 }
