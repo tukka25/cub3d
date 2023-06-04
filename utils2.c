@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 02:02:59 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/03 03:02:51 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/04 06:50:40 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,11 @@ void	map_pars(t_cub *cub)
 				cub->m.px_index = cub->j;
 				printf("px = %d\n", cub->m.px_index);
 				cub->m.px_pix = cub->j * 64;
+				cub->m.start_px = cub->j * 64;
 				cub->m.py_index = cub->i;
 				printf("py = %d\n", cub->m.py_index);
 				cub->m.py_pix = cub->i * 64;
+				cub->m.start_py = cub->i * 64;
 			}
 			cub->j++;
 		}

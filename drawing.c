@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 23:35:38 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/03 03:03:21 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/04 04:43:40 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,10 +144,10 @@ void	drawing(t_cub *cub)
 			if (cub->map[y][x] == 'N' || cub->map[y][x] == 'S'
 				|| cub->map[y][x] == 'W' || cub->map[y][x] == 'E')
 			{
-				my_mlx_pixel_put(&cub->img, (int)((j + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 1) + cub->ray_c.pdy), 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, (int)((j + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 2) + cub->ray_c.pdy), 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, (int)((j + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 3) + cub->ray_c.pdy), 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, (int)((j + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 4) + cub->ray_c.pdy), 0x0000FF00);
+				// my_mlx_pixel_put(&cub->img, (int)((j + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 1) + cub->ray_c.pdy), 0x0000FF00);
+				// my_mlx_pixel_put(&cub->img, (int)((j + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 2) + cub->ray_c.pdy), 0x0000FF00);
+				// my_mlx_pixel_put(&cub->img, (int)((j + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 3) + cub->ray_c.pdy), 0x0000FF00);
+				// my_mlx_pixel_put(&cub->img, (int)((j + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 4) + cub->ray_c.pdy), 0x0000FF00);
 				my_mlx_pixel_put(&cub->img, j + cub->move_x, i + cub->move_y, 0x0000FF00);
 				my_mlx_pixel_put(&cub->img, j + cub->move_x + 1, i + cub->move_y, 0x0000FF00);
 				my_mlx_pixel_put(&cub->img, j + cub->move_x + 2, i + cub->move_y, 0x0000FF00);

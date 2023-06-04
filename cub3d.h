@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/03 23:04:32 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/04 06:50:10 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_map
 	int		height;
 	int		width;
 	int		px_index;
+	int		start_px;
+	int		start_py;
 	int		px_pix;
 	int		py_index;
 	int		py_pix;
