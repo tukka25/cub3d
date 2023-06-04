@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:33:32 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/03 02:03:53 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/03 23:02:53 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@ int	key_hook(int keycode, t_cub *cub)
 
 void	move_up(t_cub *cub)
 {
+	cub->m.py_pix -= Speed;
 	cub->move_y -= Speed * sin(cub->ray_c.angle); 
 	cub->move_x += Speed * cos(cub->ray_c.angle); 
 }
 
 void	move_down(t_cub *cub)
 {
+	cub->m.py_pix += Speed;
 	cub->move_y += Speed * sin(cub->ray_c.angle);
 	cub->move_x -= Speed * cos(cub->ray_c.angle);
 }
@@ -63,33 +65,42 @@ void	move_right(t_cub *cub)
 	// 		cub->m.px_pix += 64;
 	// 	}
 	// }
+	// cub->m.px_pix += Speed;
 	a = rad_to_deg(cub->ray_c.angle, cub);
 	if (a == 0 || a == 360)
 	{
+		cub->m.px_pix += Speed;
 		cub->move_y += Speed;
 	}
 	else if ((a > 0 && a < 90))
 	{
+		cub->m.px_pix += Speed;
 		cub->move_x += Speed * sin(cub->ray_c.angle);
 		cub->move_y += Speed * cos(cub->ray_c.angle);
 	}
 	else if (a > 90 && a < 180)
 	{
+		cub->m.px_pix += Speed;
 		cub->move_x += Speed * sin(cub->ray_c.angle);
 		cub->move_y += Speed * cos(cub->ray_c.angle);
 	} 
 	else if (a > 180 && a < 270)
 	{
+		cub->m.px_pix -= Speed;
 		cub->move_x += Speed * sin(cub->ray_c.angle);
 		cub->move_y += Speed * cos(cub->ray_c.angle);
 	}
 	else if (a > 270 && a < 360)
 	{
+		cub->m.px_pix -= Speed;
 		cub->move_x += Speed * sin(cub->ray_c.angle);
 		cub->move_y += Speed * cos(cub->ray_c.angle);
 	}
 	else
+	{
+		cub->m.px_pix += Speed;
 		cub->move_x += Speed;
+	}
 	// i += Speed;
 }
 
@@ -99,27 +110,37 @@ void	move_left(t_cub *cub)
 
 	a = rad_to_deg(cub->ray_c.angle, cub);
 	if (a == 0 || a == 360)
+	{
+		cub->m.px_pix -= Speed;
 		cub->move_y -= Speed;
+	}
 	else if ((a > 0 && a < 90))
 	{
+		cub->m.px_pix -= Speed;
 		cub->move_x -= Speed * sin(cub->ray_c.angle);
 		cub->move_y -= Speed * cos(cub->ray_c.angle);
 	}
 	else if (a > 90 && a < 180)
 	{
+		cub->m.px_pix -= Speed;
 		cub->move_x -= Speed * sin(cub->ray_c.angle);
 		cub->move_y -= Speed * cos(cub->ray_c.angle);
 	}
 	else if (a > 180 && a < 270)
 	{
+		cub->m.px_pix += Speed;
 		cub->move_x += -Speed * sin(cub->ray_c.angle);
 		cub->move_y += -Speed * cos(cub->ray_c.angle);
 	}
 	else if (a > 270 && a < 360)
 	{
+		cub->m.px_pix += Speed;
 		cub->move_x -= Speed * sin(cub->ray_c.angle);
 		cub->move_y -= Speed * cos(cub->ray_c.angle);
 	}
 	else
+	{
+		cub->m.px_pix -= Speed;
 		cub->move_x -= Speed;
+	}
 }
