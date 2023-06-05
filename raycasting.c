@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/04 15:54:07 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/05 19:09:01 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	cast_rays(t_cub *cub)
 
 	x1 = cub->m.px_pix;
 	y1 = cub->m.py_pix;
+	printf("i = %c\n", cub->map[cub->m.py_pix / 64][cub->m.px_pix / 64]);
 	printf("--------------\n");
 	printf("x1 = %d\n", x1);
 	printf("y1 = %d\n", y1);
@@ -43,7 +44,7 @@ void	cast_rays(t_cub *cub)
 			// {
 			// 	while (h < 8)
 			// 	{
-					my_mlx_pixel_put(&cub->img, x1 , y1, 0xFF0000);
+					my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0xFF0000);
 					x1++;
 				// 	h++;
 				// }
@@ -69,7 +70,7 @@ void	cast_rays(t_cub *cub)
 			// {
 			// 	while (h < 8)
 			// 	{
-					my_mlx_pixel_put(&cub->img, x1 , y1, 0xFF0000);
+					my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0xFF0000);
 					y1--;
 				// 	h++;
 				// }
@@ -88,13 +89,16 @@ void	cast_rays(t_cub *cub)
 		// y1 -= Speed * sin(cub->ray_c.angle);
 		while (1)
 		{
-			i = 0;
+			// printf("--------------\n");
+			// printf("x1 = %d\n", x1);
+			// printf("y1 = %d\n", y1);
+			// printf("--------------\n");
+			my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0xFF0000);
+			// y1--;
+			// x1++;
 			x1 += Speed * cos(cub->ray_c.angle);
 			y1 -= Speed * sin(cub->ray_c.angle);
-			my_mlx_pixel_put(&cub->img, x1 , y1, 0xFF0000);
-			y1--;
-			x1++;
-			h++;
+			// h++;
 			if (cub->map[y1 / 64][x1 / 64] == '1')
 				break;
 			// }
@@ -109,7 +113,7 @@ void	cast_rays(t_cub *cub)
 		while (1)
 		{
 			i = 0;
-			my_mlx_pixel_put(&cub->img, x1 , y1, 0xFF0000);
+			my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0xFF0000);
 			y1--;
 			x1--;
 			x1 += Speed * cos(cub->ray_c.angle);
@@ -121,6 +125,7 @@ void	cast_rays(t_cub *cub)
 			// break;
 			
 		}
+		// draw_line(start_pos, end_pos, color, args)
 	} 
 	else if (a > 180 && a < 270)
 	{
@@ -129,7 +134,7 @@ void	cast_rays(t_cub *cub)
 		while (1)
 		{
 			i = 0;
-			my_mlx_pixel_put(&cub->img, x1 , y1, 0xFF0000);
+			my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0xFF0000);
 			y1++;
 			x1--;
 			x1 += Speed * cos(cub->ray_c.angle);
@@ -149,7 +154,7 @@ void	cast_rays(t_cub *cub)
 		while (1)
 		{
 			i = 0;
-			my_mlx_pixel_put(&cub->img, x1 , y1, 0xFF0000);
+			my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0xFF0000);
 			y1++;
 			x1++;
 			x1 += Speed * cos(cub->ray_c.angle);
@@ -196,7 +201,7 @@ void	draw_line(t_cub *cub)
 	// 	i = 0;
 	// 	while (i < 64)
 	// 	{
-	// 		my_mlx_pixel_put(&cub->img, x1  + 64 * cos(cub->ray_c.angle), y1 + 64 * sin(cub->ray_c.angle), 0xFF0000);
+	// 		my_mlx_pixel_put(&cub->img, x1 + 2  + 64 * cos(cub->ray_c.angle), y1 + 5 + 64 * sin(cub->ray_c.angle), 0xFF0000);
 	// 		i++;
 	// 	}
 	// 	if (cub->map[y1 / 64][x1 / 64] == '1')
