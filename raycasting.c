@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/06 06:27:21 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/06 08:26:46 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,25 @@ void	cast_rays(t_cub *cub)
 		printf("x1 in = %d\n", x1);
 		printf("y1 in = %d\n", y1);
 		printf("--------------\n");
-		// int	x2 = x1;
-		// int	y2 = y1;
+		int	x2 = x1;
+		int	y2 = y1;
+		int	i = 0;
 		while (1)
 		{
 			// printf("--------------\n");
 			// printf("x1 = %d\n", x1);
 			// printf("y1 = %d\n", y1);
 			// printf("--------------\n");
-			my_mlx_pixel_put(&cub->img, x1, y1 + 5, 0xFF0000);
+			i = 0;
+			x2 = x1;
+			y2 = y1;
+			while (i < 16)
+			{
+				my_mlx_pixel_put(&cub->img, x2 + 2, y2 + 5, 0xFF0000);
+				i++;
+				x2++;
+				y2++;
+			}
 			// y1--;
 			// x1++;
 			x1 += round(Speed * cos(cub->ray_c.angle));
