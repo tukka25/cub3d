@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:33:32 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/05 18:33:18 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/06 06:26:06 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,16 @@ void	move_up(t_cub *cub)
 
 	// cub->m.py_pix -= Speed;
 	a = rad_to_deg(cub->ray_c.angle, cub);
-	if (a > 0 && a < 90)
+	if (a == 90)
+	{
+		cub->m.py_pix -= round(Speed * sin(cub->ray_c.angle));
+	}
+	else if (a > 0 && a < 90)
 	{
 		printf("before x = %d\n", cub->m.px_pix);
 		printf("before y = %d\n", cub->m.py_pix);
-		cub->m.px_pix += Speed * cos(cub->ray_c.angle);
-		cub->m.py_pix -= Speed * sin(cub->ray_c.angle);
+		cub->m.px_pix += round(Speed * cos(cub->ray_c.angle));
+		cub->m.py_pix -= round(Speed * sin(cub->ray_c.angle));
 		printf("After x = %d\n", cub->m.px_pix);
 		printf("After y = %d\n", cub->m.py_pix);
 	}
@@ -56,8 +60,8 @@ void	move_up(t_cub *cub)
 	{
 		printf("before x = %d\n", cub->m.px_pix);
 		printf("before y = %d\n", cub->m.py_pix);
-		cub->m.px_pix += Speed * cos(cub->ray_c.angle);
-		cub->m.py_pix -= Speed * sin(cub->ray_c.angle);
+		cub->m.px_pix += round(Speed * cos(cub->ray_c.angle));
+		cub->m.py_pix -= round(Speed * sin(cub->ray_c.angle));
 		printf("After x = %d\n", cub->m.px_pix);
 		printf("After y = %d\n", cub->m.py_pix);
 	}
@@ -65,18 +69,18 @@ void	move_up(t_cub *cub)
 	{
 		printf("before x = %d\n", cub->m.px_pix);
 		printf("before y = %d\n", cub->m.py_pix);
-		cub->m.px_pix += Speed  * cos(cub->ray_c.angle);
-		cub->m.py_pix -= Speed * sin(cub->ray_c.angle);
+		cub->m.px_pix += round(Speed  * cos(cub->ray_c.angle));
+		cub->m.py_pix -= round(Speed * sin(cub->ray_c.angle));
 		printf("After x = %d\n", cub->m.px_pix);
 		printf("After y = %d\n", cub->m.py_pix);
 	}
 	else if (a > 270 && a < 360)
 	{
-		cub->m.px_pix += Speed * cos(cub->ray_c.angle);
-		cub->m.py_pix -= Speed * sin(cub->ray_c.angle);
+		cub->m.px_pix += round(Speed * cos(cub->ray_c.angle));
+		cub->m.py_pix -= round(Speed * sin(cub->ray_c.angle));
 	}
-	cub->move_y -= Speed * sin(cub->ray_c.angle); 
-	cub->move_x += Speed * cos(cub->ray_c.angle); 
+	cub->move_y -= Speed * sin(cub->ray_c.angle);
+	cub->move_x += Speed * cos(cub->ray_c.angle);
 }
 
 void	move_down(t_cub *cub)
@@ -84,12 +88,16 @@ void	move_down(t_cub *cub)
 	int	a;
 
 	a = rad_to_deg(cub->ray_c.angle, cub);
+	if (a == 90)
+	{
+		cub->m.py_pix += round(Speed * sin(cub->ray_c.angle));
+	}
 	if (a > 0 && a < 90)
 	{
 		printf("before x = %d\n", cub->m.px_pix);
 		printf("before y = %d\n", cub->m.py_pix);
-		cub->m.px_pix -= Speed * cos(cub->ray_c.angle);
-		cub->m.py_pix += Speed * sin(cub->ray_c.angle);
+		cub->m.px_pix -= round(Speed * cos(cub->ray_c.angle));
+		cub->m.py_pix += round(Speed * sin(cub->ray_c.angle));
 		printf("After x = %d\n", cub->m.px_pix);
 		printf("After y = %d\n", cub->m.py_pix);
 	}
@@ -97,8 +105,8 @@ void	move_down(t_cub *cub)
 	{
 		printf("before x = %d\n", cub->m.px_pix);
 		printf("before y = %d\n", cub->m.py_pix);
-		cub->m.px_pix -= Speed  * cos(cub->ray_c.angle);
-		cub->m.py_pix += Speed * sin(cub->ray_c.angle);
+		cub->m.px_pix -= round(Speed  * cos(cub->ray_c.angle));
+		cub->m.py_pix += round(Speed * sin(cub->ray_c.angle));
 		printf("After x = %d\n", cub->m.px_pix);
 		printf("After y = %d\n", cub->m.py_pix);
 	}
@@ -106,18 +114,18 @@ void	move_down(t_cub *cub)
 	{
 		printf("before x = %d\n", cub->m.px_pix);
 		printf("before y = %d\n", cub->m.py_pix);
-		cub->m.px_pix -= Speed  * cos(cub->ray_c.angle);
-		cub->m.py_pix += Speed * sin(cub->ray_c.angle);
+		cub->m.px_pix -= round(Speed  * cos(cub->ray_c.angle));
+		cub->m.py_pix += round(Speed * sin(cub->ray_c.angle));
 		printf("After x = %d\n", cub->m.px_pix);
 		printf("After y = %d\n", cub->m.py_pix);
 	}
 	else if (a > 270 && a < 360)
 	{
-		cub->m.px_pix -= Speed  * cos(cub->ray_c.angle);
-		cub->m.py_pix += Speed * sin(cub->ray_c.angle);
+		cub->m.px_pix -= round(Speed  * cos(cub->ray_c.angle));
+		cub->m.py_pix += round(Speed * sin(cub->ray_c.angle));
 	}
-	cub->move_y += Speed * sin(cub->ray_c.angle);
-	cub->move_x -= Speed * cos(cub->ray_c.angle);
+	cub->move_y += round(Speed * sin(cub->ray_c.angle));
+	cub->move_x -= round(Speed * cos(cub->ray_c.angle));
 }
 
 void	move_right(t_cub *cub)

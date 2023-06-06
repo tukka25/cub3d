@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/05 19:09:01 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/06 06:27:21 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	cast_rays(t_cub *cub)
 	x1 = cub->m.px_pix;
 	y1 = cub->m.py_pix;
 	printf("i = %c\n", cub->map[cub->m.py_pix / 64][cub->m.px_pix / 64]);
-	printf("--------------\n");
-	printf("x1 = %d\n", x1);
-	printf("y1 = %d\n", y1);
-	printf("--------------\n");
+	// printf("--------------\n");
+	// printf("x1 = %d\n", x1);
+	// printf("y1 = %d\n", y1);
+	// printf("--------------\n");
 	// printf("pos = %c\n", cub->map[cub->m.px_pix / 64][cub->m.px_pix / 64]);
 	a = rad_to_deg(cub->ray_c.angle, cub);
 	if (a == 0 || a == 360)
@@ -87,20 +87,33 @@ void	cast_rays(t_cub *cub)
 	{
 		// x1 += Speed * cos(cub->ray_c.angle);
 		// y1 -= Speed * sin(cub->ray_c.angle);
+		printf("--------------\n");
+		printf("x1 in = %d\n", x1);
+		printf("y1 in = %d\n", y1);
+		printf("--------------\n");
+		// int	x2 = x1;
+		// int	y2 = y1;
 		while (1)
 		{
 			// printf("--------------\n");
 			// printf("x1 = %d\n", x1);
 			// printf("y1 = %d\n", y1);
 			// printf("--------------\n");
-			my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0xFF0000);
+			my_mlx_pixel_put(&cub->img, x1, y1 + 5, 0xFF0000);
 			// y1--;
 			// x1++;
-			x1 += Speed * cos(cub->ray_c.angle);
-			y1 -= Speed * sin(cub->ray_c.angle);
+			x1 += round(Speed * cos(cub->ray_c.angle));
+			// if (y2 -(= roundSpeed * sin(cub->ray_c.angle) > 64))
+			y1 -= round(Speed * sin(cub->ray_c.angle));
 			// h++;
 			if (cub->map[y1 / 64][x1 / 64] == '1')
+			{
+				// printf("--------------\n");
+				// printf("x2 = %d\n", x2);
+				// printf("y2 = %d\n", y2);
+				// printf("--------------\n");
 				break;
+			}
 			// }
 			// break;
 			
@@ -249,3 +262,23 @@ void	check_horizontal(t_cub *cub)
 	my_mlx_pixel_put(&cub->img, xs + cub->m.px_pix, cub->m.py_pix, 0xFF0000);
 	// printf("xs = %d\n", xs);
 }
+				// int dx = abs(x2 - x1);
+				// int dy = abs(y2 - y1);
+				// int sx = x1 < x2 ? 1 : -1;
+				// int sy = y1 < y2 ? 1 : -1;
+				// int err = dx - dy;
+
+				// while (x1 != x2 || y1 != y2) {
+				// 	my_mlx_pixel_put(&cub->img, x1 + 2, y1 + 1, 0xFF0000);
+				// 	int err2 = 2 * err;
+					
+				// 	if (err2 > -dy) {
+				// 		err -= dy;
+				// 		x1 += sx;
+				// 	}
+					
+				// 	if (err2 < dx) {
+				// 		err += dx;
+				// 		y1 += sy;
+				// 	}
+				// }
