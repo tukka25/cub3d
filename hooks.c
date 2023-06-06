@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:33:32 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/06 06:26:06 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/06 06:36:18 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,11 @@ void	move_up(t_cub *cub)
 
 	// cub->m.py_pix -= Speed;
 	a = rad_to_deg(cub->ray_c.angle, cub);
-	if (a == 90)
+	if (a == 0 || a == 360)
+	{
+		cub->m.px_pix += Speed;
+	}
+	else if (a == 90)
 	{
 		cub->m.py_pix -= round(Speed * sin(cub->ray_c.angle));
 	}
@@ -79,8 +83,8 @@ void	move_up(t_cub *cub)
 		cub->m.px_pix += round(Speed * cos(cub->ray_c.angle));
 		cub->m.py_pix -= round(Speed * sin(cub->ray_c.angle));
 	}
-	cub->move_y -= Speed * sin(cub->ray_c.angle);
-	cub->move_x += Speed * cos(cub->ray_c.angle);
+	cub->move_y -= round(Speed * sin(cub->ray_c.angle));
+	cub->move_x += round(Speed * cos(cub->ray_c.angle));
 }
 
 void	move_down(t_cub *cub)
@@ -88,6 +92,10 @@ void	move_down(t_cub *cub)
 	int	a;
 
 	a = rad_to_deg(cub->ray_c.angle, cub);
+	if (a == 0 || a == 360)
+	{
+		cub->m.px_pix -= Speed;
+	}
 	if (a == 90)
 	{
 		cub->m.py_pix += round(Speed * sin(cub->ray_c.angle));
@@ -146,37 +154,37 @@ void	move_right(t_cub *cub)
 	a = rad_to_deg(cub->ray_c.angle, cub);
 	if (a == 0 || a == 360)
 	{
-		cub->m.px_pix += Speed;
+		cub->m.py_pix += Speed;
 		cub->move_y += Speed;
 	}
 	else if ((a > 0 && a < 90))
 	{
 		// printf("px = %d\n", cub->m.px_pix);
-		cub->m.px_pix += Speed * cos(cub->ray_c.angle);
-		cub->m.py_pix += Speed * sin(cub->ray_c.angle);
-		cub->move_x += Speed * sin(cub->ray_c.angle);
-		cub->move_y += Speed * cos(cub->ray_c.angle);
+		cub->m.px_pix += round(Speed * cos(cub->ray_c.angle));
+		cub->m.py_pix += round(Speed * sin(cub->ray_c.angle));
+		cub->move_x += round(Speed * sin(cub->ray_c.angle));
+		cub->move_y += round(Speed * cos(cub->ray_c.angle));
 	}
 	else if (a > 90 && a < 180)
 	{
-		cub->m.px_pix += Speed * cos(cub->ray_c.angle);
-		cub->m.py_pix -= Speed * sin(cub->ray_c.angle);
-		cub->move_x += Speed * sin(cub->ray_c.angle);
-		cub->move_y += Speed * cos(cub->ray_c.angle);
+		cub->m.px_pix += round(Speed * cos(cub->ray_c.angle));
+		cub->m.py_pix -= round(Speed * sin(cub->ray_c.angle));
+		cub->move_x += round(Speed * sin(cub->ray_c.angle));
+		cub->move_y += round(Speed * cos(cub->ray_c.angle));
 	} 
 	else if (a > 180 && a < 270)
 	{
-		cub->m.px_pix += Speed * cos(cub->ray_c.angle);
-		cub->m.py_pix -= Speed * sin(cub->ray_c.angle);
-		cub->move_x += Speed * sin(cub->ray_c.angle);
-		cub->move_y += Speed * cos(cub->ray_c.angle);
+		cub->m.px_pix += round(Speed * cos(cub->ray_c.angle));
+		cub->m.py_pix -= round(Speed * sin(cub->ray_c.angle));
+		cub->move_x += round(Speed * sin(cub->ray_c.angle));
+		cub->move_y += round(Speed * cos(cub->ray_c.angle));
 	}
 	else if (a > 270 && a < 360)
 	{
-		cub->m.px_pix += Speed * cos(cub->ray_c.angle);
-		cub->m.py_pix -= Speed * sin(cub->ray_c.angle);
-		cub->move_x += Speed * sin(cub->ray_c.angle);
-		cub->move_y += Speed * cos(cub->ray_c.angle);
+		cub->m.px_pix += round(Speed * cos(cub->ray_c.angle));
+		cub->m.py_pix -= round(Speed * sin(cub->ray_c.angle));
+		cub->move_x += round(Speed * sin(cub->ray_c.angle));
+		cub->move_y += round(Speed * cos(cub->ray_c.angle));
 	}
 	else
 	{
@@ -193,7 +201,7 @@ void	move_left(t_cub *cub)
 	a = rad_to_deg(cub->ray_c.angle, cub);
 	if (a == 0 || a == 360)
 	{
-		cub->m.px_pix -= Speed;
+		cub->m.py_pix -= Speed;
 		cub->move_y -= Speed;
 	}
 	else if ((a > 0 && a < 90))
