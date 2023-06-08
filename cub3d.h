@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 01:13:37 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/03 17:06:08 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/08 12:39:32 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	cu_print_error(char *msg, t_game *game);
 void	cu_check_space(int y, int x, t_game *game);
 void	cu_check_edge(char *line, t_game *game);
 void	cu_is_valid_character(int y, int c, t_game *game);
-void	cu_is_player(int c, int y, int x, t_game *game);
+bool	cu_is_player(int c);
 void	cu_is_space(int c, int y, int x, t_game *game);
 char	*cu_strtrimchar(char const *str, int const c);
 bool	cu_cmp_id(char *iden, char *cmp, int len);

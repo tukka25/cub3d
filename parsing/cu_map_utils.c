@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 19:56:32 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/08 09:45:29 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/08 12:55:30 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,21 @@ void	cu_check_space(int y, int x, t_game *game)
 {
 	if (y != 0)
 		if (x <= ft_strlen(game->map.map_2d[y - 1])
-			&& game->map.map_2d[y - 1][x] == '0')
+			&& (game->map.map_2d[y - 1][x] == '0'
+			|| cu_is_player(game->map.map_2d[y - 1][x])))
 			cu_print_error("Invalid space", game);
 	if (y != game->map.nline - 1)
 		if (x <= ft_strlen(game->map.map_2d[y + 1])
-			&& game->map.map_2d[y + 1][x] == '0')
+			&& (game->map.map_2d[y + 1][x] == '0'
+			|| cu_is_player(game->map.map_2d[y + 1][x])))
 			cu_print_error("Invalid space", game);
 	if (x != 0)
-		if (game->map.map_2d[y][x - 1] == '0')
+		if (game->map.map_2d[y][x - 1] == '0'
+			|| cu_is_player(game->map.map_2d[y][x - 1]))
 			cu_print_error("Invalid space", game);
 	if (x != ft_strlen(game->map.map_2d[y]) - 1)
-		if (game->map.map_2d[y][x + 1] == '0')
+		if (game->map.map_2d[y][x + 1] == '0'
+			|| cu_is_player(game->map.map_2d[y][x + 1]))
 			cu_print_error("Invalide space", game);
 	return ;
 }
@@ -62,21 +66,11 @@ void	cu_is_valid_character(int y, int c, t_game *game)
 	return ;
 }
 
-void	cu_is_player(int c, int y, int x, t_game *game)
+bool	cu_is_player(int c)
 {
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-	{
-		if (game->map.p_direction)
-			cu_print_error("Duplicate player found", game);
-		game->map.p_x = x;
-		if ((y != 0 && x > ft_strlen(game->map.map_2d[y - 1]))
-			|| (y != game->map.nline - 1
-				&& x > ft_strlen(game->map.map_2d[y + 1])))
-			cu_print_error("Invalid player position", game);
-		game->map.p_y = y;
-		game->map.p_direction = c;
-	}
-	return ;
+		return (true);
+	return (false);
 }
 
 void	cu_is_space(int c, int y, int x, t_game *game)
