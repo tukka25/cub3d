@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/04 06:50:10 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/08 17:57:33 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,5 @@ int		exit_w(t_cub *cub);
 void	cast_rays(t_cub *cub);
 void	draw_line(t_cub *cub);
 void	check_horizontal(t_cub *cub);
+void	check_vertical(t_cub *cub);
 #endif

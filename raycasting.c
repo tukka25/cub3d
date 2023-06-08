@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/08 12:07:40 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/08 18:18:19 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,10 +252,32 @@ void	check_horizontal(t_cub *cub)
 		ys += 64;
 		xs += 64 / tan(cub->ray_c.angle);
 	}
-	// printf("d = %f\n", ys / tan(cub->ray_c.angle));
-	// my_mlx_pixel_put(&cub->img, xs + cub->m.px_pix, cub->m.py_pix, 0xFF0000);
-	// printf("xs = %d\n", xs);
+	check_vertical(cub);
 }
+
+void	check_vertical(t_cub *cub)
+{
+	int	ys;
+	int	xs;
+	int	px;
+	int	py;
+
+	xs = 64;
+	px = cub->m.px_pix;
+	py = cub->m.py_pix;
+	ys = 64 / tan(cub->ray_c.angle);
+	printf("ys = %d\n", ys);
+	printf("c = %c\n", cub->map[(py + ys) / 64][(px + xs) / 64]);
+	while (cub->map[(py + ys) / 64][(px + xs) / 64] != '\0' 
+		&& cub->map[(py + ys) / 64][(px + xs) / 64] != '1')
+		{
+			my_mlx_pixel_put(&cub->img, xs + px, py - ys, 0xFF0000);
+			my_mlx_pixel_put(&cub->img, xs + px, py - ys - 1, 0xFF0000);
+			xs += 64;
+			ys += 64/tan(cub->ray_c.angle)  ;
+		}
+}
+
 				// int dx = abs(x2 - x1);
 				// int dy = abs(y2 - y1);
 				// int sx = x1 < x2 ? 1 : -1;
