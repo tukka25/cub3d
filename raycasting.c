@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/06 08:26:46 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/08 12:07:40 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,82 +65,49 @@ void	cast_rays(t_cub *cub)
 		y1 -= Speed * sin(cub->ray_c.angle);
 		while (1)
 		{
-			// i = 0;
-			// while (i < 64)
-			// {
-			// 	while (h < 8)
-			// 	{
-					my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0xFF0000);
-					y1--;
-				// 	h++;
-				// }
-				// y1 -= Speed * cos(cub->ray_c.angle);
-				if (cub->map[y1 / 64][x1 / 64] == '1')
-					break;
-				// i += 8;
-			// }
-			// break;
-			
+			my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0xFF0000);
+			y1--;
+			if (cub->map[y1 / 64][x1 / 64] == '1')
+				break;
 		}
 	}
 	else if ((a > 0 && a < 90))
 	{
-		// x1 += Speed * cos(cub->ray_c.angle);
-		// y1 -= Speed * sin(cub->ray_c.angle);
 		printf("--------------\n");
 		printf("x1 in = %d\n", x1);
 		printf("y1 in = %d\n", y1);
 		printf("--------------\n");
-		int	x2 = x1;
-		int	y2 = y1;
-		int	i = 0;
-		while (1)
-		{
-			// printf("--------------\n");
-			// printf("x1 = %d\n", x1);
-			// printf("y1 = %d\n", y1);
-			// printf("--------------\n");
-			i = 0;
-			x2 = x1;
-			y2 = y1;
-			while (i < 16)
-			{
-				my_mlx_pixel_put(&cub->img, x2 + 2, y2 + 5, 0xFF0000);
-				i++;
-				x2++;
-				y2++;
-			}
-			// y1--;
-			// x1++;
-			x1 += round(Speed * cos(cub->ray_c.angle));
-			// if (y2 -(= roundSpeed * sin(cub->ray_c.angle) > 64))
-			y1 -= round(Speed * sin(cub->ray_c.angle));
-			// h++;
-			if (cub->map[y1 / 64][x1 / 64] == '1')
-			{
-				// printf("--------------\n");
-				// printf("x2 = %d\n", x2);
-				// printf("y2 = %d\n", y2);
-				// printf("--------------\n");
-				break;
-			}
-			// }
-			// break;
-			
-		}
+		check_horizontal(cub);
+		// int	ang = cub->ray_c.angle - 10;
+		// int	x2 = x1;
+		// int	y2 = y1;
+		// while (ang > 20)
+		// {
+		// 	x2 = x1;
+		// 	y2 = y1;
+		// 	while (1)
+		// 	{
+		// 		my_mlx_pixel_put(&cub->img, x1 + 2, y1 + 5, 0xFF0000);
+		// 		x2 += round(Speed * cos(ang));
+		// 		y2 -= round(Speed * sin(ang));
+		// 		if (cub->map[y1 / 64][x1 / 64] == '1')
+		// 			break;
+		// 	}
+		// 	ang++;
+		// }
 	}
 	else if (a > 90 && a < 180)
 	{
-		x1 += Speed * cos(cub->ray_c.angle);
-		y1 -= Speed * sin(cub->ray_c.angle);
+		// x1 += Speed * cos(cub->ray_c.angle);
+		// y1 -= Speed * sin(cub->ray_c.angle);
 		while (1)
 		{
 			i = 0;
 			my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0xFF0000);
 			y1--;
 			x1--;
-			x1 += Speed * cos(cub->ray_c.angle);
-			y1 -= Speed * sin(cub->ray_c.angle);
+			x1 += round(Speed * cos(cub->ray_c.angle));
+			y1 -= round(Speed * sin(cub->ray_c.angle));
 			h++;
 			if (cub->map[y1 / 64][x1 / 64] == '1')
 				break;
@@ -152,16 +119,16 @@ void	cast_rays(t_cub *cub)
 	} 
 	else if (a > 180 && a < 270)
 	{
-		x1 += Speed * cos(cub->ray_c.angle);
-		y1 -= Speed * sin(cub->ray_c.angle);
+		// x1 += Speed * cos(cub->ray_c.angle);
+		// y1 -= Speed * sin(cub->ray_c.angle);
 		while (1)
 		{
 			i = 0;
 			my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0xFF0000);
 			y1++;
 			x1--;
-			x1 += Speed * cos(cub->ray_c.angle);
-			y1 -= Speed * sin(cub->ray_c.angle);
+			x1 += round(Speed * cos(cub->ray_c.angle));
+			y1 -= round(Speed * sin(cub->ray_c.angle));
 			// h++;
 			if (cub->map[y1 / 64][x1 / 64] == '1')
 				break;
@@ -172,16 +139,16 @@ void	cast_rays(t_cub *cub)
 	}
 	else if (a > 270 && a < 360)
 	{
-		x1 += Speed * cos(cub->ray_c.angle);
-		y1 -= Speed * sin(cub->ray_c.angle);
+		// x1 += Speed * cos(cub->ray_c.angle);
+		// y1 -= Speed * sin(cub->ray_c.angle);
 		while (1)
 		{
 			i = 0;
 			my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0xFF0000);
 			y1++;
 			x1++;
-			x1 += Speed * cos(cub->ray_c.angle);
-			y1 -= Speed * sin(cub->ray_c.angle);
+			x1 += round(Speed * cos(cub->ray_c.angle));
+			y1 -= round(Speed * sin(cub->ray_c.angle));
 			// h++;
 			if (cub->map[y1 / 64][x1 / 64] == '1')
 				break;
@@ -264,12 +231,29 @@ void	check_horizontal(t_cub *cub)
 {
 	int	ys;
 	int	xs;
+	int	px;
+	int	py;
 
 	xs = 0;
+	// int	i = 0;
 	ys = 64;
-	xs = ys / tan(cub->ray_c.angle);
+	px = cub->m.px_pix;
+	py = cub->m.py_pix;
+	xs = 64 / tan(cub->ray_c.angle);
+	// printf("kjh = %d\n", py - 64 / 64);
+	// exit(0);;
+	while ((cub->map[(py - ys) / 64][(px + xs) / 64] != '1' && 
+	cub->map[(py - ys) / 64][(px + xs) / 64] != '\0'))
+	{
+		// printf("c = %c\n", cub->map[(py - 64) / 64][(px + xs) / 64]);
+		// if (xs > 0 && py > 0)
+			my_mlx_pixel_put(&cub->img, xs + px, py - ys, 0x0000FF);
+			my_mlx_pixel_put(&cub->img, xs + px, py - ys - 1, 0x0000FF);
+		ys += 64;
+		xs += 64 / tan(cub->ray_c.angle);
+	}
 	// printf("d = %f\n", ys / tan(cub->ray_c.angle));
-	my_mlx_pixel_put(&cub->img, xs + cub->m.px_pix, cub->m.py_pix, 0xFF0000);
+	// my_mlx_pixel_put(&cub->img, xs + cub->m.px_pix, cub->m.py_pix, 0xFF0000);
 	// printf("xs = %d\n", xs);
 }
 				// int dx = abs(x2 - x1);
