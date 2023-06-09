@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/08 20:47:10 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/09 17:41:58 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ void	cast_rays(t_cub *cub)
 	y1 = cub->m.py_pix;
 	printf("i = %c\n", cub->map[cub->m.py_pix / 64][cub->m.px_pix / 64]);
 	a = rad_to_deg(cub->ray_c.angle, cub) - 30;
+	if (a < 0)
+		a += 360;
+	printf("a = %d\n", a);
 	float	d = 0;
-	// printf("a = %d\n", a);
 	while (h < 60)
 	{
 		x1 = cub->m.px_pix;
@@ -37,7 +39,7 @@ void	cast_rays(t_cub *cub)
 		d = deg_to_rad(a, cub);
 		if (a == 0 || a == 360)
 		{
-			x1 += Speed * cos(d);
+			x1 += round(Speed * cos(d));
 			while (1)
 			{
 				my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0xFF0000);
@@ -49,8 +51,8 @@ void	cast_rays(t_cub *cub)
 		}
 		if (a == 90)
 		{
-			x1 += Speed * cos(d);
-			y1 -= Speed * sin(d);
+			x1 += round(Speed * cos(d));
+			y1 -= round(Speed * sin(d));
 			while (1)
 			{
 				my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0xFF0000);
@@ -124,6 +126,8 @@ void	cast_rays(t_cub *cub)
 			x1 += Speed;
 		h++;
 		a++;
+		if (a >= 360)
+			a = 0;
 	}
 }
 
