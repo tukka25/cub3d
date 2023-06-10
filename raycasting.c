@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/09 17:41:58 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/10 23:42:29 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,23 @@ void	cast_rays(t_cub *cub)
 	int	x1;
 	int	y1;
 	int	h = 0;
+	int *arr = malloc(4 * sizeof(int));
+	arr[0] = 0;
+	arr[1] = 0;
+	arr[2] = 100;
+	arr[3] = (cub->m.height * 64) - 100;
+	// int	arr[4];
 
 	x1 = cub->m.px_pix;
 	y1 = cub->m.py_pix;
 	printf("i = %c\n", cub->map[cub->m.py_pix / 64][cub->m.px_pix / 64]);
-	a = rad_to_deg(cub->ray_c.angle, cub) - 30;
+	a = rad_to_deg(cub->ray_c.angle, cub) - 45;
 	if (a < 0)
 		a += 360;
-	printf("a = %d\n", a);
 	float	d = 0;
-	while (h < 60)
+	// int arr[4] = {0, 0, (cub->m.height * 64) - 100, 100};
+	// int *arr = malloc(5 * sizeof(int));
+	while (h < 90)
 	{
 		x1 = cub->m.px_pix;
 		y1 = cub->m.py_pix;
@@ -42,11 +49,21 @@ void	cast_rays(t_cub *cub)
 			x1 += round(Speed * cos(d));
 			while (1)
 			{
-				my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0xFF0000);
 				x1++;
 				if (cub->map[y1 / 64][x1 / 64] == '1')
 					break;
 				
+			}
+			cub->ray_c.ray_length = sqrt((x1 - cub->m.px_pix) * (x1 - cub->m.px_pix)
+							+ (y1 - cub->m.py_pix) * (y1 - cub->m.py_pix));
+			cub->ray_c.wall_length = (64 * cub->m.height) / cub->ray_c.ray_length;
+			printf("length = %f\n", cub->ray_c.wall_length);
+			while (i < 64)
+			{
+				draw_line(cub, arr, 0x00FF00);
+				arr[0]++;
+				arr[1]++;
+				i++;
 			}
 		}
 		if (a == 90)
@@ -55,125 +72,156 @@ void	cast_rays(t_cub *cub)
 			y1 -= round(Speed * sin(d));
 			while (1)
 			{
-				my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0xFF0000);
 				y1--;
 				if (cub->map[y1 / 64][x1 / 64] == '1')
 					break;
 			}
+			cub->ray_c.ray_length = sqrt((x1 - cub->m.px_pix) * (x1 - cub->m.px_pix)
+							+ (y1 - cub->m.py_pix) * (y1 - cub->m.py_pix));
+			cub->ray_c.wall_length = (64 * cub->m.height) / cub->ray_c.ray_length;
+			printf("length = %f\n", cub->ray_c.wall_length);
+			while (i < cub->m.width * 64)
+			{
+				draw_line(cub, arr, 0x00FF00);
+				if (cub->ray_c.ray_length < 100)
+					arr[2] = 50;
+				arr[0]++;
+				arr[1]++;
+				i++;
+			}
 		}
 		else if ((a > 0 && a < 90))
 		{
-			// printf("--------------\n");
-			// printf("x1 in = %d\n", x1);
-			// printf("y1 in = %d\n", y1);
-			// printf("--------------\n");
-			// printf("a = %d\n", a);
 			while (1)
 			{
-				my_mlx_pixel_put(&cub->img, x1 + 2, y1 + 5, 0xFF0000);
 				x1 += round(Speed * cos(d));
 				y1 -= round(Speed * sin(d));
 				if (cub->map[y1 / 64][x1 / 64] == '1')
 					break;
 			}
+			cub->ray_c.ray_length = sqrt((x1 - cub->m.px_pix) * (x1 - cub->m.px_pix)
+							+ (y1 - cub->m.py_pix) * (y1 - cub->m.py_pix));
+			cub->ray_c.wall_length = (64 * cub->m.height) / cub->ray_c.ray_length;
+			printf("length = %f\n", cub->ray_c.ray_length);
+			printf("length = %f\n", cub->ray_c.wall_length);
+			// int arr[4] = {0, 0, 100, (cub->m.height * 64) - 100};
+			while (i < cub->m.width * 64)
+			{
+				if (cub->ray_c.ray_length < 100)
+					arr[2] = 50;
+				draw_line(cub, arr, 0x00FF00);
+				arr[0]++;
+				arr[1]++;
+				i++;
+			}
+			// return ;
 		}
 		else if (a > 90 && a < 180)
 		{
 			while (1)
 			{
-				i = 0;
-				my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0xFF0000);
-				// y1--;
-				// x1--;
 				x1 += round(Speed * cos(d));
 				y1 -= round(Speed * sin(d));
 				if (cub->map[y1 / 64][x1 / 64] == '1')
 					break;
-				
+			}
+			cub->ray_c.ray_length = sqrt((x1 - cub->m.px_pix) * (x1 - cub->m.px_pix)
+							+ (y1 - cub->m.py_pix) * (y1 - cub->m.py_pix));
+			cub->ray_c.wall_length = (64 * cub->m.height) / cub->ray_c.ray_length;
+			printf("length = %f\n", cub->ray_c.wall_length);
+			while (i < 64)
+			{
+				draw_line(cub, arr, 0x00FF00);
+				if (cub->ray_c.ray_length < 100)
+					arr[2] = 50;
+				if (cub->ray_c.ray_length > 100)
+					arr[2] = 300;
+				arr[0]++;
+				arr[1]++;
+				i++;
 			}
 		} 
 		else if (a > 180 && a < 270)
 		{
 			while (1)
 			{
-				i = 0;
-				my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0xFF0000);
+				// i = 0;
+				// my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0x00FF00);
 				// y1++;
 				// x1--;
 				x1 += round(Speed * cos(d));
 				y1 -= round(Speed * sin(d));
 				if (cub->map[y1 / 64][x1 / 64] == '1')
 					break;
-				
 			}
+			cub->ray_c.ray_length = sqrt((x1 - cub->m.px_pix) * (x1 - cub->m.px_pix)
+							+ (y1 - cub->m.py_pix) * (y1 - cub->m.py_pix));
+			cub->ray_c.wall_length = (64 * cub->m.height) / cub->ray_c.ray_length;
+			// int arr[4] = {0, 0, 100, (cub->m.height * 64) - 100};
+			// while (i < 64)
+			// {
+			// 	draw_line(cub, arr, 0x00FF00);
+			// 	arr[0]++;
+			// 	arr[1]++;
+			// 	i++;
+			// }
 		}
 		else if (a > 270 && a < 360)
 		{
 			while (1)
 			{
-				i = 0;
-				my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0xFF0000);
+				// i = 0;
+				// my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0x00FF00);
 				// y1++;
 				// x1++;
 				x1 += round(Speed * cos(d));
 				y1 -= round(Speed * sin(d));
 				if (cub->map[y1 / 64][x1 / 64] == '1')
 					break;
-				
 			}
+			cub->ray_c.ray_length = sqrt((x1 - cub->m.px_pix) * (x1 - cub->m.px_pix)
+							+ (y1 - cub->m.py_pix) * (y1 - cub->m.py_pix));
+			cub->ray_c.wall_length = (64 * cub->m.height) / cub->ray_c.ray_length;
+			// printf("length = %f\n", cub->ray_c.wall_length);
+			// int arr[4] = {0, 0, 100, (cub->m.height * 64) - 100};
+			// while (i < 64)
+			// {
+			// 	draw_line(cub, arr, 0x00FF00);
+			// 	arr[0]++;
+			// 	arr[1]++;
+			// 	i++;
+			// }
 		}
 		else
 			x1 += Speed;
 		h++;
 		a++;
+		i = 0;
+		// printf("arr[0] = %d\n", arr[0]);
 		if (a >= 360)
 			a = 0;
 	}
-}
-
-void	draw_line(t_cub *cub)
-{
-	(void)cub;
-	// printf("arr = %d\n", arr[4]);
-	// exit(0);
+	// int arr[4] = {0, 0, (cub->m.height * 64) - 100, 100};
+	// int *arr = malloc(4 * sizeof(int));
+	// arr[0] = 0;
+	// arr[1] = 0;
+	// arr[2] = 100;
+	// arr[3] = (cub->m.height * 64) - 100;
+	// return ;
+	// i = 0;
+		// return ;
+	// while (i < cub->m.width * 64)
 	// {
-	// 	i = 0;
-	// 	while (i < 64)
-	// 	{
-	// 		my_mlx_pixel_put(&cub->img, x1 + 2  + 64 * cos(d), y1 + 5 + 64 * sin(d), 0xFF0000);
-	// 		i++;
-	// 	}
-	// 	if (cub->map[y1 / 64][x1 / 64] == '1')
-	// 		break ;
+	// 	printf("arr[2] = %d\n", arr[2]);
+	// 	printf("arr[3] = %d\n", arr[3]);
+	// 	draw_line(cub, arr, 0x00FF00);
+	// 	// int arr2[4] = {50, 50, (cub->m.height * 64) - 100, 100};
+	// 	// draw_line(cub, arr2, 0x00FF00);
+	// 	arr[0]++;
+	// 	arr[1]++;
+	// 	i++;
 	// }
-	// (void)cub;
-	// if (arr[0] < arr[2])
-	// {
-	// 	while (arr[0] < arr[2])
-	// 	{
-	// 		printf("i\n");
-	// 		my_mlx_pixel_put(&cub->img, arr[0] , arr[1], 0xFF0000);
-	// 		arr[0]++;
-	// 	}
-	// }
-	// else
-	// {
-	// 	// int	g = 125;
-	// 	int		f = cub->move_x;
-	// 	int		n = cub->move_y;
-	// 	int		d = arr[0];
-	// 	while (arr[0] > arr[2] && arr[1] > 0)
-	// 	{
-	// 		// printf("a = %d\n", rad_to_deg(cub->ray_c.angle, cub))
-	// 		f += cos(cub->ray_c.angle);
-	// 		n += sin(cub->ray_c.angle);
-	// 		my_mlx_pixel_put(&cub->img, d + f, arr[1] + n, 0xFF0000);
-	// 		arr[0]--;
-	// 		if (arr[1] > 0)
-	// 			arr[1]--;
-	// 		// g++;
-	// 	}
-	// }
+	return ;
 }
 
 void	check_horizontal(t_cub *cub)
@@ -227,23 +275,30 @@ void	check_vertical(t_cub *cub)
 		}
 }
 
-				// int dx = abs(x2 - x1);
-				// int dy = abs(y2 - y1);
-				// int sx = x1 < x2 ? 1 : -1;
-				// int sy = y1 < y2 ? 1 : -1;
-				// int err = dx - dy;
+void draw_line(t_cub *cub, int *arr, int color)
+{
+	int	x1 = arr[0];
+	int	y1 = arr[2];
+	int	x2 = arr[1];
+	int	y2 = arr[3];
+    int dx = abs(x2 - x1);
+    int dy = abs(y2 - y1);
+    int sx = x1 < x2 ? 1 : -1;
+    int sy = y1 < y2 ? 1 : -1;
+    int err = dx - dy;
 
-				// while (x1 != x2 || y1 != y2) {
-				// 	my_mlx_pixel_put(&cub->img, x1 + 2, y1 + 1, 0xFF0000);
-				// 	int err2 = 2 * err;
-					
-				// 	if (err2 > -dy) {
-				// 		err -= dy;
-				// 		x1 += sx;
-				// 	}
-					
-				// 	if (err2 < dx) {
-				// 		err += dx;
-				// 		y1 += sy;
-				// 	}
-				// }
+    while (x1 != x2 || y1 != y2) {
+        my_mlx_pixel_put(&cub->img, x1, y1, color);
+        
+        int err2 = 2 * err;
+        if (err2 > -dy) {
+            err -= dy;
+            x1 += sx;
+        }
+
+        if (err2 < dx) {
+            err += dx;
+            y1 += sy;
+        }
+    }
+}

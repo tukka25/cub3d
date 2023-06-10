@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/08 17:57:33 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/10 22:41:16 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct s_ray_c
 	float	pdx;
 	float	pdy;
 	float	angle;
+	float	wall_length;
+	float	ray_length;
 }	t_ray_c;
 
 typedef struct s_map
@@ -105,7 +107,7 @@ float	deg_to_rad(int i, t_cub *cub);
 int		rad_to_deg(float i, t_cub *cub);
 int		exit_w(t_cub *cub);
 void	cast_rays(t_cub *cub);
-void	draw_line(t_cub *cub);
+void	draw_line(t_cub *cub, int *arr, int color);
 void	check_horizontal(t_cub *cub);
 void	check_vertical(t_cub *cub);
 #endif

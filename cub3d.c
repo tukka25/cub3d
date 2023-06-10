@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:35 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/05/25 21:58:27 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/10 22:10:55 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@ int	main(int ac, char *av[])
 		cub.mlx.mlx = mlx_init();
 		cub.mlx.mlx_win = mlx_new_window(cub.mlx.mlx, cub.m.width * 64,
 				cub.m.height * 64, "cub3d");
-		// my_mlx_pixel_put(&cub.img, 5, 5, 0xFFFFFFF);
-		// mlx_put_image_to_window(cub.mlx.mlx, cub.mlx.mlx_win, 
-		// 	cub.img.img, 0, 0);
 		drawing(&cub);
 		mlx_hook(cub.mlx.mlx_win, 2, 0, key_hook, &cub);
 		mlx_hook(cub.mlx.mlx_win, 17, 0, exit_w, &cub);
