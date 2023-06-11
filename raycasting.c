@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/10 23:42:29 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/11 18:47:41 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,34 +19,36 @@ void	cast_rays(t_cub *cub)
 
 	i = 0;
 	pos = cub->m.py_pix;
-	int	a = 0;
+	float 	a = 0;
 	int	x1;
 	int	y1;
 	int	h = 0;
 	int *arr = malloc(4 * sizeof(int));
-	arr[0] = 0;
-	arr[1] = 0;
-	arr[2] = 100;
-	arr[3] = (cub->m.height * 64) - 100;
+	// arr[0] = 0;
+	// arr[1] = 0;
+	// arr[2] = 100;
+	// arr[3] = (cub->m.height * 64) - 100;
 	// int	arr[4];
 
 	x1 = cub->m.px_pix;
 	y1 = cub->m.py_pix;
 	printf("i = %c\n", cub->map[cub->m.py_pix / 64][cub->m.px_pix / 64]);
-	a = rad_to_deg(cub->ray_c.angle, cub) - 45;
+	// a = rad_to_deg(cub->ray_c.angle, cub) - 45;
+	a = cub->ray_c.angle - deg_to_rad(45, cub);
+	// float s = rad_to_deg(cub->ray_c.angle, cub);
 	if (a < 0)
 		a += 360;
-	float	d = 0;
+	// float	d = 0;
 	// int arr[4] = {0, 0, (cub->m.height * 64) - 100, 100};
 	// int *arr = malloc(5 * sizeof(int));
-	while (h < 90)
+	while (h < cub->m.width * 64)
 	{
 		x1 = cub->m.px_pix;
 		y1 = cub->m.py_pix;
-		d = deg_to_rad(a, cub);
-		if (a == 0 || a == 360)
+		// d = cub->pi * a / 180.0;
+		if (a == 0 || a == M_PI)
 		{
-			x1 += round(Speed * cos(d));
+			x1 += round(Speed * cos(a));
 			while (1)
 			{
 				x1++;
@@ -56,20 +58,25 @@ void	cast_rays(t_cub *cub)
 			}
 			cub->ray_c.ray_length = sqrt((x1 - cub->m.px_pix) * (x1 - cub->m.px_pix)
 							+ (y1 - cub->m.py_pix) * (y1 - cub->m.py_pix));
-			cub->ray_c.wall_length = (64 * cub->m.height) / cub->ray_c.ray_length;
-			printf("length = %f\n", cub->ray_c.wall_length);
-			while (i < 64)
-			{
+			cub->ray_c.wall_length = (64 / cub->ray_c.ray_length) * 100;
+			// printf("length = %f\n", cub->ray_c.wall_length);
+			// while (i < cub->m.width * 64)
+			// {
+			// 	arr[3] = cub->ray_c.wall_length;
+				arr[0] = cub->m.px_pix;
+				arr[1] = x1;
+				arr[2] = cub->m.py_pix;
+				arr[3] = y1;
 				draw_line(cub, arr, 0x00FF00);
-				arr[0]++;
-				arr[1]++;
-				i++;
-			}
+			// 	arr[0]++;
+			// 	arr[1]++;
+			// 	i++;
+			// }
 		}
-		if (a == 90)
+		if (a == M_PI / 2)
 		{
-			x1 += round(Speed * cos(d));
-			y1 -= round(Speed * sin(d));
+			x1 += round(Speed * cos(a));
+			y1 -= round(Speed * sin(a));
 			while (1)
 			{
 				y1--;
@@ -78,70 +85,80 @@ void	cast_rays(t_cub *cub)
 			}
 			cub->ray_c.ray_length = sqrt((x1 - cub->m.px_pix) * (x1 - cub->m.px_pix)
 							+ (y1 - cub->m.py_pix) * (y1 - cub->m.py_pix));
-			cub->ray_c.wall_length = (64 * cub->m.height) / cub->ray_c.ray_length;
-			printf("length = %f\n", cub->ray_c.wall_length);
-			while (i < cub->m.width * 64)
-			{
+			cub->ray_c.wall_length = (64 / cub->ray_c.ray_length) * 100;
+			// printf("length = %f\n", cub->ray_c.wall_length);
+			arr[0] = cub->m.px_pix;
+				arr[1] = x1;
+				arr[2] = cub->m.py_pix;
+				arr[3] = y1;
 				draw_line(cub, arr, 0x00FF00);
-				if (cub->ray_c.ray_length < 100)
-					arr[2] = 50;
-				arr[0]++;
-				arr[1]++;
-				i++;
-			}
 		}
-		else if ((a > 0 && a < 90))
+		else if ((a > 0 && a < M_PI / 2))
 		{
 			while (1)
 			{
-				x1 += round(Speed * cos(d));
-				y1 -= round(Speed * sin(d));
+				x1 += round(Speed * cos(a));
+				y1 -= round(Speed * sin(a));
 				if (cub->map[y1 / 64][x1 / 64] == '1')
 					break;
 			}
+			// check_horizontal(cub);
+			// check_vertical(cub);
 			cub->ray_c.ray_length = sqrt((x1 - cub->m.px_pix) * (x1 - cub->m.px_pix)
 							+ (y1 - cub->m.py_pix) * (y1 - cub->m.py_pix));
-			cub->ray_c.wall_length = (64 * cub->m.height) / cub->ray_c.ray_length;
-			printf("length = %f\n", cub->ray_c.ray_length);
-			printf("length = %f\n", cub->ray_c.wall_length);
-			// int arr[4] = {0, 0, 100, (cub->m.height * 64) - 100};
-			while (i < cub->m.width * 64)
-			{
-				if (cub->ray_c.ray_length < 100)
-					arr[2] = 50;
+			cub->ray_c.wall_length = (64 / cub->ray_c.ray_length) * 100;
+			// cub->ray_c.wall_length = (64 * cub->m.height) / cub->ray_c.ray_length;
+			// printf("length = %f\n", cub->ray_c.ray_length);
+			// printf("length = %f\n", cub->ray_c.wall_length);
+			arr[0] = cub->m.px_pix;
+				arr[1] = x1;
+				arr[2] = cub->m.py_pix;
+				arr[3] = y1;
 				draw_line(cub, arr, 0x00FF00);
-				arr[0]++;
-				arr[1]++;
-				i++;
-			}
+			// int arr[4] = {0, 0, 100, (cub->m.height * 64) - 100};
+			// while (i < cub->m.width * 64)
+			// {
+			// 	// if (cub->ray_c.ray_length < 100)
+			// 	arr[3] = cub->ray_c.wall_length;
+			// 	draw_line(cub, arr, 0x00FF00);
+			// 	arr[0]++;
+			// 	arr[1]++;
+			// 	i++;
+			// }
 			// return ;
 		}
-		else if (a > 90 && a < 180)
+		else if (a > M_PI / 2 && a < M_PI)
 		{
 			while (1)
 			{
-				x1 += round(Speed * cos(d));
-				y1 -= round(Speed * sin(d));
+				x1 += round(Speed * cos(a));
+				y1 -= round(Speed * sin(a));
 				if (cub->map[y1 / 64][x1 / 64] == '1')
 					break;
 			}
 			cub->ray_c.ray_length = sqrt((x1 - cub->m.px_pix) * (x1 - cub->m.px_pix)
 							+ (y1 - cub->m.py_pix) * (y1 - cub->m.py_pix));
-			cub->ray_c.wall_length = (64 * cub->m.height) / cub->ray_c.ray_length;
-			printf("length = %f\n", cub->ray_c.wall_length);
-			while (i < 64)
-			{
+			cub->ray_c.wall_length = (64 / cub->ray_c.ray_length) * 100;
+			// printf("length = %f\n", cub->ray_c.wall_length);
+			arr[0] = cub->m.px_pix;
+				arr[1] = x1;
+				arr[2] = cub->m.py_pix;
+				arr[3] = y1;
 				draw_line(cub, arr, 0x00FF00);
-				if (cub->ray_c.ray_length < 100)
-					arr[2] = 50;
-				if (cub->ray_c.ray_length > 100)
-					arr[2] = 300;
-				arr[0]++;
-				arr[1]++;
-				i++;
-			}
+			// if (cub->ray_c.wall_length > cub->m.height * 64)
+			// {
+			// 	cub->ray_c.wall_length = (cub->m.height * 64) - 100;
+			// }
+			// while (i < cub->m.width * 64)
+			// {
+			// 	arr[3] = cub->ray_c.wall_length;
+			// 	draw_line(cub, arr, 0x00FF00);
+			// 	arr[0]++;
+			// 	arr[1]++;
+			// 	i++;
+			// }
 		} 
-		else if (a > 180 && a < 270)
+		else if (a > M_PI && a < 3 * M_PI / 2)
 		{
 			while (1)
 			{
@@ -149,24 +166,30 @@ void	cast_rays(t_cub *cub)
 				// my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0x00FF00);
 				// y1++;
 				// x1--;
-				x1 += round(Speed * cos(d));
-				y1 -= round(Speed * sin(d));
+				x1 += round(Speed * cos(a));
+				y1 -= round(Speed * sin(a));
 				if (cub->map[y1 / 64][x1 / 64] == '1')
 					break;
 			}
 			cub->ray_c.ray_length = sqrt((x1 - cub->m.px_pix) * (x1 - cub->m.px_pix)
 							+ (y1 - cub->m.py_pix) * (y1 - cub->m.py_pix));
-			cub->ray_c.wall_length = (64 * cub->m.height) / cub->ray_c.ray_length;
-			// int arr[4] = {0, 0, 100, (cub->m.height * 64) - 100};
-			// while (i < 64)
+			cub->ray_c.wall_length = (64 / cub->ray_c.ray_length) * 100;
+			// printf("length = %f\n", cub->ray_c.wall_length);
+			arr[0] = cub->m.px_pix;
+				arr[1] = x1;
+				arr[2] = cub->m.py_pix;
+				arr[3] = y1;
+				draw_line(cub, arr, 0x00FF00);
+			// while (i < cub->m.width * 64)
 			// {
+			// 	arr[3] = cub->ray_c.wall_length - 100;
 			// 	draw_line(cub, arr, 0x00FF00);
 			// 	arr[0]++;
 			// 	arr[1]++;
 			// 	i++;
 			// }
 		}
-		else if (a > 270 && a < 360)
+		else if (a > 3 * M_PI / 2 && a < 2 * M_PI)
 		{
 			while (1)
 			{
@@ -174,18 +197,22 @@ void	cast_rays(t_cub *cub)
 				// my_mlx_pixel_put(&cub->img, x1 + 2 , y1 + 5, 0x00FF00);
 				// y1++;
 				// x1++;
-				x1 += round(Speed * cos(d));
-				y1 -= round(Speed * sin(d));
+				x1 += round(Speed * cos(a));
+				y1 -= round(Speed * sin(a));
 				if (cub->map[y1 / 64][x1 / 64] == '1')
 					break;
 			}
 			cub->ray_c.ray_length = sqrt((x1 - cub->m.px_pix) * (x1 - cub->m.px_pix)
 							+ (y1 - cub->m.py_pix) * (y1 - cub->m.py_pix));
-			cub->ray_c.wall_length = (64 * cub->m.height) / cub->ray_c.ray_length;
-			// printf("length = %f\n", cub->ray_c.wall_length);
-			// int arr[4] = {0, 0, 100, (cub->m.height * 64) - 100};
-			// while (i < 64)
+			cub->ray_c.wall_length = (64 / cub->ray_c.ray_length) * 100;
+			arr[0] = cub->m.px_pix;
+				arr[1] = x1;
+				arr[2] = cub->m.py_pix;
+				arr[3] = y1;
+				draw_line(cub, arr, 0x00FF00);
+			// while (i < cub->m.width * 64)
 			// {
+			// 	arr[3] = cub->ray_c.wall_length - 100;
 			// 	draw_line(cub, arr, 0x00FF00);
 			// 	arr[0]++;
 			// 	arr[1]++;
@@ -195,33 +222,12 @@ void	cast_rays(t_cub *cub)
 		else
 			x1 += Speed;
 		h++;
-		a++;
+		a += ((float)90 / cub->m.width * 64) * M_PI / 180;
+		printf("a = %f\n", a);
 		i = 0;
-		// printf("arr[0] = %d\n", arr[0]);
 		if (a >= 360)
 			a = 0;
 	}
-	// int arr[4] = {0, 0, (cub->m.height * 64) - 100, 100};
-	// int *arr = malloc(4 * sizeof(int));
-	// arr[0] = 0;
-	// arr[1] = 0;
-	// arr[2] = 100;
-	// arr[3] = (cub->m.height * 64) - 100;
-	// return ;
-	// i = 0;
-		// return ;
-	// while (i < cub->m.width * 64)
-	// {
-	// 	printf("arr[2] = %d\n", arr[2]);
-	// 	printf("arr[3] = %d\n", arr[3]);
-	// 	draw_line(cub, arr, 0x00FF00);
-	// 	// int arr2[4] = {50, 50, (cub->m.height * 64) - 100, 100};
-	// 	// draw_line(cub, arr2, 0x00FF00);
-	// 	arr[0]++;
-	// 	arr[1]++;
-	// 	i++;
-	// }
-	return ;
 }
 
 void	check_horizontal(t_cub *cub)
