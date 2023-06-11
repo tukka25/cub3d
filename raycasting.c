@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/11 20:39:47 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/11 21:22:22 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,12 @@ void	cast_rays(t_cub *cub)
 	y1 = cub->m.py_pix;
 	printf("i = %c\n", cub->map[cub->m.py_pix / 64][cub->m.px_pix / 64]);
 	a = cub->ray_c.angle - deg_to_rad(45, cub);
+	float d = 0;
 	if (a < 0)
 		a += 2 * M_PI;
-	while (h < cub->m.width * 64)
+		// printf("d = %f\n", (M_PI / 2) / (cub->m.width * 64) - 0.0003);
+		// exit(0);
+	while (d <= M_PI_2)
 	{
 		x1 = cub->m.px_pix;
 		y1 = cub->m.py_pix;
@@ -38,8 +41,8 @@ void	cast_rays(t_cub *cub)
 		{
 			while (1)
 			{
-				x1 += round(Speed * cos(a));
-				y1 -= round(Speed * sin(a));
+				x1 += round((Speed + 30)  * cos(a));
+				y1 -= round((Speed + 30) * sin(a));
 				if (cub->map[y1 / 64][x1 / 64] == '1')
 					break;
 			}
@@ -59,7 +62,8 @@ void	cast_rays(t_cub *cub)
 		i = 0;
 		if (a >= 2 * M_PI)
 			a = 0;
-		a += (M_PI / 2) / (cub->m.width * 64);
+		a += 0.001364;
+		d += 0.001364;
 	}
 }
 

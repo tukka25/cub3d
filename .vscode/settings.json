@@ -3,6 +3,7 @@
 		"__tree": "c",
 		"map": "c",
 		"chrono": "c",
-		"algorithm": "c"
+		"algorithm": "c",
+		"math.h": "c"
 	}
 }

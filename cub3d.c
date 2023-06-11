@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:35 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/10 22:10:55 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/11 21:21:23 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	first_init(t_cub *cub)
 	cub->ray_c.pdx = cos(cub->ray_c.angle) * 5;
 	cub->ray_c.pdy = sin(cub->ray_c.angle) * 5;
 }
+
 
 int	main(int ac, char *av[])
 {

@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/10 22:41:16 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/11 21:21:26 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "libft/libft.h"
 # include "mlx/mlx.h"
 # include <math.h>
+
 
 typedef struct s_ray_c
 {
