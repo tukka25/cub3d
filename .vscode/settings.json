@@ -2,6 +2,7 @@
 	"files.associations": {
 		"__tree": "c",
 		"map": "c",
-		"chrono": "c"
+		"chrono": "c",
+		"algorithm": "c"
 	}
 }
