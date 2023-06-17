@@ -4,6 +4,7 @@
 		"map": "c",
 		"chrono": "c",
 		"algorithm": "c",
-		"math.h": "c"
+		"math.h": "c",
+		"complex": "c"
 	}
 }

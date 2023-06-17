@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/11 21:22:22 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/17 21:09:31 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,89 +33,249 @@ void	cast_rays(t_cub *cub)
 		a += 2 * M_PI;
 		// printf("d = %f\n", (M_PI / 2) / (cub->m.width * 64) - 0.0003);
 		// exit(0);
-	while (d <= M_PI_2)
-	{
+	// while (d <= M_PI_2)
+	// {
 		x1 = cub->m.px_pix;
 		y1 = cub->m.py_pix;
-		if (a > 0 && a < 2 * M_PI)
-		{
-			while (1)
-			{
-				x1 += round((Speed + 30)  * cos(a));
-				y1 -= round((Speed + 30) * sin(a));
-				if (cub->map[y1 / 64][x1 / 64] == '1')
-					break;
-			}
-			cub->ray_c.ray_length = sqrt((x1 - cub->m.px_pix) * (x1 - cub->m.px_pix)
-							+ (y1 - cub->m.py_pix) * (y1 - cub->m.py_pix));
-			cub->ray_c.wall_length = (64 / cub->ray_c.ray_length) * 100;
-			arr[0] = cub->m.px_pix;
-				arr[1] = x1;
-				arr[2] = cub->m.py_pix;
-				arr[3] = y1;
-				draw_line(cub, arr, 0x00FF00);
-		}
+		// if (a > 0 && a < 2 * M_PI)
+		// {
+			check_horizontal(cub, arr, a);
+			// while (1)
+			// {
+			// 	x1 += round((Speed + 300)  * cos(a));
+			// 	y1 -= round((Speed + 300) * sin(a));
+			// 	if (cub->map[y1 / 64][x1 / 64] == '1' || y1 <= 0 || x1 <= 0)
+			// 		break;
+			// }
+			// while (cub->map[y1 / 64][x1 / 64] == '1' && cub->map[y1 / 64][x1 / 64])
+			// {
+			// 	printf("g\n");
+			// 	y1 += round(Speed + 3 * cos(a));
+			// }
+			// cub->ray_c.ray_length = sqrt((x1 - cub->m.px_pix) * (x1 - cub->m.px_pix)
+			// 				+ (y1 - cub->m.py_pix) * (y1 - cub->m.py_pix));
+			// cub->ray_c.wall_length = (64 / cub->ray_c.ray_length) * 100;
+			// arr[0] = cub->m.px_pix;
+			// 	arr[1] = x1;
+			// 	arr[2] = cub->m.py_pix;
+			// 	arr[3] = y1;
+			// 	draw_line(cub, arr, 0x00FF00);
+		// }
 		// else
 		// 	x1 += Speed;
 		h++;
-		printf("a=%f\n", a);
+		// printf("a=%f\n", a);
 		i = 0;
 		if (a >= 2 * M_PI)
 			a = 0;
 		a += 0.001364;
 		d += 0.001364;
-	}
+	// }
 }
 
-void	check_horizontal(t_cub *cub)
+void	check_horizontal(t_cub *cub, int *arr, float a)
 {
-	int	ys;
-	int	xs;
-	int	px;
-	int	py;
+	float	ys;
+	float	xs;
+	float	px;
+	float	py;
+	float	yo;
+	float	xo;
 
-	xs = 0;
-	// int	i = 0;
-	ys = 64;
 	px = cub->m.px_pix;
 	py = cub->m.py_pix;
-	xs = 64 / tan(cub->ray_c.angle);
-	// printf("kjh = %d\n", py - 64 / 64);
-	// exit(0);;
-	while ((cub->map[(py - ys) / 64][(px + xs) / 64] != '1' && 
-	cub->map[(py - ys) / 64][(px + xs) / 64] != '\0'))
+	ys = (int)cub->m.py_pix;
+	xs = 64 / tan(a);
+	// printf("a = %d\n", rad_to_deg(a, cub));
+	// if (a == M_PI)
+	// {
+	// 	while (cub->map[ys / 64][xs/ 64] == '1')
+	// 	{
+	// 		if (cub->map[ys / 64][xs + 1 / 64] == '1')
+	// 			return ;
+	// 		xs -= 64;
+	// 	}
+	// 	arr[0] = cub->m.px_pix;
+	// 	arr[1] = xs;
+	// 	arr[2] = cub->m.py_pix;
+	// 	arr[3] = 0;
+	// 	draw_line(cub, arr, 0x00FF00);
+	// }
+	// if (a == 0 || a == 2 * M_PI)
+	// {
+	// 	while (cub->map[ys / 64][xs/ 64] == '1')
+	// 	{
+	// 		if (cub->map[ys / 64][xs + 1 / 64] == '1')
+	// 			return ;
+	// 		xs += 64;
+	// 	}
+	// 	arr[0] = cub->m.px_pix;
+	// 	arr[1] = xs + cub->m.px_pix;
+	// 	arr[2] = cub->m.py_pix;
+	// 	arr[3] = (cub->m.width * 64) - 64;
+	// 	draw_line(cub, arr, 0x00FF00);
+	// }
+	int i = 0;
+	if (a > 0 && a < M_PI)
 	{
-		// printf("c = %c\n", cub->map[(py - 64) / 64][(px + xs) / 64]);
-		// if (xs > 0 && py > 0)
-			my_mlx_pixel_put(&cub->img, xs + px, py - ys, 0x0000FF);
-			my_mlx_pixel_put(&cub->img, xs + px, py - ys - 1, 0x0000FF);
-		ys += 64;
-		xs += 64 / tan(cub->ray_c.angle);
+		ys = (int)cub->m.py_pix + 64;
+		xs = ((py - ys) * -1 / tan(a)) + px;
+		yo = 64;
+		xo = -yo * -1 / tan(a);
+		printf("ys = %f, xs = %f\n", ys, xs);
+		while (i < 1)
+		{
+			// if (py - ys <= 0 || ys >= cub->m.height * 64
+			// || xs + px <= 0 || xs + px >= cub->m.width * 64)
+			// {
+			// 	// ys -= 66;
+			// 	break;
+			// }
+			// printf("py = %f, px = %f\n", (py - ys) / 64, (xs + px) / 64);
+			// if (cub->map[(int)(ys) / 64][(int)xs / 64] == '1')
+			// 	break;
+			ys += yo;
+			xs += xo;
+			i++;
+		}
+		// printf("after xs = %f, after ys = %f\n, index = %c", xs / 64, ys / 64, cub->map[(int)ys / 64][(int)xs / 64]);
+		arr[0] = cub->m.px_pix;
+		arr[1] = cub->m.px_pix + xs;
+		arr[2] = cub->m.py_pix;
+		arr[3] = cub->m.py_pix - ys;
+		draw_line(cub, arr, 0x00FF00);
 	}
-	check_vertical(cub);
+	else if (a > M_PI && a < 2 * M_PI)
+	{
+		// ys = (int)cub->m.py_pix - 0.0001;
+		// xs = ((py - ys) * -1 / tan(a)) + px;
+		// yo = 64;
+		// xo = yo / tan(a);
+		// printf("xs = %f\n", xs);
+		// printf("a = %d\n", rad_to_deg(a, cub));
+		// while (1)
+		// {
+		// 	if (ys <= 0 || ys >= cub->m.height * 64
+		// 	|| xs + px <= 0 || xs + px >= cub->m.width * 64)
+		// 	{
+		// 		// ys -= 66;
+		// 		break;
+		// 	}
+		// 	// printf("ys = %d, xs = %d\n", ys, xs);
+		// 	if (cub->map[(int)(py + ys) / 64][(int)(xs + px) / 64] == '1')
+		// 		break;
+		// 	// break;
+		// 	i++;
+		// 	ys += 0.5;
+		// 	xs += -0.5 / tan(a);
+		// }
+		// // ys -= 65;
+		// // xs -= -1 / tan(a);
+		// arr[0] = cub->m.px_pix;
+		// arr[1] = xs + cub->m.px_pix;
+		// arr[2] = cub->m.py_pix;
+		// arr[3] = cub->m.py_pix + ys;
+		// draw_line(cub, arr, 0x00FF00);
+	}
+	// else if (a == 0 || a == 2 * M_PI)
+	// {
+	// 	while (cub->map[(int)py / 64][(int)px / 64] != '1')
+	// 	{
+	// 		px += Speed;
+	// 	}
+	// 	arr[0] = cub->m.px_pix;
+	// 	arr[1] = xs + cub->m.px_pix;
+	// 	arr[2] = cub->m.py_pix;
+	// 	arr[3] = cub->m.py_pix;
+	// 	draw_line(cub, arr, 0x00FF00);
+	// }
+	// else if (a == M_PI)
+	// {
+	// 	printf("a = %d\n", rad_to_deg(a, cub));
+	// 	while (cub->map[(int)py / 64][(int)px / 64] != '1')
+	// 	{
+	// 		px -= Speed;
+	// 	}
+	// 	arr[0] = cub->m.px_pix;
+	// 	arr[1] = xs + cub->m.px_pix;
+	// 	arr[2] = cub->m.py_pix;
+	// 	arr[3] = cub->m.py_pix;
+	// 	draw_line(cub, arr, 0x00FF00);
+	// }
+	// cub->ray_c.ray_length = sqrt(((arr[1] - arr[0]) * (arr[1] - arr[0]))
+	// + ((arr[3] - arr[2]) * (arr[3] - arr[2])));
+	// check_vertical(cub, arr, a);
 }
 
-void	check_vertical(t_cub *cub)
+int	check_vertical(t_cub *cub, int *arr, float a)
 {
-	int	ys;
-	int	xs;
-	int	px;
-	int	py;
+	float	ys;
+	float	xs;
+	float	px;
+	float	py;
+	float	atan;
 
 	xs = 64;
 	px = cub->m.px_pix;
 	py = cub->m.py_pix;
-	ys = 64 / tan(cub->ray_c.angle);
-	printf("ys = %d\n", ys);
-	printf("c = %c\n", cub->map[(py + ys) / 64][(px + xs) / 64]);
-	while (cub->map[(py + ys) / 64][(px + xs) / 64] != '\0' 
-		&& cub->map[(py + ys) / 64][(px + xs) / 64] != '1')
+	ys = -tan(a);
+	printf("a = %d\n", rad_to_deg(a, cub));
+	atan = -tan(a) * xs;
+	int	i = 0;
+	// printf("ys = %c\n", cub->map[(py) / 64][(px) / 64]);
+	// printf("c = %c\n", cub->map[(py + ys) / 64][(px + xs) / 64]);
+	// if (ys > 0)
+	// {
+		// if (a > M_PI / 2 && a < (3 * M_PI) / 2)
+		// {
+		// 	printf("ys = %f\n", ys);
+		// 	while (1)
+		// 	{
+		// 		// printf("ys = %d, xs = %d\n", (py - ys) / 64, (xs + px) / 64);
+		// 		if (ys <= 0 || ys + py >= cub->m.height * 64
+		// 			|| xs + px <= 0 || (xs + px) >= cub->m.width * 64)
+		// 			break;
+		// 		if (cub->map[(int)(py - ys) / 64][(int)(xs + px) / 64] == '1')
+		// 			break;
+		// 		ys += -tan(a) * xs;
+		// 		xs += 64;
+		// 		i++;
+		// 	}
+		// 	arr[0] = cub->m.px_pix;
+		// 	arr[1] = xs + cub->m.px_pix;
+		// 	arr[2] = cub->m.py_pix;
+		// 	arr[3] = cub->m.py_pix - ys;
+		// 	draw_line(cub, arr, 0xFF0000);
+		// }
+		if (a > (3 * M_PI) / 2 || a < M_PI / 2)
 		{
-			my_mlx_pixel_put(&cub->img, xs + px, py - ys, 0xFF0000);
-			my_mlx_pixel_put(&cub->img, xs + px, py - ys - 1, 0xFF0000);
-			xs += 64;
-			ys += 64 / tan(cub->ray_c.angle);
+			i = 0;
+			ys = -tan(a) * 64;
+			printf("ys2 = %f\n", ys);
+			while (1)
+			{
+				// printf("ys = %d, xs = %d\n", (py - ys) / 64, (xs + px) / 64);
+				// if (ys <= 0 || ys + py >= cub->m.height * 64
+				// 	|| xs + px <= 0 || (xs + px) >= cub->m.width * 64)
+				// 	break;
+				printf("py = %f, px = %f\n", (py + ys) / 64 , (px + xs) / 64);
+				if (cub->map[(int)(py + ys) / 64][(int)(px + xs) / 64] == '1')
+					break;
+				ys++;
+				xs += 65;
+				i++;
+			}
+			printf("py o = %f, px o = %f\n", (py + ys)/64 , (px + xs)/64);
+			printf("i = %d\n", i);
+			arr[0] = cub->m.px_pix;
+			arr[1] = cub->m.px_pix + xs;
+			arr[2] = cub->m.py_pix;
+			arr[3] = cub->m.py_pix + ys;
+			draw_line(cub, arr, 0xFF0000);
 		}
+	// }
+	
+	return (ys);
 }
 
 void draw_line(t_cub *cub, int *arr, int color)
