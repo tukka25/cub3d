@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/17 21:09:31 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/18 19:11:37 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,67 +115,129 @@ void	check_horizontal(t_cub *cub, int *arr, float a)
 	// 	arr[3] = (cub->m.width * 64) - 64;
 	// 	draw_line(cub, arr, 0x00FF00);
 	// }
+	printf("a = %d\n", rad_to_deg(a, cub));
 	int i = 0;
-	if (a > 0 && a < M_PI)
+	if (a > 0 && a < M_PI / 2)
 	{
-		ys = (int)cub->m.py_pix + 64;
-		xs = ((py - ys) * -1 / tan(a)) + px;
+		ys = (int)cub->m.py_pix - 64;
+		xs = ((py - ys) * (-1 / tan(a))) * -1 + px;
 		yo = 64;
-		xo = -yo * -1 / tan(a);
-		printf("ys = %f, xs = %f\n", ys, xs);
-		while (i < 1)
+		xo = -yo * (-1 / tan(a));
+		printf("ys = %f, xs = %f\n", ys / 64, xs / 64);
+		while (1)
 		{
-			// if (py - ys <= 0 || ys >= cub->m.height * 64
-			// || xs + px <= 0 || xs + px >= cub->m.width * 64)
-			// {
-			// 	// ys -= 66;
-			// 	break;
-			// }
+			if (ys <= 0 || ys >= cub->m.height * 64
+			|| xs <= 0 || xs >= cub->m.width * 64)
+			{
+				// ys -= 65;
+				break;
+			}
 			// printf("py = %f, px = %f\n", (py - ys) / 64, (xs + px) / 64);
-			// if (cub->map[(int)(ys) / 64][(int)xs / 64] == '1')
-			// 	break;
-			ys += yo;
+			if (cub->map[(int)(ys / 64)][(int)(xs / 64)] == '1')
+				break;
+			ys -= 65;
 			xs += xo;
 			i++;
 		}
+		printf("i = %d\n", i);
+		printf("ys = %f\n", ys / 64);
+		printf("xs = %f\n", xs / 64);
+		if (xs >= cub->m.width * 64)
+			xs -= 64;
+		if (ys >= cub->m.height * 64)
+			ys -= 64;
+		// printf("px = %f\n", px);
+		// printf("px = %f\n", px);
 		// printf("after xs = %f, after ys = %f\n, index = %c", xs / 64, ys / 64, cub->map[(int)ys / 64][(int)xs / 64]);
 		arr[0] = cub->m.px_pix;
-		arr[1] = cub->m.px_pix + xs;
+		arr[1] = xs;
 		arr[2] = cub->m.py_pix;
-		arr[3] = cub->m.py_pix - ys;
+		arr[3] = ys;
 		draw_line(cub, arr, 0x00FF00);
 	}
-	else if (a > M_PI && a < 2 * M_PI)
+	else if (a > M_PI / 2 && a < M_PI)
 	{
-		// ys = (int)cub->m.py_pix - 0.0001;
-		// xs = ((py - ys) * -1 / tan(a)) + px;
-		// yo = 64;
-		// xo = yo / tan(a);
-		// printf("xs = %f\n", xs);
-		// printf("a = %d\n", rad_to_deg(a, cub));
-		// while (1)
-		// {
-		// 	if (ys <= 0 || ys >= cub->m.height * 64
-		// 	|| xs + px <= 0 || xs + px >= cub->m.width * 64)
-		// 	{
-		// 		// ys -= 66;
-		// 		break;
-		// 	}
-		// 	// printf("ys = %d, xs = %d\n", ys, xs);
-		// 	if (cub->map[(int)(py + ys) / 64][(int)(xs + px) / 64] == '1')
-		// 		break;
-		// 	// break;
-		// 	i++;
-		// 	ys += 0.5;
-		// 	xs += -0.5 / tan(a);
-		// }
-		// // ys -= 65;
-		// // xs -= -1 / tan(a);
-		// arr[0] = cub->m.px_pix;
-		// arr[1] = xs + cub->m.px_pix;
-		// arr[2] = cub->m.py_pix;
-		// arr[3] = cub->m.py_pix + ys;
-		// draw_line(cub, arr, 0x00FF00);
+		ys = (int)cub->m.py_pix - 65;
+		xs = ((py - ys) * (-1 / tan(a))) * -1 + px;
+		yo = 64;
+		xo = -yo * (-1 / tan(a));
+		// printf("xo = %f, xs = %f\n", xo, xs);
+		while (1)
+		{
+			if (ys <= 0 || ys >= cub->m.height * 64
+			|| xs <= 0 || xs >= cub->m.width * 64)
+			{
+				// ys -= 65;
+				break;
+			}
+			// printf("px = %f\n", xs);
+			if (cub->map[(int)(ys / 64)][(int)(xs / 64)] == '1')
+				break;
+			ys -= 65;
+			xs += xo;
+			i++;
+		}
+		arr[0] = cub->m.px_pix;
+		arr[1] = xs;
+		arr[2] = cub->m.py_pix;
+		arr[3] = ys;
+		draw_line(cub, arr, 0x00FF00);
+	}
+	else if (a > M_PI && a < (3 * M_PI) / 2)
+	{
+		ys = (int)cub->m.py_pix - 0.0001;
+		xs = ((py - ys) * (-1 / tan(a))) + px;
+		yo = 64;
+		xo = -yo * (-1 / tan(a));
+		// printf("xo = %f, xs = %f\n", xo, xs);
+		while (1)
+		{
+			if (ys <= 0 || ys >= cub->m.height * 64
+			|| xs <= 0 || xs >= cub->m.width * 64)
+			{
+				// ys -= 65;
+				break;
+			}
+			// printf("px = %f\n", xs);
+			if (cub->map[(int)(ys / 64)][(int)(xs / 64)] == '1')
+				break;
+			ys += 65;
+			xs -= xo;
+			i++;
+		}
+		arr[0] = cub->m.px_pix;
+		arr[1] = xs;
+		arr[2] = cub->m.py_pix;
+		arr[3] = ys;
+		draw_line(cub, arr, 0x00FF00);
+	}
+	else if (a > 3 * M_PI / 2 && a < 2 * M_PI)
+	{
+		ys = (int)cub->m.py_pix - 0.0001;
+		xs = ((py - ys) * (-1 / tan(a))) + px;
+		yo = 64;
+		xo = yo * (-1 / tan(a));
+		printf("xo = %f, xs = %f\n", xo, xs);
+		while (1)
+		{
+			if (ys <= 0 || ys >= cub->m.height * 64
+			|| xs <= 0 || xs >= cub->m.width * 64)
+			{
+				// ys -= 65;
+				break;
+			}
+			printf("px = %f\n", xs);
+			if (cub->map[(int)(ys / 64)][(int)(xs / 64)] == '1')
+				break;
+			ys += 65;
+			xs += xo;
+			i++;
+		}
+		arr[0] = cub->m.px_pix;
+		arr[1] = xs;
+		arr[2] = cub->m.py_pix;
+		arr[3] = ys;
+		draw_line(cub, arr, 0x00FF00);
 	}
 	// else if (a == 0 || a == 2 * M_PI)
 	// {
