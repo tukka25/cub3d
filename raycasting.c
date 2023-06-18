@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/18 19:11:37 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/18 19:37:19 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,31 +239,31 @@ void	check_horizontal(t_cub *cub, int *arr, float a)
 		arr[3] = ys;
 		draw_line(cub, arr, 0x00FF00);
 	}
-	// else if (a == 0 || a == 2 * M_PI)
-	// {
-	// 	while (cub->map[(int)py / 64][(int)px / 64] != '1')
-	// 	{
-	// 		px += Speed;
-	// 	}
-	// 	arr[0] = cub->m.px_pix;
-	// 	arr[1] = xs + cub->m.px_pix;
-	// 	arr[2] = cub->m.py_pix;
-	// 	arr[3] = cub->m.py_pix;
-	// 	draw_line(cub, arr, 0x00FF00);
-	// }
-	// else if (a == M_PI)
-	// {
-	// 	printf("a = %d\n", rad_to_deg(a, cub));
-	// 	while (cub->map[(int)py / 64][(int)px / 64] != '1')
-	// 	{
-	// 		px -= Speed;
-	// 	}
-	// 	arr[0] = cub->m.px_pix;
-	// 	arr[1] = xs + cub->m.px_pix;
-	// 	arr[2] = cub->m.py_pix;
-	// 	arr[3] = cub->m.py_pix;
-	// 	draw_line(cub, arr, 0x00FF00);
-	// }
+	else if (a == 0 || a == 2 * M_PI)
+	{
+		while (cub->map[(int)py / 64][(int)px / 64] != '1')
+		{
+			px += Speed;
+		}
+		arr[0] = cub->m.px_pix;
+		arr[1] = xs + cub->m.px_pix;
+		arr[2] = cub->m.py_pix;
+		arr[3] = cub->m.py_pix;
+		draw_line(cub, arr, 0x00FF00);
+	}
+	else if (a == M_PI)
+	{
+		printf("a = %d\n", rad_to_deg(a, cub));
+		while (cub->map[(int)py / 64][(int)px / 64] != '1')
+		{
+			px -= Speed;
+		}
+		arr[0] = cub->m.px_pix;
+		arr[1] = xs + cub->m.px_pix;
+		arr[2] = cub->m.py_pix;
+		arr[3] = cub->m.py_pix;
+		draw_line(cub, arr, 0x00FF00);
+	}
 	// cub->ray_c.ray_length = sqrt(((arr[1] - arr[0]) * (arr[1] - arr[0]))
 	// + ((arr[3] - arr[2]) * (arr[3] - arr[2])));
 	// check_vertical(cub, arr, a);
