@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/19 16:11:03 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/19 19:16:34 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ typedef struct s_ray_c
 	float	angle;
 	float	wall_length;
 	float	ray_length;
+	float	ys_h;
+	float	xs_h;
+	float	ys_v;
+	float	xs_v;
+	float	tmp_length;
 }	t_ray_c;
 
 typedef struct s_map
