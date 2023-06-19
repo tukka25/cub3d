@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/14 18:20:50 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/19 16:11:03 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,6 @@ int		rad_to_deg(float i, t_cub *cub);
 int		exit_w(t_cub *cub);
 void	cast_rays(t_cub *cub);
 void	draw_line(t_cub *cub, int *arr, int color);
-void	check_horizontal(t_cub *cub, int *arr, float a);
-int		check_vertical(t_cub *cub, int *arr, float a);
+void	check_horizontal(t_cub *cub, float a);
+int		check_vertical(t_cub *cub, float a);
 #endif
