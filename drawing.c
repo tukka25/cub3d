@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 23:35:38 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/19 19:08:01 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/19 19:09:17 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,42 +135,42 @@ void	drawing(t_cub *cub)
 				cub->m.height * 64);
 	cub->img.addr = mlx_get_data_addr(cub->img.img, &cub->img.bits_per_pixel,
 			&cub->img.line_length, &cub->img.endian);
-	while (cub->map[y])
-	{
-		j = 0;
-		x = 0;
-		while (cub->map[y][x])
-		{
-			if (cub->map[y][x] == 'N' || cub->map[y][x] == 'S'
-				|| cub->map[y][x] == 'W' || cub->map[y][x] == 'E')
-			{
-				// my_mlx_pixel_put(&cub->img, (int)((j + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 1) + cub->ray_c.pdy), 0x0000FF00);
-				// my_mlx_pixel_put(&cub->img, (int)((j + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 2) + cub->ray_c.pdy), 0x0000FF00);
-				// my_mlx_pixel_put(&cub->img, (int)((j + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 3) + cub->ray_c.pdy), 0x0000FF00);
-				// my_mlx_pixel_put(&cub->img, (int)((j + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 4) + cub->ray_c.pdy), 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + cub->move_x, i + cub->move_y, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + cub->move_x + 1, i + cub->move_y, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + cub->move_x + 2, i + cub->move_y, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + cub->move_x + 3, i + cub->move_y, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + cub->move_x, i + cub->move_y + 1, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + cub->move_x + 1, i + cub->move_y + 1, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + cub->move_x + 2, i + cub->move_y + 1, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + cub->move_x + 3, i + cub->move_y + 1, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + cub->move_x, i + cub->move_y + 2, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + cub->move_x + 1, i + cub->move_y + 2, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + cub->move_x + 2, i + cub->move_y + 2, 0x0000FF00);
-				my_mlx_pixel_put(&cub->img, j + cub->move_x + 3, i + cub->move_y + 2, 0x0000FF00);
-			}
-			else if (cub->map[y][x] == '1')
-			{
-				draw_wall(cub, x, y);
-			}
-			x++;
-			j += 64;
-		}
-		y++;
-		i += 64;
-	}
+	// while (cub->map[y])
+	// {
+	// 	j = 0;
+	// 	x = 0;
+	// 	while (cub->map[y][x])
+	// 	{
+	// 		if (cub->map[y][x] == 'N' || cub->map[y][x] == 'S'
+	// 			|| cub->map[y][x] == 'W' || cub->map[y][x] == 'E')
+	// 		{
+	// 			// my_mlx_pixel_put(&cub->img, (int)((j + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 1) + cub->ray_c.pdy), 0x0000FF00);
+	// 			// my_mlx_pixel_put(&cub->img, (int)((j + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 2) + cub->ray_c.pdy), 0x0000FF00);
+	// 			// my_mlx_pixel_put(&cub->img, (int)((j + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 3) + cub->ray_c.pdy), 0x0000FF00);
+	// 			// my_mlx_pixel_put(&cub->img, (int)((j + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 4) + cub->ray_c.pdy), 0x0000FF00);
+	// 			my_mlx_pixel_put(&cub->img, j + cub->move_x, i + cub->move_y, 0x0000FF00);
+	// 			my_mlx_pixel_put(&cub->img, j + cub->move_x + 1, i + cub->move_y, 0x0000FF00);
+	// 			my_mlx_pixel_put(&cub->img, j + cub->move_x + 2, i + cub->move_y, 0x0000FF00);
+	// 			my_mlx_pixel_put(&cub->img, j + cub->move_x + 3, i + cub->move_y, 0x0000FF00);
+	// 			my_mlx_pixel_put(&cub->img, j + cub->move_x, i + cub->move_y + 1, 0x0000FF00);
+	// 			my_mlx_pixel_put(&cub->img, j + cub->move_x + 1, i + cub->move_y + 1, 0x0000FF00);
+	// 			my_mlx_pixel_put(&cub->img, j + cub->move_x + 2, i + cub->move_y + 1, 0x0000FF00);
+	// 			my_mlx_pixel_put(&cub->img, j + cub->move_x + 3, i + cub->move_y + 1, 0x0000FF00);
+	// 			my_mlx_pixel_put(&cub->img, j + cub->move_x, i + cub->move_y + 2, 0x0000FF00);
+	// 			my_mlx_pixel_put(&cub->img, j + cub->move_x + 1, i + cub->move_y + 2, 0x0000FF00);
+	// 			my_mlx_pixel_put(&cub->img, j + cub->move_x + 2, i + cub->move_y + 2, 0x0000FF00);
+	// 			my_mlx_pixel_put(&cub->img, j + cub->move_x + 3, i + cub->move_y + 2, 0x0000FF00);
+	// 		}
+	// 		else if (cub->map[y][x] == '1')
+	// 		{
+	// 			draw_wall(cub, x, y);
+	// 		}
+	// 		x++;
+	// 		j += 64;
+	// 	}
+	// 	y++;
+	// 	i += 64;
+	// }
 	cast_rays(cub);
 	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.mlx_win,
 		cub->img.img, 0, 0);

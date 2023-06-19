@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/19 19:08:27 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/19 19:09:56 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,11 +230,7 @@ void	check_horizontal(t_cub *cub, float a)
 	cub->ray_c.ray_length = sqrt(((arr[1] - arr[0]) * (arr[1] - arr[0]))
 	+ ((arr[3] - arr[2]) * (arr[3] - arr[2])));
 	ys = check_vertical(cub, a);
-	if (ys > cub->ray_c.ray_length)
-	{
-		draw_line(cub, arr, 0xFF0000);
-	}
-	else
+	if (ys < cub->ray_c.ray_length)
 		cub->ray_c.ray_length = ys;
 }
 
@@ -369,8 +365,8 @@ int	check_vertical(t_cub *cub, float a)
 	}
 	float k = sqrt(((arr[1] - arr[0]) * (arr[1] - arr[0]))
 	+ ((arr[3] - arr[2]) * (arr[3] - arr[2])));
-	if (k <= cub->ray_c.ray_length)
-		draw_line(cub, arr, 0xFF0000);
+	// if (k <= cub->ray_c.ray_length)
+	// 	draw_line(cub, arr, 0xFF0000);
 	return (k);
 }
 
