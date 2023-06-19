@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/19 20:41:55 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/19 20:43:57 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,27 @@ void	cast_rays(t_cub *cub)
 		// exit(0);
 		arr[0] = 0;
 		arr[1] = 0;
-	while (h < cub->m.width * 64)
+	while (d <= M_PI_2)
 	{
 		x1 = cub->m.px_pix;
 		y1 = cub->m.py_pix;
 		check_horizontal(cub, a);
-		cub->ray_c.wall_length = ((100 * cub->m.height * 64) / (cub->ray_c.ray_length));
+		cub->ray_c.wall_length = ((100 * cub->m.height * 64) / cub->ray_c.ray_length);
+		// printf("d = %d\n", cub->m.height * 64);
 		// printf("l = %f\n", cub->ray_c.wall_length);
-		 int drawStart = -cub->ray_c.wall_length / 2 + cub->m.height * 64 / 2;
+		// exit(0);
+		 int drawStart = -cub->ray_c.wall_length / 2 + h / 2;
       if(drawStart < 0)drawStart = 0;
-      int drawEnd = cub->ray_c.wall_length / 2 + cub->m.height * 64 / 2;
-      if(drawEnd >= cub->m.height * 64)drawEnd = cub->m.height * 64 - 1;
+      int drawEnd = cub->ray_c.wall_length / 2 + h / 2;
+      if(drawEnd >= h)drawEnd = h - 1;
 		arr[2] = drawStart;
-		arr[3] = drawEnd;
+		arr[3] =  drawEnd;
 		draw_line(cub, arr, 0x00FF00);
 		arr[0]+= 1;
 		arr[1]+= 1;
 		h++;
+		printf("a1=%d\n", arr[0]);
+		printf("a2=%d\n", arr[1]);
 		i = 0;
 		if (a >= 2 * M_PI)
 			a = 0;
