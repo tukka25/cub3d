@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:14:04 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/21 20:04:38 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/21 20:37:10 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	cu_saving_rgb_cmpnt(char *line, char *rgb_cmpnt, char **rgb, t_game *game)
 {
 	int	cmpnt;
 
-	printf("%s\n", rgb_cmpnt);
 	cmpnt = cu_atoi(rgb_cmpnt);
 	if (cmpnt < 0)
 	{

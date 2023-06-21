@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 19:56:32 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/21 18:43:01 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/21 20:36:45 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	cu_check_edge(char *line, t_game *game)
 	tmp = cu_dup_and_trim(line);
 	if (!tmp)
 		cu_print_error("Invalid line", game);
-	printf("tmp[0]: %c, tmp[last]: |%c|\n", tmp[0], tmp[ft_strlen(tmp) - 1]);
 	if (tmp[0] != '1' || tmp[ft_strlen(tmp) - 1] != '1')
 	{
 		free(tmp);
