@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 20:06:01 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/03 16:44:34 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/21 20:17:01 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,12 @@ int	cu_atoi(char *str)
 	i = 0;
 	res = 0;
 	trim = cu_strtrimchar(str, ' ');
+	if (!trim || !trim[i])
+		return (-1);
 	while (trim[i])
 	{
-		if (!ft_isdigit(trim[i]))
-		{
-			free(trim);
-			return (-1);
-		}
 		res = (trim[i] - '0') + (res * 10);
-		if (res > 255)
+		if (res > 255 || !ft_isdigit(trim[i]))
 		{
 			free(trim);
 			return (-1);

@@ -1,0 +1,17 @@
+
+       
+       
+F 20,20,20
+C       2 , 3 ,   3  
+
+NO ./textures/barrel.xpm
+
+    EA ./textures/wood.xpm
+WE ./textures/redbrick.xpm 
+
+
+SO ./textures/greystone.xpm
+11111
+1S011
+1
+111
