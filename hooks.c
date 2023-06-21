@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:33:32 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/10 19:12:12 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:53:36 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ void	move_up(t_cub *cub)
 	int	a;
 
 	a = rad_to_deg(cub->ray_c.angle, cub);
+	// if (cub->map[cub->m.py_pix / 64][(cub->m.px_pix + Speed) / 64] == '1'
+	// 	|| cub->map[cub->m.py_pix / 64][(cub->m.px_pix + Speed) / 64] == '1')
+	// 	return ;
+	// if (cub->map[(int)(cub->m.py_pix - round(Speed * sin(cub->ray_c.angle))) / 64][cub->m.px_pix / 64] == '1'
+	// || cub->map[(int)(cub->m.py_pix - round(Speed * sin(cub->ray_c.angle))) / 64]
+	// [(int)(cub->m.px_pix - round(Speed * sin(cub->ray_c.angle))) / 64] == '1' || 
+	// cub->map[(int)(cub->m.py_pix - round(Speed * sin(cub->ray_c.angle))) / 64][(cub->m.px_pix + Speed) / 64] == '1')
+	// 	return ;
 	if (a == 0 || a == 360)
 	{
 		cub->m.px_pix += Speed;
