@@ -10,7 +10,8 @@ SRCS =	cub3d.c              \
 		hooks.c              \
 		rotation.c           \
 		raycasting.c         \
-		raycasting_utils.c
+		raycasting_utils.c   \
+		moves_utils.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/19 19:16:34 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/22 15:15:20 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	move_down(t_cub *cub);
 void	move_right(t_cub *cub);
 void	draw_wall(t_cub *cub, int x, int y);
 void	render(t_cub *cub);
-void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color);
 void	rotate_right(t_cub *cub);
 void	rotate_left(t_cub *cub);
 float	deg_to_rad(int i, t_cub *cub);
@@ -115,5 +115,7 @@ int		exit_w(t_cub *cub);
 void	cast_rays(t_cub *cub);
 void	draw_line(t_cub *cub, int *arr, int color);
 void	check_horizontal(t_cub *cub, float a);
-int		check_vertical(t_cub *cub, float a);
+float	check_vertical(t_cub *cub, float a);
+void	check_left_right(t_cub *cub, int flag);
+void	check_horz_vert(t_cub *cub, int flag);
 #endif

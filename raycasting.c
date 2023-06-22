@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/21 17:03:23 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/22 20:41:39 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,41 +22,46 @@ void	cast_rays(t_cub *cub)
 	float 	a = 0;
 	int	x1;
 	int	y1;
-	// int	h = 0;
+	int	h = 0;
 	int *arr = malloc(4 * sizeof(int));
 	x1 = cub->m.px_pix;
 	y1 = cub->m.py_pix;
-	printf("i = %c\n", cub->map[cub->m.py_pix / 64][cub->m.px_pix / 64]);
-	a = cub->ray_c.angle - deg_to_rad(30, cub);
-	float d = 0;
+	// printf("i = %c\n", cub->map[cub->m.py_pix / 64][cub->m.px_pix / 64]);
+	a = cub->ray_c.angle - deg_to_rad(45, cub);
+	// float d = 0;
 	if (a < 0)
 		a += 2 * M_PI;
 		// printf("d = %f\n", (M_PI / 2) / (cub->m.width * 64) - 0.0003);
 		// exit(0);
-		// arr[0] = 0;
-		// arr[1] = 0;
-	while (d <= M_PI_2 - deg_to_rad(30, cub))
+		arr[0] = 0;
+		arr[1] = 0;
+	while (h < cub->m.width * 64)
 	{
-		x1 = cub->m.px_pix;
-		y1 = cub->m.py_pix;
+		// x1 = cub->m.px_pix;
+		// y1 = cub->m.py_pix;
 		check_horizontal(cub, a);
-		cub->ray_c.wall_length = ((100 * cub->m.height * 64) / cub->ray_c.ray_length);
-		// printf("d = %d\n", cub->m.height * 64);
-		// printf("l = %f\n", cub->ray_c.wall_length);
-		// exit(0);
-		// arr[2] = 100;
-		// arr[3] =  cub->ray_c.wall_length - 100;
-		// draw_line(cub, arr, 0x00FF00);
-		// arr[0]+= 1;
-		// arr[1]+= 1;
-		// h++;
+		// d = cub->ray_c.angle - a;
+		// if (d < 0)
+		// 	d += 2 * M_PI;
+		// else if (d > 2 * M_PI)
+		// 	d += 2 * M_PI;
+		cub->ray_c.wall_length = (((64 * cub->m.height * 64) / cub->ray_c.ray_length) / 2);
+		x1 = (((cub->m.height * 64) / 2) - cub->ray_c.wall_length) / 2;
+		arr[2] = x1;
+		arr[3] =  cub->ray_c.wall_length + x1;
+		draw_line(cub, arr, 0x00FF00);
+		arr[0]++;
+		arr[1]++;
+		h++;
 		// printf("a1=%d\n", arr[0]);
 		// printf("a2=%d\n", arr[1]);
 		i = 0;
-		if (a >= 2 * M_PI)
-			a = 0;
-		a += 0.002364;
-		d += 0.002364;
+		if (a > 2 * M_PI)
+			a -= 2 * M_PI;
+		// if (a > M_PI / 2)
+			a += 0.002364;
+		// d += 0.002364;
+		// h++;
 	}
 	free(arr);
 }
@@ -69,6 +74,7 @@ void	check_horizontal(t_cub *cub, float a)
 	float	xo;
 	int		arr[4];
 
+	// cub->ray_c.ray_length = 1000;
 	px = cub->m.px_pix;
 	py = cub->m.py_pix;
 	cub->ray_c.ys_h = (int)cub->m.py_pix;
@@ -77,7 +83,51 @@ void	check_horizontal(t_cub *cub, float a)
 	(void)xo;
 	// printf("a = %d\n", rad_to_deg(a, cub));
 	int i = 0;
-	if (a > 0 && a < M_PI / 2)
+	if (a == 0 || a == 360)
+	{
+		cub->ray_c.ys_h = (int)py;
+		cub->ray_c.xs_h = ((py - cub->ray_c.ys_h) * (-1 / tan(a))) * -1 + px;
+		// yo = 1;
+		// xo = -yo * (-1 / tan(a));
+		while (1)
+		{
+			if ((int)cub->ray_c.ys_h <= 0 || (int)cub->ray_c.ys_h >= cub->m.height * 64
+			|| (int)cub->ray_c.xs_h <= 0 || (int)cub->ray_c.xs_h >= cub->m.width * 64)
+				break;
+			if (cub->map[(int)(cub->ray_c.ys_h / 64)][(int)(cub->ray_c.xs_h / 64)] == '1')
+				break;
+			// cub->ray_c.ys_h -= Speed;
+			cub->ray_c.xs_h += Speed;
+			i++;
+		}
+		arr[0] = px;
+		arr[1] = cub->ray_c.xs_h;
+		arr[2] = py;
+		arr[3] = cub->ray_c.ys_h;
+	}
+	else if (a == M_PI)
+	{
+		cub->ray_c.ys_h = (int)py;
+		cub->ray_c.xs_h = ((py - cub->ray_c.ys_h) * (-1 / tan(a))) * -1 + px;
+		// yo = 1;
+		// xo = -yo * (-1 / tan(a));
+		while (1)
+		{
+			if ((int)cub->ray_c.ys_h <= 0 || (int)cub->ray_c.ys_h >= cub->m.height * 64
+			|| (int)cub->ray_c.xs_h <= 0 || (int)cub->ray_c.xs_h >= cub->m.width * 64)
+				break;
+			if (cub->map[(int)(cub->ray_c.ys_h / 64)][(int)(cub->ray_c.xs_h / 64)] == '1')
+				break;
+			// cub->ray_c.ys_h -= Speed;
+			cub->ray_c.xs_h -= Speed;
+			i++;
+		}
+		arr[0] = px;
+		arr[1] = cub->ray_c.xs_h;
+		arr[2] = py;
+		arr[3] = cub->ray_c.ys_h;
+	}
+	else if (a > 0 && a < M_PI / 2)
 	{
 		cub->ray_c.ys_h = (int)py - 1;
 		cub->ray_c.xs_h = ((py - cub->ray_c.ys_h) * (-1 / tan(a))) * -1 + px;
@@ -188,18 +238,18 @@ void	check_horizontal(t_cub *cub, float a)
 	cub->ray_c.ray_length = sqrt(((arr[1] - arr[0]) * (arr[1] - arr[0]))
 	+ ((arr[3] - arr[2]) * (arr[3] - arr[2])));
 	cub->ray_c.tmp_length = check_vertical(cub, a);
-	if (cub->ray_c.tmp_length > cub->ray_c.ray_length)
+	if (cub->ray_c.tmp_length < cub->ray_c.ray_length)
 	{
-		draw_line(cub, arr, 0xFF0000);
-		// cub->ray_c.ray_length = cub->ray_c.tmp_length;
-		// cub->ray_c.ys_h = cub->ray_c.ys_v;
-		// cub->ray_c.xs_h = cub->ray_c.xs_v;
+		// draw_line(cub, arr, 0xFF0000);
+		cub->ray_c.ray_length = cub->ray_c.tmp_length;
+		cub->ray_c.ys_h = cub->ray_c.ys_v;
+		cub->ray_c.xs_h = cub->ray_c.xs_v;
 	}
 	// else
 	// 	draw_line(cub, arr, 0xFF0000);
 }
 
-int	check_vertical(t_cub *cub, float a)
+float	check_vertical(t_cub *cub, float a)
 {
 	float	px;
 	float	py;
@@ -328,8 +378,8 @@ int	check_vertical(t_cub *cub, float a)
 	}
 	float k = sqrt(((arr[1] - arr[0]) * (arr[1] - arr[0]))
 	+ ((arr[3] - arr[2]) * (arr[3] - arr[2])));
-	if (k <= cub->ray_c.ray_length)
-		draw_line(cub, arr, 0xFF0000);
+	// if (k <= cub->ray_c.ray_length)
+		// draw_line(cub, arr, 0xFF0000);
 	return (k);
 }
 
@@ -346,7 +396,7 @@ void draw_line(t_cub *cub, int *arr, int color)
     int err = dx - dy;
 
     while (x1 != x2 || y1 != y2) {
-        my_mlx_pixel_put(&cub->img, x1, y1, color);
+        my_mlx_pixel_put(cub, x1, y1, color);
         
         int err2 = 2 * err;
         if (err2 > -dy) {
