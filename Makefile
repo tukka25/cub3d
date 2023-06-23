@@ -6,25 +6,33 @@
 #    By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 00:30:54 by talsaiaa          #+#    #+#              #
-#    Updated: 2023/06/21 22:03:48 by talsaiaa         ###   ########.fr        #
+#    Updated: 2023/06/23 21:15:35 by talsaiaa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	cub3d
 
-SRCS	=	main.c \
-			gnl/get_next_line.c gnl/get_next_line_utils.c \
-			parsing/cu_utils.c parsing/cu_saving_file.c \
-			parsing/cu_saving_components.c parsing/freedom.c \
-			parsing/cu_strtrimchar.c parsing/cu_texture_utils.c \
-			parsing/cu_saving_colors.c parsing/cu_saving_map.c \
-			parsing/cu_check_map.c parsing/cu_map_utils.c \
+SRCS =	cub3d.c              \
+		drawing.c            \
+		hooks.c              \
+		rotation.c           \
+		raycasting.c         \
+		raycasting_utils.c	\
+		utils.c              \
+		gnl/get_next_line.c gnl/get_next_line_utils.c \
+		parsing/cu_utils.c parsing/cu_saving_file.c \
+		parsing/cu_saving_components.c parsing/freedom.c \
+		parsing/cu_strtrimchar.c parsing/cu_texture_utils.c \
+		parsing/cu_saving_colors.c parsing/cu_saving_map.c \
+		parsing/cu_check_map.c parsing/cu_map_utils.c \
 
 OBJS	=	$(SRCS:.c=.o)
 
 LIBFT	=	cd Libft && make
 
-LIB		=	Libft/libft.a
+MLX		=	cd mlx && make
+
+LIB		=	Libft/libft.a mlx/libmlx.a
 
 GCC		=	gcc
 
@@ -83,13 +91,14 @@ all: comp_start $(NAME)
 	@printf '                        ▓▓████▓▓██    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓██                                    \n'
 
 $(NAME): $(OBJS)
-	@$(GCC) $(FLAGS) $(OBJS) $(LIB) -o $(NAME)
+	@$(GCC) $(FLAGS) $(OBJS) $(LIB) -Lmlx -lmlx -framework OpenGL -framework AppKit  -o $(NAME)
 	@tput setaf 2
 	@printf 'Executable ready\n'
 	@tput setaf 7
 
 comp_start:
 	@$(LIBFT)
+	@$(MLX)
 	@tput setaf 2
 	@printf 'LIBFT Compiled\n'
 	@tput setaf 7

@@ -1,5 +1,14 @@
 {
 	"files.associations": {
+<<<<<<< HEAD
 		"type_traits": "c"
+=======
+		"__tree": "c",
+		"map": "c",
+		"chrono": "c",
+		"algorithm": "c",
+		"math.h": "c",
+		"complex": "c"
+>>>>>>> origin/exec
 	}
 }
