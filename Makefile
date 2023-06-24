@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+         #
+#    By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 00:30:54 by talsaiaa          #+#    #+#              #
-#    Updated: 2023/06/24 19:27:15 by abdamoha         ###   ########.fr        #
+#    Updated: 2023/06/24 20:41:34 by talsaiaa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,11 +28,11 @@ SRCS =	cub3d.c              \
 
 OBJS	=	$(SRCS:.c=.o)
 
-LIBFT	=	cd Libft && make
+LIBFT	=	cd libft && make
 
 MLX		=	cd mlx && make
 
-LIB		=	Libft/libft.a mlx/libmlx.a
+LIB		=	libft/libft.a mlx/libmlx.a
 
 GCC		=	gcc
 
@@ -108,14 +108,14 @@ comp_start:
 
 clean:
 	@rm -rf $(OBJS)
-	@cd Libft && make clean
+	@cd libft && make clean
 	@tput setaf 2
 	@printf '.o files are removed\n'
 	@tput setaf 7
 
 fclean: clean
 	@rm -rf $(NAME)
-	@cd Libft && make fclean
+	@cd libft && make fclean
 	@tput setaf 2
 	@printf '.o and executable is removed\n'
 	@tput setaf 7
