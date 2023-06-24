@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+         #
+#    By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 00:30:54 by talsaiaa          #+#    #+#              #
-#    Updated: 2023/06/23 21:15:35 by talsaiaa         ###   ########.fr        #
+#    Updated: 2023/06/24 19:27:15 by abdamoha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ LIB		=	Libft/libft.a mlx/libmlx.a
 
 GCC		=	gcc
 
-FLAGS	=	-g -Wall -Wextra -Werror
+FLAGS	=	-g -Wall -Wextra -Werror -fsanitize=address
 
 all: comp_start $(NAME) 
 	@printf '		          ▓▓▓▓▓▓▓▓                                                                 \n'

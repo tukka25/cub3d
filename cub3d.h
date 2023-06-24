@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/23 21:09:57 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:37:10 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define Speed 8
-# include "Libft/libft.h"
+# define SPEED 8
+# define WIDTH 1500
+# define HEIGHT 850
+# include "libft/libft.h"
 # include "gnl/get_next_line.h"
 # include <stdio.h>
 # include <fcntl.h>
@@ -44,6 +46,8 @@ typedef struct s_map
 	int		nline;
 	int		p_x;
 	int		p_y;
+	int		map_width;
+	int		map_height;
 	char	p_direction;
 	char	**map_2d;
 	int		dir_len;
@@ -57,6 +61,8 @@ typedef struct s_map
 	int		px_pix;
 	int		py_index;
 	int		py_pix;
+	float	scale_x;
+	float	scale_y;
 }	t_map;
 
 typedef struct s_file
@@ -103,16 +109,15 @@ typedef struct s_cub
 	int		j;
 	char	*line;
 	char	**tmp;
-	char	**map;
 	int		*f_colors;
 	int		*c_colors;
 	int		move_x;
 	int		move_y;
 	float	pi;
-	t_map	m;
 	t_mlx	mlx;
 	t_img	img;
 	t_ray_c	ray_c;
+	t_game	*game;
 }	t_cub;
 
 void	pars(char **argv, t_cub *cub);
@@ -144,6 +149,8 @@ void	cast_rays(t_cub *cub);
 void	draw_line(t_cub *cub, int *arr, int color);
 void	check_horizontal(t_cub *cub, float a);
 int		check_vertical(t_cub *cub, float a);
+void	convert_angle(t_cub *cub);
+void	scaling(t_cub *cub);
 
 void	cu_args_check(char *av, t_game *game);
 int		cu_atoi(char *str);

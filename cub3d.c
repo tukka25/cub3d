@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:35 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/23 21:21:01 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:36:50 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static void	first_init(t_cub *cub)
 	cub->j = 0;
 	cub->f_colors = NULL;
 	cub->c_colors = NULL;
-	cub->map = NULL;
 	cub->move_x = 0;
 	cub->move_y = 0;
 	cub->pi = 3.14159265359;
-	cub->ray_c.angle = deg_to_rad(90, cub);
+	convert_angle(cub);
+	scaling(cub);
 	cub->ray_c.pdx = cos(cub->ray_c.angle) * 5;
 	cub->ray_c.pdy = sin(cub->ray_c.angle) * 5;
 }
@@ -31,33 +31,32 @@ static void	first_init(t_cub *cub)
 int	main(int ac, char **av)
 {
 	t_cub	cub;
-	t_game	game;
 	int		x;
 	int		y;
 
 	x = 64;
 	y = 0;
 	
-	cu_init(&game);
+	cu_init(cub.game);
 	if (ac != 2)
-		cu_print_error("Invalid number of arguments", &game);
-	game.file.fd = open(av[1], O_DIRECTORY);
-	if (game.file.fd > 0)
-		cu_print_error("Argument cannot be a directory", &game);
-	game.file.fd = open(av[1], O_RDONLY);
-	cu_args_check(av[1], &game);
-	cu_saving_file(&game);
-	cu_saving_components(&game);
+		cu_print_error("Invalid number of arguments", cub.game);
+	cub.game->file.fd = open(av[1], O_DIRECTORY);
+	if (cub.game->file.fd > 0)
+		cu_print_error("Argument cannot be a directory", cub.game);
+	cub.game->file.fd = open(av[1], O_RDONLY);
+	cu_args_check(av[1], cub.game);
+	cu_saving_file(cub.game);
+	cu_saving_components(cub.game);
 	first_init(&cub);
-	printf("fl = %f\n", cub.ray_c.angle);
+	printf("fl = %d\n", rad_to_deg(cub.ray_c.angle, &cub));
 	cub.mlx.mlx = mlx_init();
-	cub.mlx.mlx_win = mlx_new_window(cub.mlx.mlx, cub.m.width * 64,
-			cub.m.height * 64, "cub3d");
-	drawing(&cub);
+	cub.mlx.mlx_win = mlx_new_window(cub.mlx.mlx, WIDTH,
+			HEIGHT, "cub3d");
+	// drawing(&cub);
 	mlx_hook(cub.mlx.mlx_win, 2, 0, key_hook, &cub);
 	mlx_hook(cub.mlx.mlx_win, 17, 0, exit_w, &cub);
 	mlx_loop(cub.mlx.mlx);
-	cu_freedom(&game);
-	close (game.file.fd);
+	cu_freedom(cub.game);
+	close (cub.game->file.fd);
 	return (0);
 }
