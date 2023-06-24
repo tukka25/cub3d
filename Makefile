@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+         #
+#    By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 00:30:54 by talsaiaa          #+#    #+#              #
-#    Updated: 2023/06/24 20:41:34 by talsaiaa         ###   ########.fr        #
+#    Updated: 2023/06/24 21:54:41 by abdamoha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS =	cub3d.c              \
 		raycasting.c         \
 		raycasting_utils.c	\
 		utils.c              \
+		moves_utils.c         \
 		gnl/get_next_line.c gnl/get_next_line_utils.c \
 		parsing/cu_utils.c parsing/cu_saving_file.c \
 		parsing/cu_saving_components.c parsing/freedom.c \

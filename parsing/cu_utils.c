@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 20:06:01 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/24 20:50:46 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/24 21:13:46 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	cu_init(t_cub *cub)
 	cub->game.map.p_x = -1;
 	cub->game.map.p_y = -1;
 	cub->game.map.p_direction = 0;
+	cub->game.map.map_width = 0;
 	return ;
 }
 

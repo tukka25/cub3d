@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:34:50 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/24 20:58:57 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/24 21:49:18 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ void	convert_angle(t_cub *cub)
 
 void	scaling(t_cub *cub)
 {
-	cub->game.map.scale_x = WIDTH / cub->game.map.map_width;
-	cub->game.map.scale_y = HEIGHT / cub->game.map.nline;
+	printf("c = %d\n", cub->game.map.map_width - 1);
+	cub->game.map.scale_x = (WIDTH / (cub->game.map.map_width - 1));
+	printf("s_x = %f\n", cub->game.map.scale_x);
+	cub->game.map.scale_y = (HEIGHT / cub->game.map.nline);
 	cub->game.map.px_pix = cub->game.map.scale_x * cub->game.map.p_x;
 	cub->game.map.py_pix = cub->game.map.scale_y * cub->game.map.p_y;
 }
