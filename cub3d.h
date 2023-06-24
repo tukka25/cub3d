@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/24 20:39:50 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:54:26 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ typedef struct s_cub
 	t_mlx	mlx;
 	t_img	img;
 	t_ray_c	ray_c;
-	t_game	*game;
+	t_game	game;
 }	t_cub;
 
 void	pars(char **argv, t_cub *cub);
@@ -151,34 +151,34 @@ int		check_vertical(t_cub *cub, float a);
 void	convert_angle(t_cub *cub);
 void	scaling(t_cub *cub);
 
-void	cu_args_check(char *av, t_game *game);
+void	cu_args_check(char *av, t_cub *cub);
 int		cu_atoi(char *str);
-void	cu_init(t_game *game);
-void	cu_print_error(char *msg, t_game *game);
-void	cu_check_space(int y, int x, t_game *game);
-void	cu_check_edge(char *line, t_game *game);
-void	cu_is_valid_character(int y, int c, t_game *game);
+void	cu_init(t_cub *cub);
+void	cu_print_error(char *msg, t_cub *cub);
+void	cu_check_space(int y, int x, t_cub *cub);
+void	cu_check_edge(char *line, t_cub *cub);
+void	cu_is_valid_character(int y, int c, t_cub *cub);
 bool	cu_is_player(int c);
-void	cu_is_space(int c, int y, int x, t_game *game);
+void	cu_is_space(int c, int y, int x, t_cub *cub);
 char	*cu_strtrimchar(char const *str, int const c);
 bool	cu_cmp_id(char *iden, char *cmp, int len);
 bool	cu_is_whtspace(int c);
-void	cu_check_texture_file(char **args, char *path, t_game *game);
-bool	cu_is_duplicate(char *iden, t_game *game);
-void	cu_check_texture_args(char **args, t_game *game);
-void	cu_freedom(t_game *game);
+void	cu_check_texture_file(char **args, char *path, t_cub *cub);
+bool	cu_is_duplicate(char *iden, t_cub *cub);
+void	cu_check_texture_args(char **args, t_cub *cub);
+void	cu_freedom(t_cub *cub);
 void	cu_free_2d(char **str_2d);
-void	cu_saving_file(t_game *game);
-void	cu_saving_components(t_game *game);
-void	cu_saving_colors(char *line, t_game *game);
-void	cu_saving_map(char *line, int index, t_game *game);
-void	cu_check_map(t_game *game);
+void	cu_saving_file(t_cub *cub);
+void	cu_saving_components(t_cub *cub);
+void	cu_saving_colors(char *line, t_cub *cub);
+void	cu_saving_map(char *line, int index, t_cub *cub);
+void	cu_check_map(t_cub *cub);
 char	*cu_dup_and_trim(char *line);
 bool	cu_is_map_begininng(char *line);
 char	**cu_2d_dup(char **arrays, int start, int nline);
 int		cu_2d_len(char **arrays);
-void	cu_check_missing(t_game *game);
-void	cu_is_2_commas(char *line, t_game *game);
-void	cu_get_width(t_game *game);
+void	cu_check_missing(t_cub *cub);
+void	cu_is_2_commas(char *line, t_cub *cub);
+void	cu_get_width(t_cub *cub);
 
 #endif

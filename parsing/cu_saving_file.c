@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cu_saving_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 10:56:24 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/30 20:06:33 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:55:05 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char	**cu_file_to_2d(char **pre, char *line, int nline, t_game *game)
+char	**cu_file_to_2d(char **pre, char *line, int nline, t_cub *cub)
 {
 	char	**new;
 	int		i;
@@ -20,7 +20,7 @@ char	**cu_file_to_2d(char **pre, char *line, int nline, t_game *game)
 	i = 0;
 	new = (char **)malloc(sizeof(char *) * (nline + 1));
 	if (!new)
-		cu_print_error("Malloc error", game);
+		cu_print_error("Malloc error", cub);
 	while (pre && pre[i])
 	{
 		new[i] = ft_strdup(pre[i]);
@@ -34,17 +34,17 @@ char	**cu_file_to_2d(char **pre, char *line, int nline, t_game *game)
 	return (new);
 }
 
-void	cu_saving_file(t_game *game)
+void	cu_saving_file(t_cub *cub)
 {	
-	game->file.line = get_next_line(game->file.fd);
-	if (!game->file.line)
-		cu_print_error("File is empty", game);
-	while (game->file.line)
+	cub->game.file.line = get_next_line(cub->game.file.fd);
+	if (!cub->game.file.line)
+		cu_print_error("File is empty", cub);
+	while (cub->game.file.line)
 	{
-		game->file.nline++;
-		game->file.file_2d = cu_file_to_2d(game->file.file_2d, game->file.line,
-				game->file.nline, game);
-		game->file.line = get_next_line(game->file.fd);
+		cub->game.file.nline++;
+		cub->game.file.file_2d = cu_file_to_2d(cub->game.file.file_2d, cub->game.file.line,
+				cub->game.file.nline, cub);
+		cub->game.file.line = get_next_line(cub->game.file.fd);
 	}
 	return ;
 }

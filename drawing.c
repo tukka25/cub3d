@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 23:35:38 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/24 20:34:37 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:57:41 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 // 	f = i;
 // 	n = j;
 // 	w = j;
-// 	while (cub->game->map.map_2d[i][j] != '1' && cub->game->map.map_2d[i][j])
+// 	while (cub->game.map.map_2d[i][j] != '1' && cub->game.map.map_2d[i][j])
 // 	{
 // 		while (s > 0)
 // 		{
@@ -135,14 +135,14 @@ void	drawing(t_cub *cub)
 				HEIGHT);
 	cub->img.addr = mlx_get_data_addr(cub->img.img, &cub->img.bits_per_pixel,
 			&cub->img.line_length, &cub->img.endian);
-	while (cub->game->map.map_2d[y])
+	while (cub->game.map.map_2d[y])
 	{
 		j = 0;
 		x = 0;
-		while (cub->game->map.map_2d[y][x])
+		while (cub->game.map.map_2d[y][x])
 		{
-			if (cub->game->map.map_2d[y][x] == 'N' || cub->game->map.map_2d[y][x] == 'S'
-				|| cub->game->map.map_2d[y][x] == 'W' || cub->game->map.map_2d[y][x] == 'E')
+			if (cub->game.map.map_2d[y][x] == 'N' || cub->game.map.map_2d[y][x] == 'S'
+				|| cub->game.map.map_2d[y][x] == 'W' || cub->game.map.map_2d[y][x] == 'E')
 			{
 				// my_mlx_pixel_put(&cub->img, (int)((j + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 1) + cub->ray_c.pdy), 0x0000FF00);
 				// my_mlx_pixel_put(&cub->img, (int)((j + cub->move_x + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 2) + cub->ray_c.pdy), 0x0000FF00);
@@ -161,7 +161,7 @@ void	drawing(t_cub *cub)
 				my_mlx_pixel_put(&cub->img, j + cub->move_x + 2, i + cub->move_y + 2, 0x0000FF00);
 				my_mlx_pixel_put(&cub->img, j + cub->move_x + 3, i + cub->move_y + 2, 0x0000FF00);
 			}
-			else if (cub->game->map.map_2d[y][x] == '1')
+			else if (cub->game.map.map_2d[y][x] == '1')
 			{
 				draw_wall(cub, x, y);
 			}
@@ -187,14 +187,14 @@ void	render(t_cub *cub)
 	i = 0;
 	j = 0;
 	y = 0;
-	while (cub->game->map.map_2d[y])
+	while (cub->game.map.map_2d[y])
 	{
 		j = 0;
 		x = 0;
-		while (cub->game->map.map_2d[y][x])
+		while (cub->game.map.map_2d[y][x])
 		{
-			if (cub->game->map.map_2d[y][x] == 'N' || cub->game->map.map_2d[y][x] == 'S'
-				|| cub->game->map.map_2d[y][x] == 'W' || cub->game->map.map_2d[y][x] == 'E')
+			if (cub->game.map.map_2d[y][x] == 'N' || cub->game.map.map_2d[y][x] == 'S'
+				|| cub->game.map.map_2d[y][x] == 'W' || cub->game.map.map_2d[y][x] == 'E')
 			{
 				my_mlx_pixel_put(&cub->img, j, i, 0x0000FF00);
 				my_mlx_pixel_put(&cub->img, j + 1, i, 0x0000FF00);

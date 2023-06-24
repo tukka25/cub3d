@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   freedom.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:04:48 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/03 17:05:59 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:55:05 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,23 @@ void	cu_free_2d(char **str_2d)
 		free(str_2d);
 }
 
-void	cu_freedom(t_game *game)
+void	cu_freedom(t_cub *cub)
 {
-	cu_free_2d(game->file.file_2d);
-	cu_free_2d(game->map.map_2d);
-	if (game->file.line)
-		free(game->file.line);
-	if (game->north)
-		free(game->north);
-	if (game->south)
-		free(game->south);
-	if (game->west)
-		free(game->west);
-	if (game->east)
-		free(game->east);
+	cu_free_2d(cub->game.file.file_2d);
+	cu_free_2d(cub->game.map.map_2d);
+	if (cub->game.file.line)
+		free(cub->game.file.line);
+	if (cub->game.north)
+		free(cub->game.north);
+	if (cub->game.south)
+		free(cub->game.south);
+	if (cub->game.west)
+		free(cub->game.west);
+	if (cub->game.east)
+		free(cub->game.east);
 }
 
-void	cu_is_2_commas(char *line, t_game *game)
+void	cu_is_2_commas(char *line, t_cub *cub)
 {
 	int	i;
 	int	n;
@@ -55,7 +55,7 @@ void	cu_is_2_commas(char *line, t_game *game)
 	if (n != 2)
 	{
 		free(line);
-		cu_print_error("Invalid color commas", game);
+		cu_print_error("Invalid color commas", cub);
 	}
 	return ;
 }

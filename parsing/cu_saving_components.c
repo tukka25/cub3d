@@ -3,63 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   cu_saving_components.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 23:15:04 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/24 20:40:00 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:53:54 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	cu_check_file_extension(char **args, char *file, t_game *game)
+void	cu_check_file_extension(char **args, char *file, t_cub *cub)
 {
 	if (!ft_strchr(file, '.')
 		|| ft_strncmp(".xpm", (file + ft_strlen(file) - 4), 4))
 	{
 		free(file);
 		cu_free_2d(args);
-		cu_print_error("Texture must be an existing .xpm file", game);
+		cu_print_error("Texture must be an existing .xpm file", cub);
 	}
 	return ;
 }
 
-static char	*cu_checking_texture(char **args, char *iden, t_game *game)
+static char	*cu_checking_texture(char **args, char *iden, t_cub *cub)
 {
 	char	*path;
 
-	if (cu_is_duplicate(iden, game))
+	if (cu_is_duplicate(iden, cub))
 	{
 		cu_free_2d(args);
-		cu_print_error("Duplicate texture found", game);
+		cu_print_error("Duplicate texture found", cub);
 	}
-	cu_check_texture_args(args, game);
+	cu_check_texture_args(args, cub);
 	path = ft_strdup(args[1]);
 	if (path[ft_strlen(path) - 1] == '\n')
 		path[ft_strlen(path) - 1] = 0;
-	cu_check_file_extension(args, path, game);
-	cu_check_texture_file(args, path, game);
+	cu_check_file_extension(args, path, cub);
+	cu_check_texture_file(args, path, cub);
 	return (path);
 }
 
-void	cu_saving_textures(char *line, t_game *game)
+void	cu_saving_textures(char *line, t_cub *cub)
 {
 	char	**split;
 
 	split = ft_split(line, ' ');
 	if (cu_cmp_id(split[0], "NO", 2))
-		game->north = cu_checking_texture(split, "NO", game);
+		cub->game.north = cu_checking_texture(split, "NO", cub);
 	else if (cu_cmp_id(split[0], "SO", 2))
-		game->south = cu_checking_texture(split, "SO", game);
+		cub->game.south = cu_checking_texture(split, "SO", cub);
 	else if (cu_cmp_id(split[0], "WE", 2))
-		game->west = cu_checking_texture(split, "WE", game);
+		cub->game.west = cu_checking_texture(split, "WE", cub);
 	else if (cu_cmp_id(split[0], "EA", 2))
-		game->east = cu_checking_texture(split, "EA", game);
+		cub->game.east = cu_checking_texture(split, "EA", cub);
 	cu_free_2d(split);
 	return ;
 }
 
-void	cu_check_identifier(char *line, t_game *game)
+void	cu_check_identifier(char *line, t_cub *cub)
 {
 	char	**tmp;
 	int		len;
@@ -74,35 +74,35 @@ void	cu_check_identifier(char *line, t_game *game)
 		&& !cu_cmp_id(tmp[0], "\n", len))
 	{
 		cu_free_2d(tmp);
-		cu_print_error("Invalid identifier", game);
+		cu_print_error("Invalid identifier", cub);
 	}
 	cu_free_2d(tmp);
 	return ;
 }
 
-void	cu_saving_components(t_game *game)
+void	cu_saving_components(t_cub *cub)
 {
 	int	i;
 
 	i = 0;
-	while (game->file.file_2d && game->file.file_2d[i])
+	while (cub->game.file.file_2d && cub->game.file.file_2d[i])
 	{
-		cu_check_identifier(game->file.file_2d[i], game);
-		cu_saving_textures(game->file.file_2d[i], game);
-		cu_saving_colors(game->file.file_2d[i], game);
-		cu_saving_map(game->file.file_2d[i], i, game);
+		cu_check_identifier(cub->game.file.file_2d[i], cub);
+		cu_saving_textures(cub->game.file.file_2d[i], cub);
+		cu_saving_colors(cub->game.file.file_2d[i], cub);
+		cu_saving_map(cub->game.file.file_2d[i], i, cub);
 		i++;
 	}
-	cu_check_missing(game);
-	cu_get_width(game);
-	printf("north: %s\n", game->north);
-	printf("south: %s\n", game->south);
-	printf("west: %s\n", game->west);
-	printf("east: %s\n", game->east);
-	printf("floor: %d\n", game->floor);
-	printf("ceiling: %d\n", game->ceiling);
-	for (int i = 0; game->map.map_2d[i]; i++)
-		printf("%s", game->map.map_2d[i]);
-	printf("\np_x: %d, p_y: %d, p_direction: %c\n", game->map.p_x, game->map.p_y, game->map.p_direction);
+	cu_check_missing(cub);
+	cu_get_width(cub);
+	printf("north: %s\n", cub->game.north);
+	printf("south: %s\n", cub->game.south);
+	printf("west: %s\n", cub->game.west);
+	printf("east: %s\n", cub->game.east);
+	printf("floor: %d\n", cub->game.floor);
+	printf("ceiling: %d\n", cub->game.ceiling);
+	for (int i = 0; cub->game.map.map_2d[i]; i++)
+		printf("%s", cub->game.map.map_2d[i]);
+	printf("\np_x: %d, p_y: %d, p_direction: %c\n", cub->game.map.p_x, cub->game.map.p_y, cub->game.map.p_direction);
 	return ;
 }

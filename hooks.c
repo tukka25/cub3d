@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:33:32 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/24 20:35:47 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:58:09 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,31 +44,31 @@ void	move_up(t_cub *cub)
 	a = rad_to_deg(cub->ray_c.angle, cub);
 	if (a == 0 || a == 360)
 	{
-		cub->m.px_pix += SPEED;
+		cub->game.map.px_pix += SPEED;
 	}
 	else if (a == 90)
 	{
-		cub->m.py_pix -= round(SPEED * sin(cub->ray_c.angle));
+		cub->game.map.py_pix -= round(SPEED * sin(cub->ray_c.angle));
 	}
 	else if (a > 0 && a < 90)
 	{
-		cub->m.px_pix += round(SPEED * cos(cub->ray_c.angle));
-		cub->m.py_pix -= round(SPEED * sin(cub->ray_c.angle));
+		cub->game.map.px_pix += round(SPEED * cos(cub->ray_c.angle));
+		cub->game.map.py_pix -= round(SPEED * sin(cub->ray_c.angle));
 	}
 	else if (a > 90 && a < 180)
 	{
-		cub->m.px_pix += round(SPEED * cos(cub->ray_c.angle));
-		cub->m.py_pix -= round(SPEED * sin(cub->ray_c.angle));
+		cub->game.map.px_pix += round(SPEED * cos(cub->ray_c.angle));
+		cub->game.map.py_pix -= round(SPEED * sin(cub->ray_c.angle));
 	}
 	else if (a > 180 && a < 270)
 	{
-		cub->m.px_pix += round(SPEED  * cos(cub->ray_c.angle));
-		cub->m.py_pix -= round(SPEED * sin(cub->ray_c.angle));
+		cub->game.map.px_pix += round(SPEED  * cos(cub->ray_c.angle));
+		cub->game.map.py_pix -= round(SPEED * sin(cub->ray_c.angle));
 	}
 	else if (a > 270 && a < 360)
 	{
-		cub->m.px_pix += round(SPEED * cos(cub->ray_c.angle));
-		cub->m.py_pix -= round(SPEED * sin(cub->ray_c.angle));
+		cub->game.map.px_pix += round(SPEED * cos(cub->ray_c.angle));
+		cub->game.map.py_pix -= round(SPEED * sin(cub->ray_c.angle));
 	}
 	cub->move_y -= round(SPEED * sin(cub->ray_c.angle));
 	cub->move_x += round(SPEED * cos(cub->ray_c.angle));
@@ -81,31 +81,31 @@ void	move_down(t_cub *cub)
 	a = rad_to_deg(cub->ray_c.angle, cub);
 	if (a == 0 || a == 360)
 	{
-		cub->m.px_pix -= SPEED;
+		cub->game.map.px_pix -= SPEED;
 	}
 	if (a == 90)
 	{
-		cub->m.py_pix += round(SPEED * sin(cub->ray_c.angle));
+		cub->game.map.py_pix += round(SPEED * sin(cub->ray_c.angle));
 	}
 	if (a > 0 && a < 90)
 	{
-		cub->m.px_pix -= round(SPEED * cos(cub->ray_c.angle));
-		cub->m.py_pix += round(SPEED * sin(cub->ray_c.angle));
+		cub->game.map.px_pix -= round(SPEED * cos(cub->ray_c.angle));
+		cub->game.map.py_pix += round(SPEED * sin(cub->ray_c.angle));
 	}
 	else if (a > 90 && a < 180)
 	{
-		cub->m.px_pix -= round(SPEED  * cos(cub->ray_c.angle));
-		cub->m.py_pix += round(SPEED * sin(cub->ray_c.angle));
+		cub->game.map.px_pix -= round(SPEED  * cos(cub->ray_c.angle));
+		cub->game.map.py_pix += round(SPEED * sin(cub->ray_c.angle));
 	}
 	else if (a > 180 && a < 270)
 	{
-		cub->m.px_pix -= round(SPEED  * cos(cub->ray_c.angle));
-		cub->m.py_pix += round(SPEED * sin(cub->ray_c.angle));
+		cub->game.map.px_pix -= round(SPEED  * cos(cub->ray_c.angle));
+		cub->game.map.py_pix += round(SPEED * sin(cub->ray_c.angle));
 	}
 	else if (a > 270 && a < 360)
 	{
-		cub->m.px_pix -= round(SPEED  * cos(cub->ray_c.angle));
-		cub->m.py_pix += round(SPEED * sin(cub->ray_c.angle));
+		cub->game.map.px_pix -= round(SPEED  * cos(cub->ray_c.angle));
+		cub->game.map.py_pix += round(SPEED * sin(cub->ray_c.angle));
 	}
 	cub->move_y += round(SPEED * sin(cub->ray_c.angle));
 	cub->move_x -= round(SPEED * cos(cub->ray_c.angle));
@@ -118,40 +118,40 @@ void	move_right(t_cub *cub)
 	a = rad_to_deg(cub->ray_c.angle, cub);
 	if (a == 0 || a == 360)
 	{
-		cub->m.py_pix += SPEED;
+		cub->game.map.py_pix += SPEED;
 		cub->move_y += SPEED;
 	}
 	else if ((a > 0 && a < 90))
 	{
-		cub->m.px_pix += round(SPEED * sin(cub->ray_c.angle));
-		cub->m.py_pix += round(SPEED * cos(cub->ray_c.angle));
+		cub->game.map.px_pix += round(SPEED * sin(cub->ray_c.angle));
+		cub->game.map.py_pix += round(SPEED * cos(cub->ray_c.angle));
 		cub->move_x += round(SPEED * sin(cub->ray_c.angle));
 		cub->move_y += round(SPEED * cos(cub->ray_c.angle));
 	}
 	else if (a > 90 && a < 180)
 	{
-		cub->m.px_pix += round(SPEED * sin(cub->ray_c.angle));
-		cub->m.py_pix += round(SPEED * cos(cub->ray_c.angle));
+		cub->game.map.px_pix += round(SPEED * sin(cub->ray_c.angle));
+		cub->game.map.py_pix += round(SPEED * cos(cub->ray_c.angle));
 		cub->move_x += round(SPEED * sin(cub->ray_c.angle));
 		cub->move_y += round(SPEED * cos(cub->ray_c.angle));
 	} 
 	else if (a > 180 && a < 270)
 	{
-		cub->m.px_pix += round(SPEED * sin(cub->ray_c.angle));
-		cub->m.py_pix += round(SPEED * cos(cub->ray_c.angle));
+		cub->game.map.px_pix += round(SPEED * sin(cub->ray_c.angle));
+		cub->game.map.py_pix += round(SPEED * cos(cub->ray_c.angle));
 		cub->move_x += round(SPEED * sin(cub->ray_c.angle));
 		cub->move_y += round(SPEED * cos(cub->ray_c.angle));
 	}
 	else if (a > 270 && a < 360)
 	{
-		cub->m.px_pix += round(SPEED * sin(cub->ray_c.angle));
-		cub->m.py_pix += round(SPEED * cos(cub->ray_c.angle));
+		cub->game.map.px_pix += round(SPEED * sin(cub->ray_c.angle));
+		cub->game.map.py_pix += round(SPEED * cos(cub->ray_c.angle));
 		cub->move_x += round(SPEED * sin(cub->ray_c.angle));
 		cub->move_y += round(SPEED * cos(cub->ray_c.angle));
 	}
 	else
 	{
-		cub->m.px_pix += SPEED;
+		cub->game.map.px_pix += SPEED;
 		cub->move_x += SPEED;
 	}
 }
@@ -163,40 +163,40 @@ void	move_left(t_cub *cub)
 	a = rad_to_deg(cub->ray_c.angle, cub);
 	if (a == 0 || a == 360)
 	{
-		cub->m.py_pix -= SPEED;
+		cub->game.map.py_pix -= SPEED;
 		cub->move_y -= SPEED;
 	}
 	else if ((a > 0 && a < 90))
 	{
-		cub->m.px_pix -= round(SPEED * sin(cub->ray_c.angle));
-		cub->m.py_pix -= round(SPEED * cos(cub->ray_c.angle));
+		cub->game.map.px_pix -= round(SPEED * sin(cub->ray_c.angle));
+		cub->game.map.py_pix -= round(SPEED * cos(cub->ray_c.angle));
 		cub->move_x -= round(SPEED * sin(cub->ray_c.angle));
 		cub->move_y -= round(SPEED * cos(cub->ray_c.angle));
 	}
 	else if (a > 90 && a < 180)
 	{
-		cub->m.px_pix -= round(SPEED * sin(cub->ray_c.angle));
-		cub->m.py_pix -= round(SPEED * cos(cub->ray_c.angle));
+		cub->game.map.px_pix -= round(SPEED * sin(cub->ray_c.angle));
+		cub->game.map.py_pix -= round(SPEED * cos(cub->ray_c.angle));
 		cub->move_x -= round(SPEED * sin(cub->ray_c.angle));
 		cub->move_y -= round(SPEED * cos(cub->ray_c.angle));
 	}
 	else if (a > 180 && a < 270)
 	{
-		cub->m.px_pix -= round(SPEED * sin(cub->ray_c.angle));
-		cub->m.py_pix -= round(SPEED * cos(cub->ray_c.angle));
+		cub->game.map.px_pix -= round(SPEED * sin(cub->ray_c.angle));
+		cub->game.map.py_pix -= round(SPEED * cos(cub->ray_c.angle));
 		cub->move_x -= round(SPEED * sin(cub->ray_c.angle));
 		cub->move_y -= round(SPEED * cos(cub->ray_c.angle));
 	}
 	else if (a > 270 && a < 360)
 	{
-		cub->m.px_pix -= round(SPEED * sin(cub->ray_c.angle));
-		cub->m.py_pix -= round(SPEED * cos(cub->ray_c.angle));
+		cub->game.map.px_pix -= round(SPEED * sin(cub->ray_c.angle));
+		cub->game.map.py_pix -= round(SPEED * cos(cub->ray_c.angle));
 		cub->move_x -= round(SPEED * sin(cub->ray_c.angle));
 		cub->move_y -= round(SPEED * cos(cub->ray_c.angle));
 	}
 	else
 	{
-		cub->m.px_pix -= SPEED;
+		cub->game.map.px_pix -= SPEED;
 		cub->move_x -= SPEED;
 	}
 }

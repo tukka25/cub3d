@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:35 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/24 20:36:50 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:59:20 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,26 @@ int	main(int ac, char **av)
 	x = 64;
 	y = 0;
 	
-	cu_init(cub.game);
+	cu_init(&cub);
 	if (ac != 2)
-		cu_print_error("Invalid number of arguments", cub.game);
-	cub.game->file.fd = open(av[1], O_DIRECTORY);
-	if (cub.game->file.fd > 0)
-		cu_print_error("Argument cannot be a directory", cub.game);
-	cub.game->file.fd = open(av[1], O_RDONLY);
-	cu_args_check(av[1], cub.game);
-	cu_saving_file(cub.game);
-	cu_saving_components(cub.game);
+		cu_print_error("Invalid number of arguments", &cub);
+	cub.game.file.fd = open(av[1], O_DIRECTORY);
+	if (cub.game.file.fd > 0)
+		cu_print_error("Argument cannot be a directory", &cub);
+	cub.game.file.fd = open(av[1], O_RDONLY);
+	cu_args_check(av[1], &cub);
+	cu_saving_file(&cub);
+	cu_saving_components(&cub);
 	first_init(&cub);
 	printf("fl = %d\n", rad_to_deg(cub.ray_c.angle, &cub));
 	cub.mlx.mlx = mlx_init();
 	cub.mlx.mlx_win = mlx_new_window(cub.mlx.mlx, WIDTH,
 			HEIGHT, "cub3d");
-	// drawing(&cub);
+	drawing(&cub);
 	mlx_hook(cub.mlx.mlx_win, 2, 0, key_hook, &cub);
 	mlx_hook(cub.mlx.mlx_win, 17, 0, exit_w, &cub);
 	mlx_loop(cub.mlx.mlx);
-	cu_freedom(cub.game);
-	close (cub.game->file.fd);
+	cu_freedom(&cub);
+	close (cub.game.file.fd);
 	return (0);
 }

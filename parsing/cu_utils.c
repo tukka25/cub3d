@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   cu_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 20:06:01 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/21 20:17:01 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:50:46 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	cu_args_check(char *av, t_game *game)
+void	cu_args_check(char *av, t_cub *cub)
 {
 	if (!ft_strchr(av, '.') || ft_strncmp(".cub", (av + ft_strlen(av) - 4), 4)
-		|| game->file.fd < 0)
-		cu_print_error("Argument must be an existing .cub file", game);
+		|| cub->game.file.fd < 0)
+		cu_print_error("Argument must be an existing .cub file", cub);
 	return ;
 }
 
@@ -45,45 +45,45 @@ int	cu_atoi(char *str)
 	return (res);
 }
 
-void	cu_init(t_game *game)
+void	cu_init(t_cub *cub)
 {
-	game->north = NULL;
-	game->south = NULL;
-	game->west = NULL;
-	game->east = NULL;
-	game->floor = -1;
-	game->ceiling = -1;
-	game->file.fd = 0;
-	game->file.nline = 0;
-	game->file.line = NULL;
-	game->file.file_2d = NULL;
-	game->map.map_2d = NULL;
-	game->map.map_pos = -1;
-	game->map.nline = 0;
-	game->map.p_x = -1;
-	game->map.p_y = -1;
-	game->map.p_direction = 0;
+	cub->game.north = NULL;
+	cub->game.south = NULL;
+	cub->game.west = NULL;
+	cub->game.east = NULL;
+	cub->game.floor = -1;
+	cub->game.ceiling = -1;
+	cub->game.file.fd = 0;
+	cub->game.file.nline = 0;
+	cub->game.file.line = NULL;
+	cub->game.file.file_2d = NULL;
+	cub->game.map.map_2d = NULL;
+	cub->game.map.map_pos = -1;
+	cub->game.map.nline = 0;
+	cub->game.map.p_x = -1;
+	cub->game.map.p_y = -1;
+	cub->game.map.p_direction = 0;
 	return ;
 }
 
-void	cu_print_error(char *msg, t_game *game)
+void	cu_print_error(char *msg, t_cub *cub)
 {
 	printf("Error\n");
 	printf("%s\n", msg);
-	if (game->file.fd > 0)
-		close(game->file.fd);
-	cu_freedom(game);
+	if (cub->game.file.fd > 0)
+		close(cub->game.file.fd);
+	cu_freedom(cub);
 	exit (1);
 }
 
-void	cu_check_missing(t_game *game)
+void	cu_check_missing(t_cub *cub)
 {
-	if (!game->north || !game->south || !game->west || !game->east)
-		cu_print_error("Texture identifier not found", game);
-	if (game->floor == -1 || game->ceiling == -1)
-		cu_print_error("Color identifier not found", game);
-	if (!game->map.map_2d)
-		cu_print_error("Map not found", game);
-	if (!game->map.p_direction)
-		cu_print_error("Player not found", game);
+	if (!cub->game.north || !cub->game.south || !cub->game.west || !cub->game.east)
+		cu_print_error("Texture identifier not found", cub);
+	if (cub->game.floor == -1 || cub->game.ceiling == -1)
+		cu_print_error("Color identifier not found", cub);
+	if (!cub->game.map.map_2d)
+		cu_print_error("Map not found", cub);
+	if (!cub->game.map.p_direction)
+		cu_print_error("Player not found", cub);
 }

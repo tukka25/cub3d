@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   cu_check_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:54:17 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/24 20:39:35 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:51:33 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	cu_is_valid_zero(int c, int y, int x, t_game *game)
+void	cu_is_valid_zero(int c, int y, int x, t_cub *cub)
 {
 	char	*tmp_pre;
 	char	*tmp_next;
 
-	tmp_pre = ft_strdup(game->map.map_2d[y - 1]);
-	tmp_next = ft_strdup(game->map.map_2d[y + 1]);
+	tmp_pre = ft_strdup(cub->game.map.map_2d[y - 1]);
+	tmp_next = ft_strdup(cub->game.map.map_2d[y + 1]);
 	if (tmp_pre[ft_strlen(tmp_pre) - 1] == '\n')
 		tmp_pre[ft_strlen(tmp_pre) - 1] = 0;
 	if (tmp_next[ft_strlen(tmp_next) - 1] == '\n')
@@ -29,7 +29,7 @@ void	cu_is_valid_zero(int c, int y, int x, t_game *game)
 		{
 			free(tmp_pre);
 			free(tmp_next);
-			cu_print_error("Invalid map", game);
+			cu_print_error("Invalid map", cub);
 		}
 	}
 	free(tmp_pre);
@@ -37,77 +37,77 @@ void	cu_is_valid_zero(int c, int y, int x, t_game *game)
 	return ;
 }
 
-void	cu_save_player(int c, int y, int x, t_game *game)
+void	cu_save_player(int c, int y, int x, t_cub *cub)
 {
 	char		*tmp_pre;
 	char		*tmp_next;
 	static int	err;
 
-	tmp_pre = ft_strdup(game->map.map_2d[y - 1]);
-	tmp_next = ft_strdup(game->map.map_2d[y + 1]);
+	tmp_pre = ft_strdup(cub->game.map.map_2d[y - 1]);
+	tmp_next = ft_strdup(cub->game.map.map_2d[y + 1]);
 	if (tmp_pre[ft_strlen(tmp_pre) - 1] == '\n')
 		tmp_pre[ft_strlen(tmp_pre) - 1] = 0;
 	if (tmp_next[ft_strlen(tmp_next) - 1] == '\n')
 		tmp_next[ft_strlen(tmp_next) - 1] = 0;
-	if (game->map.p_direction)
+	if (cub->game.map.p_direction)
 		err = -1;
-	game->map.p_x = x;
+	cub->game.map.p_x = x;
 	if (x + 1 > ft_strlen(tmp_pre) || x + 1 > ft_strlen(tmp_next))
 		err = -2;
 	if (err == -1 || err == -2)
 	{
 		free(tmp_pre);
 		free(tmp_next);
-		cu_print_error("Invalid player", game);
+		cu_print_error("Invalid player", cub);
 	}
-	game->map.p_y = y;
-	game->map.p_direction = c;
+	cub->game.map.p_y = y;
+	cub->game.map.p_direction = c;
 	free(tmp_pre);
 	free(tmp_next);
 }
 
-void	cu_check_line(int y, t_game *game)
+void	cu_check_line(int y, t_cub *cub)
 {
 	int	x;
 
-	if (y != 0 || y != game->map.nline - 1)
-		cu_check_edge(game->map.map_2d[y], game);
+	if (y != 0 || y != cub->game.map.nline - 1)
+		cu_check_edge(cub->game.map.map_2d[y], cub);
 	x = 0;
-	while (game->map.map_2d && game->map.map_2d[y][x])
+	while (cub->game.map.map_2d && cub->game.map.map_2d[y][x])
 	{
-		cu_is_valid_character(y, game->map.map_2d[y][x], game);
-		if (y != 0 && y != game->map.nline - 1)
-			cu_is_valid_zero(game->map.map_2d[y][x], y, x, game);
-		cu_is_space(game->map.map_2d[y][x], y, x, game);
-		if (cu_is_player(game->map.map_2d[y][x]))
-			cu_save_player(game->map.map_2d[y][x], y, x, game);
+		cu_is_valid_character(y, cub->game.map.map_2d[y][x], cub);
+		if (y != 0 && y != cub->game.map.nline - 1)
+			cu_is_valid_zero(cub->game.map.map_2d[y][x], y, x, cub);
+		cu_is_space(cub->game.map.map_2d[y][x], y, x, cub);
+		if (cu_is_player(cub->game.map.map_2d[y][x]))
+			cu_save_player(cub->game.map.map_2d[y][x], y, x, cub);
 		x++;
 	}
 	return ;
 }
 
-void	cu_check_map(t_game *game)
+void	cu_check_map(t_cub *cub)
 {
 	int	y;
 
 	y = 0;
-	while (game->map.map_2d && game->map.map_2d[y])
+	while (cub->game.map.map_2d && cub->game.map.map_2d[y])
 	{
-		cu_check_line(y, game);
+		cu_check_line(y, cub);
 		y++;
 	}
 	return ;
 }
 
-void	cu_get_width(t_game *game)
+void	cu_get_width(t_cub *cub)
 {
 	int	y;
 
 	y = 0;
-	while(game->map.map_2d[y])
+	while(cub->game.map.map_2d[y])
 	{
-		if (ft_strlen(game->map.map_2d[y]) > game->map.map_width)
-			game->map.map_width = ft_strlen(game->map.map_2d[y]);
+		if (ft_strlen(cub->game.map.map_2d[y]) > cub->game.map.map_width)
+			cub->game.map.map_width = ft_strlen(cub->game.map.map_2d[y]);
 		y++;
 	}
 	return ;

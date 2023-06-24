@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/21 17:03:23 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:58:40 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,30 @@ void	cast_rays(t_cub *cub)
 	int	pos;
 
 	i = 0;
-	pos = cub->m.py_pix;
+	pos = cub->game.map.py_pix;
 	float 	a = 0;
 	int	x1;
 	int	y1;
 	// int	h = 0;
 	int *arr = malloc(4 * sizeof(int));
-	x1 = cub->m.px_pix;
-	y1 = cub->m.py_pix;
-	printf("i = %c\n", cub->map[cub->m.py_pix / 64][cub->m.px_pix / 64]);
+	x1 = cub->game.map.px_pix;
+	y1 = cub->game.map.py_pix;
+	printf("i = %c\n", cub->game.map.map_2d[cub->game.map.py_pix / 64][cub->game.map.px_pix / 64]);
 	a = cub->ray_c.angle - deg_to_rad(30, cub);
 	float d = 0;
 	if (a < 0)
 		a += 2 * M_PI;
-		// printf("d = %f\n", (M_PI / 2) / (cub->m.width * 64) - 0.0003);
+		// printf("d = %f\n", (M_PI / 2) / (cub->game.map.width * 64) - 0.0003);
 		// exit(0);
 		// arr[0] = 0;
 		// arr[1] = 0;
 	while (d <= M_PI_2 - deg_to_rad(30, cub))
 	{
-		x1 = cub->m.px_pix;
-		y1 = cub->m.py_pix;
+		x1 = cub->game.map.px_pix;
+		y1 = cub->game.map.py_pix;
 		check_horizontal(cub, a);
-		cub->ray_c.wall_length = ((100 * cub->m.height * 64) / cub->ray_c.ray_length);
-		// printf("d = %d\n", cub->m.height * 64);
+		cub->ray_c.wall_length = ((100 * cub->game.map.height * 64) / cub->ray_c.ray_length);
+		// printf("d = %d\n", cub->game.map.height * 64);
 		// printf("l = %f\n", cub->ray_c.wall_length);
 		// exit(0);
 		// arr[2] = 100;
@@ -69,9 +69,9 @@ void	check_horizontal(t_cub *cub, float a)
 	float	xo;
 	int		arr[4];
 
-	px = cub->m.px_pix;
-	py = cub->m.py_pix;
-	cub->ray_c.ys_h = (int)cub->m.py_pix;
+	px = cub->game.map.px_pix;
+	py = cub->game.map.py_pix;
+	cub->ray_c.ys_h = (int)cub->game.map.py_pix;
 	cub->ray_c.xs_h = 64 / tan(a);
 	(void)yo;
 	(void)xo;
@@ -85,18 +85,18 @@ void	check_horizontal(t_cub *cub, float a)
 		xo = -yo * (-1 / tan(a));
 		while (1)
 		{
-			if ((int)cub->ray_c.ys_h <= 0 || (int)cub->ray_c.ys_h >= cub->m.height * 64
-			|| (int)cub->ray_c.xs_h <= 0 || (int)cub->ray_c.xs_h >= cub->m.width * 64)
+			if ((int)cub->ray_c.ys_h <= 0 || (int)cub->ray_c.ys_h >= cub->game.map.height * 64
+			|| (int)cub->ray_c.xs_h <= 0 || (int)cub->ray_c.xs_h >= cub->game.map.width * 64)
 				break;
-			if (cub->map[(int)(cub->ray_c.ys_h / 64)][(int)(cub->ray_c.xs_h / 64)] == '1')
+			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h / 64)][(int)(cub->ray_c.xs_h / 64)] == '1')
 				break;
 			cub->ray_c.ys_h -= 1;
 			cub->ray_c.xs_h += xo;
 			i++;
 		}
-		if (cub->ray_c.xs_h >= cub->m.width * 64)
+		if (cub->ray_c.xs_h >= cub->game.map.width * 64)
 			cub->ray_c.xs_h -= 64;
-		if (cub->ray_c.ys_h >= cub->m.height * 64)
+		if (cub->ray_c.ys_h >= cub->game.map.height * 64)
 			cub->ray_c.ys_h -= 64;
 		arr[0] = px;
 		arr[1] = cub->ray_c.xs_h;
@@ -113,11 +113,11 @@ void	check_horizontal(t_cub *cub, float a)
 		// printf("xo = %f, cub->ray_c.xs_h = %f\n", xo, cub->ray_c.xs_h);
 		while (1)
 		{
-			if (cub->ray_c.ys_h <= 0 || cub->ray_c.ys_h >= cub->m.height * 64
-			|| cub->ray_c.xs_h <= 0 || cub->ray_c.xs_h >= cub->m.width * 64)
+			if (cub->ray_c.ys_h <= 0 || cub->ray_c.ys_h >= cub->game.map.height * 64
+			|| cub->ray_c.xs_h <= 0 || cub->ray_c.xs_h >= cub->game.map.width * 64)
 				break;
 			// printf("px = %f\n", cub->ray_c.xs_h);
-			if (cub->map[(int)(cub->ray_c.ys_h / 64)][(int)(cub->ray_c.xs_h / 64)] == '1')
+			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h / 64)][(int)(cub->ray_c.xs_h / 64)] == '1')
 				break;
 			cub->ray_c.ys_h -= 1;
 			cub->ray_c.xs_h += xo;
@@ -138,14 +138,14 @@ void	check_horizontal(t_cub *cub, float a)
 		// printf("xo = %f, cub->ray_c.xs_h = %f\n", xo, cub->ray_c.xs_h);
 		while (1)
 		{
-			if (cub->ray_c.ys_h <= 0 || cub->ray_c.ys_h >= cub->m.height * 64
-			|| cub->ray_c.xs_h <= 0 || cub->ray_c.xs_h >= cub->m.width * 64)
+			if (cub->ray_c.ys_h <= 0 || cub->ray_c.ys_h >= cub->game.map.height * 64
+			|| cub->ray_c.xs_h <= 0 || cub->ray_c.xs_h >= cub->game.map.width * 64)
 			{
 				// cub->ray_c.ys_h -= 65;
 				break;
 			}
 			// printf("px = %f\n", cub->ray_c.xs_h);
-			if (cub->map[(int)(cub->ray_c.ys_h / 64)][(int)(cub->ray_c.xs_h / 64)] == '1')
+			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h / 64)][(int)(cub->ray_c.xs_h / 64)] == '1')
 				break;
 			cub->ray_c.ys_h += 1;
 			cub->ray_c.xs_h -= xo;
@@ -166,14 +166,14 @@ void	check_horizontal(t_cub *cub, float a)
 		// printf("xo = %f, cub->ray_c.xs_h = %f\n", xo, cub->ray_c.xs_h);
 		while (1)
 		{
-			if (cub->ray_c.ys_h <= 0 || cub->ray_c.ys_h >= cub->m.height * 64
-			|| cub->ray_c.xs_h <= 0 || cub->ray_c.xs_h >= cub->m.width * 64)
+			if (cub->ray_c.ys_h <= 0 || cub->ray_c.ys_h >= cub->game.map.height * 64
+			|| cub->ray_c.xs_h <= 0 || cub->ray_c.xs_h >= cub->game.map.width * 64)
 			{
 				// cub->ray_c.ys_h -= 65;
 				break;
 			}
 			// printf("px = %f\n", cub->ray_c.xs_h);
-			if (cub->map[(int)(cub->ray_c.ys_h / 64)][(int)(cub->ray_c.xs_h / 64)] == '1')
+			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h / 64)][(int)(cub->ray_c.xs_h / 64)] == '1')
 				break;
 			cub->ray_c.ys_h += 1;
 			cub->ray_c.xs_h += xo;
@@ -208,8 +208,8 @@ int	check_vertical(t_cub *cub, float a)
 	int		arr[4];
 
 	cub->ray_c.xs_v = 64;
-	px = cub->m.px_pix;
-	py = cub->m.py_pix;
+	px = cub->game.map.px_pix;
+	py = cub->game.map.py_pix;
 	cub->ray_c.ys_v = -tan(a);
 	// printf("a = %d\n", rad_to_deg(a, cub));
 	if (a > 0 && a < M_PI / 2)
@@ -220,18 +220,18 @@ int	check_vertical(t_cub *cub, float a)
 		yo = -xo * (-tan(a));
 		while (1)
 		{
-			if (cub->ray_c.ys_v <= 0 || cub->ray_c.ys_v >= cub->m.height * 64
-			|| cub->ray_c.xs_v <= 0 || cub->ray_c.xs_v >= cub->m.width * 64)
+			if (cub->ray_c.ys_v <= 0 || cub->ray_c.ys_v >= cub->game.map.height * 64
+			|| cub->ray_c.xs_v <= 0 || cub->ray_c.xs_v >= cub->game.map.width * 64)
 				break;
-			if (cub->map[(int)(cub->ray_c.ys_v / 64)][(int)(cub->ray_c.xs_v / 64)] == '1')
+			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v / 64)][(int)(cub->ray_c.xs_v / 64)] == '1')
 				break;
 			cub->ray_c.xs_v += 1;
 			cub->ray_c.ys_v -= yo;
 			// i++;
 		}
-		// if (cub->ray_c.xs_v >= cub->m.width * 64)
+		// if (cub->ray_c.xs_v >= cub->game.map.width * 64)
 		// 	cub->ray_c.xs_v -= 64;
-		// if (cub->ray_c.ys_v >= cub->m.height * 64)
+		// if (cub->ray_c.ys_v >= cub->game.map.height * 64)
 		// 	cub->ray_c.ys_v -= 64;
 		arr[0] = px;
 		arr[1] = cub->ray_c.xs_v;
@@ -248,14 +248,14 @@ int	check_vertical(t_cub *cub, float a)
 		// printf("xo = %f, cub->ray_c.xs_v = %f\n", xo, cub->ray_c.xs_v);
 		while (1)
 		{
-			if (cub->ray_c.ys_v <= 0 || cub->ray_c.ys_v >= cub->m.height * 64
-			|| cub->ray_c.xs_v <= 0 || cub->ray_c.xs_v >= cub->m.width * 64)
+			if (cub->ray_c.ys_v <= 0 || cub->ray_c.ys_v >= cub->game.map.height * 64
+			|| cub->ray_c.xs_v <= 0 || cub->ray_c.xs_v >= cub->game.map.width * 64)
 			{
 				// cub->ray_c.ys_v -= 65;
 				break;
 			}
 			// printf("px = %f\n", cub->ray_c.xs_v);
-			if (cub->map[(int)(cub->ray_c.ys_v / 64)][(int)(cub->ray_c.xs_v / 64)] == '1')
+			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v / 64)][(int)(cub->ray_c.xs_v / 64)] == '1')
 				break;
 			cub->ray_c.xs_v -= 1;
 			cub->ray_c.ys_v += yo;
@@ -276,23 +276,23 @@ int	check_vertical(t_cub *cub, float a)
 		// printf("x2o = %f, x2s = %f, cub->ray_c.xs_v = %f\n", cub->ray_c.ys_v, yo, cub->ray_c.xs_v);
 		while (1)
 		{
-			if (cub->ray_c.ys_v <= 0 || cub->ray_c.ys_v >= cub->m.height * 64
-			|| cub->ray_c.xs_v <= 0 || cub->ray_c.xs_v >= cub->m.width * 64)
+			if (cub->ray_c.ys_v <= 0 || cub->ray_c.ys_v >= cub->game.map.height * 64
+			|| cub->ray_c.xs_v <= 0 || cub->ray_c.xs_v >= cub->game.map.width * 64)
 			{
 				// cub->ray_c.ys_v -= 65;
 				break;
 			}
 			// printf("px = %f\n", cub->ray_c.xs_v);
-			if (cub->map[(int)(cub->ray_c.ys_v / 64)][(int)(cub->ray_c.xs_v / 64)] == '1')
+			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v / 64)][(int)(cub->ray_c.xs_v / 64)] == '1')
 				break;
 			cub->ray_c.xs_v -= 1;
 			cub->ray_c.ys_v += yo;
 			// i++;
 		}
-		if (cub->ray_c.xs_v >= cub->m.width * 64)
-			cub->ray_c.xs_v = cub->m.width * 64;
-		if (cub->ray_c.ys_v >= cub->m.height * 64)
-			cub->ray_c.ys_v = cub->m.height * 64;
+		if (cub->ray_c.xs_v >= cub->game.map.width * 64)
+			cub->ray_c.xs_v = cub->game.map.width * 64;
+		if (cub->ray_c.ys_v >= cub->game.map.height * 64)
+			cub->ray_c.ys_v = cub->game.map.height * 64;
 		arr[0] = px;
 		arr[1] = cub->ray_c.xs_v;
 		arr[2] = py;
@@ -307,19 +307,19 @@ int	check_vertical(t_cub *cub, float a)
 		yo = -xo * (-tan(a));
 		while (1)
 		{
-			if (cub->ray_c.ys_v <= 0 || cub->ray_c.ys_v >= cub->m.height * 64
-			|| cub->ray_c.xs_v <= 0 || cub->ray_c.xs_v >= cub->m.width * 64)
+			if (cub->ray_c.ys_v <= 0 || cub->ray_c.ys_v >= cub->game.map.height * 64
+			|| cub->ray_c.xs_v <= 0 || cub->ray_c.xs_v >= cub->game.map.width * 64)
 				break;
-			if (cub->map[(int)(cub->ray_c.ys_v / 64)][(int)(cub->ray_c.xs_v / 64)] == '1')
+			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v / 64)][(int)(cub->ray_c.xs_v / 64)] == '1')
 				break;
 			cub->ray_c.xs_v += 1;
 			cub->ray_c.ys_v -= yo;
 			// i++;
 		}
-		if (cub->ray_c.xs_v >= cub->m.width * 64)
-			cub->ray_c.xs_v = cub->m.width * 64;
-		if (cub->ray_c.ys_v >= cub->m.height * 64)
-			cub->ray_c.ys_v = cub->m.height * 64;
+		if (cub->ray_c.xs_v >= cub->game.map.width * 64)
+			cub->ray_c.xs_v = cub->game.map.width * 64;
+		if (cub->ray_c.ys_v >= cub->game.map.height * 64)
+			cub->ray_c.ys_v = cub->game.map.height * 64;
 		arr[0] = px;
 		arr[1] = cub->ray_c.xs_v;
 		arr[2] = py;

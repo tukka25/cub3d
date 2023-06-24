@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cu_saving_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:47:00 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/03 17:09:36 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:55:05 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,22 +88,22 @@ int	cu_2d_len(char **arrays)
 	return (i);
 }
 
-void	cu_saving_map(char *line, int index, t_game *game)
+void	cu_saving_map(char *line, int index, t_cub *cub)
 {	
-	if (!cu_is_map_begininng(line) && game->map.map_pos == -1)
+	if (!cu_is_map_begininng(line) && cub->game.map.map_pos == -1)
 		return ;
-	if (game->map.map_pos != -1)
+	if (cub->game.map.map_pos != -1)
 		return ;
-	if (!game->north || !game->south || !game->west || !game->east
-		|| game->floor == -1 || game->ceiling == -1)
-		cu_print_error("Map should be the last thing in the file", game);
-	if (game->map.map_pos == -1)
+	if (!cub->game.north || !cub->game.south || !cub->game.west || !cub->game.east
+		|| cub->game.floor == -1 || cub->game.ceiling == -1)
+		cu_print_error("Map should be the last thing in the file", cub);
+	if (cub->game.map.map_pos == -1)
 	{
-		game->map.map_pos = index;
-		game->map.map_2d = cu_2d_dup(game->file.file_2d, index,
-				(game->file.nline - index));
+		cub->game.map.map_pos = index;
+		cub->game.map.map_2d = cu_2d_dup(cub->game.file.file_2d, index,
+				(cub->game.file.nline - index));
 	}
-	game->map.nline = cu_2d_len(game->map.map_2d);
-	cu_check_map(game);
+	cub->game.map.nline = cu_2d_len(cub->game.map.map_2d);
+	cu_check_map(cub);
 	return ;
 }
