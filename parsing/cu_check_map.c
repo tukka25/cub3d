@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:54:17 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/21 23:16:32 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:39:35 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,20 @@ void	cu_check_map(t_game *game)
 	while (game->map.map_2d && game->map.map_2d[y])
 	{
 		cu_check_line(y, game);
+		y++;
+	}
+	return ;
+}
+
+void	cu_get_width(t_game *game)
+{
+	int	y;
+
+	y = 0;
+	while(game->map.map_2d[y])
+	{
+		if (ft_strlen(game->map.map_2d[y]) > game->map.map_width)
+			game->map.map_width = ft_strlen(game->map.map_2d[y]);
 		y++;
 	}
 	return ;

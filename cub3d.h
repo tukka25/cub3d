@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/24 20:37:10 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:39:50 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct s_map
 	int		p_x;
 	int		p_y;
 	int		map_width;
-	int		map_height;
 	char	p_direction;
 	char	**map_2d;
 	int		dir_len;
@@ -180,5 +179,6 @@ char	**cu_2d_dup(char **arrays, int start, int nline);
 int		cu_2d_len(char **arrays);
 void	cu_check_missing(t_game *game);
 void	cu_is_2_commas(char *line, t_game *game);
+void	cu_get_width(t_game *game);
 
 #endif

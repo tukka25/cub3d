@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 23:15:04 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/03 17:11:35 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:40:00 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	cu_saving_components(t_game *game)
 		i++;
 	}
 	cu_check_missing(game);
+	cu_get_width(game);
 	printf("north: %s\n", game->north);
 	printf("south: %s\n", game->south);
 	printf("west: %s\n", game->west);
