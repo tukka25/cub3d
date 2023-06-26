@@ -1,10 +1,13 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+F 20,1,1
 
-F 220,100,0
-C 225,30,0
+NO ./textures/barrel.xpm
+
+    EA ./textures/wood.xpm
+WE ./textures/redbrick.xpm 
+
+C       2 , 3 ,   3  
+
+SO ./textures/greystone.xpm
 
 111111111111111111
 100000100000000001
