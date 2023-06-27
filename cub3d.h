@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/25 18:11:15 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/27 21:32:09 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ int		exit_w(t_cub *cub);
 void	cast_rays(t_cub *cub);
 void	draw_line(t_cub *cub, int *arr, int color);
 void	check_horizontal(t_cub *cub, float a);
-int		check_vertical(t_cub *cub, float a);
+float	check_vertical(t_cub *cub, float a);
 void	convert_angle(t_cub *cub);
 void	scaling(t_cub *cub);
 void	check_left_right(t_cub *cub, int flag);

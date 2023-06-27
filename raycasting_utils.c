@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:34:50 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/25 22:05:48 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:09:48 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	convert_angle(t_cub *cub)
 {
-	printf("p_direction = %d\n", cub->game.map.p_direction);
+	// printf("p_direction = %d\n", cub->game.map.p_direction);
 	if (cub->game.map.p_direction == 'N')
 		cub->ray_c.angle = deg_to_rad(90, cub);
 	else if (cub->game.map.p_direction == 'S')
