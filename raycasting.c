@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/04 15:07:38 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/04 22:08:33 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	cast_rays(t_cub *cub)
 		// exit(0);
 		arr[0] = 0;
 		arr[1] = 0;
+	cu_texture(cub);
 	while (h < WIDTH)
 	{
 		// x1 = cub->game.map.px_pix;
@@ -48,16 +49,18 @@ void	cast_rays(t_cub *cub)
 			else if (f > 2 * M_PI)
 				f -= 2 * M_PI;
 			// if (d <= M_PI / 2)
-		cub->ray_c.ray_length = cub->ray_c.ray_length * cos(f);
+		// cub->ray_c.ray_length = cub->ray_c.ray_length * cos(f);
 		cub->ray_c.wall_length = (((200 * HEIGHT) / cub->ray_c.ray_length) / 2);
+		// cub->ray_c.wall_length = HEIGHT / cub->ray_c.ray_length;
 		// if (cub->ray_c.wall_length >= HEIGHT)
-			// cub->ray_c.wall_length -= 200;
+		// 	cub->ray_c.wall_length -= 200;
 		x1 = (((HEIGHT) / 2) - cub->ray_c.wall_length) / 2;
 		arr[2] = x1 + 150;
 		arr[3] =  cub->ray_c.wall_length + x1 + 150;
-		draw_line(cub, arr, 0xFF0000);
-		draw_line(cub, (int[]){arr[0], arr[1], 0, arr[2]}, 0x89CFF0);
-		draw_line(cub, (int[]){arr[0], arr[1], arr[3], HEIGHT}, 0x704214);
+		// draw_line(cub, arr, 0xFF0000);
+		cu_draw_texture(cub, h, arr);
+		draw_line(cub, (int[]){arr[0], arr[1], 0, arr[2]}, cub->game.ceiling);
+		draw_line(cub, (int[]){arr[0], arr[1], arr[3], HEIGHT}, cub->game.floor);
 		arr[0]++;
 		arr[1]++;
 		h++;
@@ -480,4 +483,43 @@ void draw_line(t_cub *cub, int *arr, int color)
             y1 += sy;
         }
     }
+}
+
+void	cu_texture(t_cub *cub)
+{
+	cub->texture.img = mlx_xpm_file_to_image(cub->mlx.mlx, cub->game.west,
+	&cub->texture.t_width, &cub->texture.t_height);
+	cub->texture.addr = mlx_get_data_addr(cub->texture.img,
+	&cub->texture.bits_per_pixel, &cub->texture.line_length,
+	&cub->texture.endian);
+}
+
+void	cu_draw_texture(t_cub *cub, int h, int *arr)
+{
+	int		start;
+	int		end;
+	// int		wall_height;
+	int		xo;
+	double	y_step;
+	double		y = 0;
+
+	// (void)arr;
+	// wall_height = HEIGHT / cub->ray_c.ray_length;
+	start = arr[2];
+	end = arr[3];
+	// printf("ray length: %f, ray temp: %f\n", cub->ray_c.ray_length, cub->ray_c.tmp_length);
+	if (cub->ray_c.ray_length < cub->ray_c.tmp_length)
+		xo = (int)(cub->ray_c.xs_h / cub->game.map.scale_y * (float)cub->texture.t_width) % cub->texture.t_width;
+	else
+		xo = (int)(cub->ray_c.ys_v / cub->game.map.scale_x * (float)cub->texture.t_width) % cub->texture.t_width;
+	// printf("xo: %d\n", xo);
+	y_step = cub->texture.t_height / cub->ray_c.wall_length;
+	while (start <= end)
+	{
+		my_mlx_pixel_put(cub, h, start++, cu_get_color(cub, xo, y += y_step));
+		if (xo > cub->texture.t_width)
+			xo = cub->texture.t_width - 1;
+		if (y + y_step >= cub->texture.t_height)
+			y = cub->texture.t_height - y_step - 1;
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/03 18:12:05 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/04 21:27:26 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ typedef struct	s_img
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		t_width;
+	int		t_height;
 }	t_img;
 
 typedef struct s_mlx
@@ -115,6 +117,7 @@ typedef struct s_cub
 	float	pi;
 	t_mlx	mlx;
 	t_img	img;
+	t_img	texture;
 	t_ray_c	ray_c;
 	t_game	game;
 }	t_cub;
@@ -182,5 +185,8 @@ int		cu_2d_len(char **arrays);
 void	cu_check_missing(t_cub *cub);
 void	cu_is_2_commas(char *line, t_cub *cub);
 void	cu_get_width(t_cub *cub);
+int		cu_get_color(t_cub *cub, int x, int y);
+void	cu_texture(t_cub *cub);
+void	cu_draw_texture(t_cub *cub, int h, int *arr);
 
 #endif
