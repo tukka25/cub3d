@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/04 14:55:35 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:07:38 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	cast_rays(t_cub *cub)
 	int	x1;
 	int	y1;
 	int	h = 0;
-	// float f = 0;
+	float f = 0;
 	int *arr = malloc(4 * sizeof(int));
 	x1 = cub->game.map.px_pix;
 	y1 = cub->game.map.py_pix;
@@ -42,14 +42,16 @@ void	cast_rays(t_cub *cub)
 		// x1 = cub->game.map.px_pix;
 		// y1 = cub->game.map.py_pix;
 		check_horizontal(cub, a);
-		// f = a - cub->ray_c.angle;
-		// 	if (f < 0)
-		// 		f += 2 * M_PI;
-		// 	else if (f > 2 * M_PI)
-		// 		f -= 2 * M_PI;
+		f = a - cub->ray_c.angle;
+			if (f < 0)
+				f += 2 * M_PI;
+			else if (f > 2 * M_PI)
+				f -= 2 * M_PI;
 			// if (d <= M_PI / 2)
-		cub->ray_c.ray_length = cub->ray_c.ray_length;
-		cub->ray_c.wall_length = (((100 * HEIGHT) / cub->ray_c.ray_length) / 2);
+		cub->ray_c.ray_length = cub->ray_c.ray_length * cos(f);
+		cub->ray_c.wall_length = (((200 * HEIGHT) / cub->ray_c.ray_length) / 2);
+		// if (cub->ray_c.wall_length >= HEIGHT)
+			// cub->ray_c.wall_length -= 200;
 		x1 = (((HEIGHT) / 2) - cub->ray_c.wall_length) / 2;
 		arr[2] = x1 + 150;
 		arr[3] =  cub->ray_c.wall_length + x1 + 150;
@@ -64,8 +66,8 @@ void	cast_rays(t_cub *cub)
 		// i = 0;
 		if (a > 2 * M_PI)
 			a = 0;
-		a += 0.002;
-		d += 0.002;
+		a += 0.001;
+		d += 0.001;
 	}
 	// printf("a2 = %d\n", rad_to_deg(a, cub));
 	free(arr);
