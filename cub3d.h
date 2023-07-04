@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/27 21:32:09 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:12:05 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ void	convert_angle(t_cub *cub);
 void	scaling(t_cub *cub);
 void	check_left_right(t_cub *cub, int flag);
 void	check_horz_vert(t_cub *cub, int flag);
+void	draw_floor_ceiling(t_cub *cub, int c1, int c2);
 
 void	cu_args_check(char *av, t_cub *cub);
 int		cu_atoi(char *str);

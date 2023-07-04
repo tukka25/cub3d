@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/27 21:42:38 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:55:35 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,27 @@ void	cast_rays(t_cub *cub)
 		// x1 = cub->game.map.px_pix;
 		// y1 = cub->game.map.py_pix;
 		check_horizontal(cub, a);
-		// f = cub->ray_c.angle - a;
-			// if (f < 0)
-			// 	f += 2 * M_PI;
-			// else if (f > 2 * M_PI)
-			// 	f -= 2 * M_PI;
+		// f = a - cub->ray_c.angle;
+		// 	if (f < 0)
+		// 		f += 2 * M_PI;
+		// 	else if (f > 2 * M_PI)
+		// 		f -= 2 * M_PI;
 			// if (d <= M_PI / 2)
-		// 	cub->ray_c.ray_length = cub->ray_c.ray_length * cos(f);
-		cub->ray_c.wall_length = ((100 * HEIGHT) / cub->ray_c.ray_length) / 2;
+		cub->ray_c.ray_length = cub->ray_c.ray_length;
+		cub->ray_c.wall_length = (((100 * HEIGHT) / cub->ray_c.ray_length) / 2);
 		x1 = (((HEIGHT) / 2) - cub->ray_c.wall_length) / 2;
 		arr[2] = x1 + 150;
 		arr[3] =  cub->ray_c.wall_length + x1 + 150;
 		draw_line(cub, arr, 0xFF0000);
+		draw_line(cub, (int[]){arr[0], arr[1], 0, arr[2]}, 0x89CFF0);
+		draw_line(cub, (int[]){arr[0], arr[1], arr[3], HEIGHT}, 0x704214);
 		arr[0]++;
 		arr[1]++;
 		h++;
 		// printf("a1=%d\n", arr[0]);
 		// printf("a2=%d\n", arr[1]);
 		// i = 0;
-		if (a >= 2 * M_PI)
+		if (a > 2 * M_PI)
 			a = 0;
 		a += 0.002;
 		d += 0.002;
@@ -99,7 +101,7 @@ void	check_horizontal(t_cub *cub, float a)
 			if ((int)cub->ray_c.ys_h <= 0 || (int)cub->ray_c.ys_h / cub->game.map.scale_y >= cub->game.map.nline
 			|| (int)cub->ray_c.xs_h <= 0 || (int)cub->ray_c.xs_h  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)]))
 				break;
-			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)][(int)(cub->ray_c.xs_h / cub->game.map.scale_x)] == '1')
+			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)][(int)(cub->ray_c.xs_h / cub->game.map.scale_x)] != '0')
 				break;
 			// cub->ray_c.ys_h -= Speed;
 			cub->ray_c.xs_h += 1;
@@ -124,7 +126,7 @@ void	check_horizontal(t_cub *cub, float a)
 			if ((int)cub->ray_c.ys_h <= 0 || (int)cub->ray_c.ys_h / cub->game.map.scale_y >= cub->game.map.nline
 			|| (int)cub->ray_c.xs_h <= 0 || (int)cub->ray_c.xs_h  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)]))
 				break;
-			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)][(int)round((cub->ray_c.xs_h / cub->game.map.scale_x))] == '1')
+			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)][(int)(cub->ray_c.xs_h / cub->game.map.scale_x)] != '0')
 				break;
 			// cub->ray_c.ys_h -= Speed;
 			cub->ray_c.xs_h -= 1;
@@ -286,8 +288,9 @@ float	check_vertical(t_cub *cub, float a)
 			if (cub->ray_c.ys_v <= 0 || (int)cub->ray_c.ys_v / cub->game.map.scale_y >= cub->game.map.nline
 			|| cub->ray_c.xs_v <= 0 || (int)cub->ray_c.xs_v  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)]))
 				break;
-			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)][(int)round((cub->ray_c.xs_v / cub->game.map.scale_x))] == '1')
+			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)][(int)round((cub->ray_c.xs_v / cub->game.map.scale_x))]  != '0')
 				break;
+				printf("1");
 			// cub->ray_c.xs_v += 1;
 			cub->ray_c.ys_v -= 1;
 			// i++;
@@ -313,7 +316,7 @@ float	check_vertical(t_cub *cub, float a)
 			if (cub->ray_c.ys_v <= 0 || (int)cub->ray_c.ys_v / cub->game.map.scale_y >= cub->game.map.nline
 			|| cub->ray_c.xs_v <= 0 || (int)cub->ray_c.xs_v  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)]))
 				break;
-			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)][(int)round((cub->ray_c.xs_v / cub->game.map.scale_x))] == '1')
+			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)][(int)round((cub->ray_c.xs_v / cub->game.map.scale_x))] != '0')
 				break;
 			// cub->ray_c.xs_v += 1;
 			cub->ray_c.ys_v += 1;
@@ -328,7 +331,7 @@ float	check_vertical(t_cub *cub, float a)
 		arr[2] = py;
 		arr[3] = cub->ray_c.ys_v;
 	}
-	else if ((a > 0 && a < M_PI / 2))
+	if ((a > 0 && a < M_PI / 2))
 	{
 		cub->ray_c.xs_v = (int)px + 1;
 		cub->ray_c.ys_v = ((px - cub->ray_c.xs_v) * (-tan(a))) * -1 + py;
