@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/06 17:00:54 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:09:56 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,8 @@ void	check_horizontal(t_cub *cub, float a)
 	}
 	else if ((a > 0 && a < M_PI / 2))
 	{
-		cub->ray_c.ys_h = (int)py - 1 - 0.0001;
+		i = 0;
+		cub->ray_c.ys_h = (int)py - 1;
 		cub->ray_c.xs_h = ((py - cub->ray_c.ys_h) * (-1 / tan(a))) * -1 + px;
 		yo = 1;
 		xo = -yo * (-1 / tan(a));
@@ -210,29 +211,20 @@ void	check_horizontal(t_cub *cub, float a)
 			cub->ray_c.xs_h += xo;
 			i++;
 		}
-		// if ((int)(cub->ray_c.ys_h) % (int)cub->game.map.scale_y != 0)
-			cub->ray_c.ys_h -= 1;
-		// printf("a x9 = %f\n", cub->ray_c.xs_h / 64);
-		// printf("a y9 = %f\n", cub->ray_c.ys_h / 64);
+		cub->ray_c.ys_h -= 1;
 		yo = 64;
 		xo = -yo * (-1 / tan(a));
-		// printf("xo9 = %f, px = %f\n", (xo) / 64, xo);
-		// printf("yo9 = %f, yp = %f\n", (cub->ray_c.ys_h - yo) / 64, yo);
-		// if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)][(int)(cub->ray_c.xs_h / cub->game.map.scale_x)] != '0')
-		// {
 			while (1)
 			{
-				if (cub->ray_c.ys_h <= 0 || (int)cub->ray_c.ys_h / cub->game.map.scale_y >= cub->game.map.nline
-				|| cub->ray_c.xs_h <= 0 || (int)cub->ray_c.xs_h  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)]))
+				if ((int)cub->ray_c.ys_h <= 0 || (int)cub->ray_c.ys_h / cub->game.map.scale_y >= cub->game.map.nline
+				|| (int)cub->ray_c.xs_h <= 0 || (int)cub->ray_c.xs_h  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)]))
 					break;
 				// printf("px = %f\n", cub->ray_c.xs_h);
 				if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)][(int)(cub->ray_c.xs_h / cub->game.map.scale_x)] != '0')
 					break;
-				if (cub->game.map.map_2d[(int)((cub->ray_c.ys_h) / cub->game.map.scale_y)][(int)(cub->ray_c.xs_h / cub->game.map.scale_x)] != '0')
-					break;
 				// printf("b x9 = %f, xp = %f\n", cub->ray_c.xs_h / 64, cub->ray_c.xs_h);
 				// printf("b y9 = %f\n, yp = %f\n", cub->ray_c.ys_h / 64, cub->ray_c.ys_h);
-				cub->ray_c.ys_h -= 64;
+				cub->ray_c.ys_h -= yo;
 				cub->ray_c.xs_h += xo;
 				// printf("x9 = %f, xp = %f\n", cub->ray_c.xs_h / 64, cub->ray_c.xs_h);
 				// printf("y9 = %f\n, yp = %f\n", cub->ray_c.ys_h / 64, cub->ray_c.ys_h);
@@ -528,7 +520,6 @@ float	check_vertical(t_cub *cub, float a)
 		cub->ray_c.xs_v -= 1;
 		xo = 64;
 		yo = -xo * (-tan(a));
-		// printf("x2o = %f, x2s = %f, cub->ray_c.xs_v = %f\n", cub->ray_c.ys_v, yo, cub->ray_c.xs_v);
 		while (1)
 		{
 			if (cub->ray_c.ys_v <= 0 || (int)cub->ray_c.ys_v / cub->game.map.scale_y >= cub->game.map.nline
@@ -578,8 +569,8 @@ float	check_vertical(t_cub *cub, float a)
 		yo = -xo * (-tan(a));
 		while (1)
 		{
-			if (cub->ray_c.ys_v <= 0 || (int)cub->ray_c.ys_v / cub->game.map.scale_y >= cub->game.map.nline
-			|| cub->ray_c.xs_v <= 0 || (int)cub->ray_c.xs_v  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)]))
+			if (cub->ray_c.ys_v < 0 || (int)cub->ray_c.ys_v / cub->game.map.scale_y >= cub->game.map.nline
+			|| cub->ray_c.xs_v < 0 || (int)cub->ray_c.xs_v  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)]))
 				break;
 			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)][(int)(cub->ray_c.xs_v / cub->game.map.scale_x)] != '0')
 				break;
@@ -591,10 +582,10 @@ float	check_vertical(t_cub *cub, float a)
 		// 	cub->ray_c.xs_v = WIDTH;
 		// if (cub->ray_c.ys_v >= HEIGHT)
 		// 	cub->ray_c.ys_v = HEIGHT;
-		arr[0] =px;
-		arr[1] =cub->ray_c.xs_v;
-		arr[2] =py;
-		arr[3] =cub->ray_c.ys_v;
+		arr[0] = px;
+		arr[1] = cub->ray_c.xs_v;
+		arr[2] = py;
+		arr[3] = cub->ray_c.ys_v;
 		// draw_line(cub, arr, 0xFF0000);
 	}
 	k = sqrt(((arr[1] - arr[0]) * (arr[1] - arr[0]))
