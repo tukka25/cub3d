@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:35 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/06 14:04:54 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:09:05 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	main(int ac, char **av)
 
 	// x = 64;
 	// y = 0;
-	
 	cu_init(&cub);
 	if (ac != 2)
 		cu_print_error("Invalid number of arguments", &cub);
@@ -53,7 +52,7 @@ int	main(int ac, char **av)
 	cub.mlx.mlx_win = mlx_new_window(cub.mlx.mlx, WIDTH,
 			HEIGHT, "cub3d");
 	drawing(&cub);
-	mlx_hook(cub.mlx.mlx_win, 2, 0, key_hook, &cub);
+	mlx_key_hook(cub.mlx.mlx_win, key_hook, &cub);
 	mlx_hook(cub.mlx.mlx_win, 17, 0, exit_w, &cub);
 	mlx_loop(cub.mlx.mlx);
 	cu_freedom(&cub);
