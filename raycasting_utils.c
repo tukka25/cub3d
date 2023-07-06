@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:34:50 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/06 18:16:43 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/07 01:00:55 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,8 @@ void	convert_angle(t_cub *cub)
 void	scaling(t_cub *cub)
 {
 	printf("c = %d\n", cub->game.map.map_width - 1);
-	cub->game.map.scale_x = round(WIDTH / (cub->game.map.map_width - 1));
-	cub->game.map.scale_x = 64;
-	// printf("s_x = %d\n", HEIGHT / cub->game.map.nline);
-	// printf("floor = %d\n", cub->game.floor);
-	// printf("ceiling = %d\n", cub->game.ceiling);
-	// exit(0);
-	cub->game.map.scale_y = round(HEIGHT / cub->game.map.nline);
-	cub->game.map.scale_y = 64;
-	cub->game.map.px_pix = round(cub->game.map.scale_x * cub->game.map.p_x);
-	cub->game.map.py_pix = round(cub->game.map.scale_y * cub->game.map.p_y);
+	cub->game.map.px_pix = cub->game.map.p_x;
+	cub->game.map.py_pix = cub->game.map.p_y;
 }
 
 // int	rgb_to_hex(int)
@@ -50,7 +42,7 @@ void	draw_floor_ceiling(t_cub *cub, int c1, int c2)
 {
 	int	i;
 	// int	j;
-	int	arr[4];
+	double	arr[4];
 
 	i = 0;
 	// j = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 21:13:43 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/07/04 21:05:19 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/07 00:54:34 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int		cu_get_color(t_cub *cub, int x, int y)
 	return (color);
 }
 
-float	deg_to_rad(int i, t_cub *cub)
+double	deg_to_rad(int i, t_cub *cub)
 {
-	float	s;
+	double	s;
 
 	s = 0.0;
 	(void)cub;
@@ -43,7 +43,7 @@ float	deg_to_rad(int i, t_cub *cub)
 	return (s);
 }
 
-int		rad_to_deg(float i, t_cub *cub)
+int		rad_to_deg(double i, t_cub *cub)
 {
 	int		s;
 

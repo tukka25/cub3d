@@ -6,14 +6,14 @@
 /*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/06 15:41:12 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/07 01:29:16 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define SPEED 8
+# define SPEED 0.1
 # define WIDTH 1500
 # define HEIGHT 850
 # ifdef __APPLE__
@@ -44,17 +44,17 @@
 # include <math.h>
 
 typedef struct s_ray_c
-{
-	float	pdx;
-	float	pdy;
-	float	angle;
-	float	wall_length;
-	float	ray_length;
-	float	ys_h;
-	float	xs_h;
-	float	ys_v;
-	float	xs_v;
-	float	tmp_length;
+{	
+	double	pdx;
+	double	pdy;
+	double	angle;
+	double	wall_length;
+	double	ray_length;
+	double	ys_h;
+	double	xs_h;
+	double	ys_v;
+	double	xs_v;
+	double	tmp_length;
 }	t_ray_c;
 
 typedef struct s_map
@@ -74,11 +74,9 @@ typedef struct s_map
 	int		px_index;
 	int		start_px;
 	int		start_py;
-	int		px_pix;
+	double		px_pix;
 	int		py_index;
-	int		py_pix;
-	float	scale_x;
-	float	scale_y;
+	double		py_pix;
 }	t_map;
 
 typedef struct s_file
@@ -131,7 +129,7 @@ typedef struct s_cub
 	int		*c_colors;
 	int		move_x;
 	int		move_y;
-	float	pi;
+	double	pi;
 	t_mlx	mlx;
 	t_img	img;
 	t_img	texture;
@@ -160,13 +158,13 @@ void	draw_wall(t_cub *cub, int x, int y);
 void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color);
 void	rotate_right(t_cub *cub);
 void	rotate_left(t_cub *cub);
-float	deg_to_rad(int i, t_cub *cub);
-int		rad_to_deg(float i, t_cub *cub);
+double	deg_to_rad(int i, t_cub *cub);
+int		rad_to_deg(double i, t_cub *cub);
 int		exit_w(t_cub *cub);
 void	cast_rays(t_cub *cub);
-void	draw_line(t_cub *cub, int *arr, int color);
-void	check_horizontal(t_cub *cub, float a);
-float	check_vertical(t_cub *cub, float a);
+void	draw_line(t_cub *cub, double *arr, int color);
+void	check_horizontal(t_cub *cub, double a);
+double	check_vertical(t_cub *cub, double a);
 void	convert_angle(t_cub *cub);
 void	scaling(t_cub *cub);
 void	check_left_right(t_cub *cub, int flag);
@@ -204,6 +202,6 @@ void	cu_is_2_commas(char *line, t_cub *cub);
 void	cu_get_width(t_cub *cub);
 int		cu_get_color(t_cub *cub, int x, int y);
 void	cu_texture(t_cub *cub);
-void	cu_draw_texture(t_cub *cub, int h, int *arr);
+void	cu_draw_texture(t_cub *cub, int h);
 
 #endif
