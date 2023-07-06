@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/06 18:18:16 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:46:51 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,25 +151,25 @@ void	check_horizontal(t_cub *cub, float a)
 	}
 	else if ((a > 0 && a < M_PI / 2))
 	{
-		i = 0;
+		// i = 0;
 		cub->ray_c.ys_h = (int)py - 1;
 		cub->ray_c.xs_h = ((py - cub->ray_c.ys_h) * (-1 / tan(a))) * -1 + px;
 		yo = 1;
 		xo = -yo * (-1 / tan(a));
-		while (i < 64)
-		{
-			if (cub->ray_c.ys_h <= 0 || (int)cub->ray_c.ys_h / cub->game.map.scale_y >= cub->game.map.nline
-			|| cub->ray_c.xs_h <= 0 || (int)cub->ray_c.xs_h  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)]))
-				break;
-			// printf("px = %f\n", cub->ray_c.xs_h);
-			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)][(int)(cub->ray_c.xs_h / cub->game.map.scale_x)] != '0')
-				break;
-			if ((int)(cub->ray_c.ys_h) % (int)cub->game.map.scale_y == 0)
-				break ;
-			cub->ray_c.ys_h -= 1;
-			cub->ray_c.xs_h += xo;
-			i++;
-		}
+		// while (i < 64)
+		// {
+		// 	if (cub->ray_c.ys_h <= 0 || (int)cub->ray_c.ys_h / cub->game.map.scale_y >= cub->game.map.nline
+		// 	|| cub->ray_c.xs_h <= 0 || (int)cub->ray_c.xs_h  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)]))
+		// 		break;
+		// 	// printf("px = %f\n", cub->ray_c.xs_h);
+		// 	if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)][(int)(cub->ray_c.xs_h / cub->game.map.scale_x)] != '0')
+		// 		break;
+		// 	if ((int)(cub->ray_c.ys_h) % (int)cub->game.map.scale_y == 0)
+		// 		break ;
+		// 	cub->ray_c.ys_h -= 1;
+		// 	cub->ray_c.xs_h += xo;
+		// 	i++;
+		// }
 		cub->ray_c.ys_h -= 1;
 		yo = 64;
 		xo = -yo * (-1 / tan(a));
@@ -203,20 +203,20 @@ void	check_horizontal(t_cub *cub, float a)
 		xo = -yo * (-1 / tan(a));
 		// printf("x9 = %f\n", cub->ray_c.xs_h / 64);
 		// printf("y9 = %f\n", cub->ray_c.ys_h / 64);
-		while (i < 64)
-		{
-			if (cub->ray_c.ys_h <= 0 || (int)cub->ray_c.ys_h / cub->game.map.scale_y >= cub->game.map.nline
-			|| cub->ray_c.xs_h <= 0 || (int)cub->ray_c.xs_h  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)]))
-				break;
-			// printf("px = %f\n", cub->ray_c.xs_h);
-			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)][(int)(cub->ray_c.xs_h / cub->game.map.scale_x)] != '0')
-				break;
-			if ((int)(cub->ray_c.ys_h) % (int)cub->game.map.scale_y == 0)
-				break ;
-			cub->ray_c.ys_h -= 1;
-			cub->ray_c.xs_h += xo;
-			i++;
-		}
+		// while (i < 64)
+		// {
+		// 	if (cub->ray_c.ys_h <= 0 || (int)cub->ray_c.ys_h / cub->game.map.scale_y >= cub->game.map.nline
+		// 	|| cub->ray_c.xs_h <= 0 || (int)cub->ray_c.xs_h  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)]))
+		// 		break;
+		// 	// printf("px = %f\n", cub->ray_c.xs_h);
+		// 	if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)][(int)(cub->ray_c.xs_h / cub->game.map.scale_x)] != '0')
+		// 		break;
+		// 	if ((int)(cub->ray_c.ys_h) % (int)cub->game.map.scale_y == 0)
+		// 		break ;
+		// 	cub->ray_c.ys_h -= 1;
+		// 	cub->ray_c.xs_h += xo;
+		// 	i++;
+		// }
 		cub->ray_c.ys_h -= 1;
 		yo = 64;
 		xo = -yo * (-1 / tan(a));
@@ -234,7 +234,7 @@ void	check_horizontal(t_cub *cub, float a)
 				cub->ray_c.xs_h += xo;
 				// printf("x9 = %f, xp = %f\n", cub->ray_c.xs_h / 64, cub->ray_c.xs_h);
 				// printf("y9 = %f\n, yp = %f\n", cub->ray_c.ys_h / 64, cub->ray_c.ys_h);
-				i++;
+				// i++;
 			}
 		// }
 		arr[0] = px;
@@ -249,20 +249,20 @@ void	check_horizontal(t_cub *cub, float a)
 		cub->ray_c.xs_h = ((py - cub->ray_c.ys_h) * (-1 / tan(a))) + px;
 		yo = 1;
 		xo = -yo * (-1 / tan(a));
-		while (i < 64)
-		{
-			if (cub->ray_c.ys_h <= 0 || (int)cub->ray_c.ys_h / cub->game.map.scale_y >= cub->game.map.nline
-			|| cub->ray_c.xs_h <= 0 || (int)cub->ray_c.xs_h  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)]))
-				break;
-			// printf("px = %f\n", cub->ray_c.xs_h);
-			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)][(int)(cub->ray_c.xs_h / cub->game.map.scale_x)] != '0')
-				break;
-			if ((int)(cub->ray_c.ys_h) % (int)cub->game.map.scale_y == 0)
-				break ;
-			cub->ray_c.ys_h += 1;
-			cub->ray_c.xs_h -= xo;
-			i++;
-		}
+		// while (i < 64)
+		// {
+		// 	if (cub->ray_c.ys_h <= 0 || (int)cub->ray_c.ys_h / cub->game.map.scale_y >= cub->game.map.nline
+		// 	|| cub->ray_c.xs_h <= 0 || (int)cub->ray_c.xs_h  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)]))
+		// 		break;
+		// 	// printf("px = %f\n", cub->ray_c.xs_h);
+		// 	if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)][(int)(cub->ray_c.xs_h / cub->game.map.scale_x)] != '0')
+		// 		break;
+		// 	if ((int)(cub->ray_c.ys_h) % (int)cub->game.map.scale_y == 0)
+		// 		break ;
+		// 	cub->ray_c.ys_h += 1;
+		// 	cub->ray_c.xs_h -= xo;
+		// 	i++;
+		// }
 		cub->ray_c.ys_h += 1;
 		yo = 64;
 		xo = -yo * (-1 / tan(a));
@@ -290,20 +290,20 @@ void	check_horizontal(t_cub *cub, float a)
 		cub->ray_c.xs_h = ((py - cub->ray_c.ys_h) * (-1 / tan(a))) + px;
 		yo = 1;
 		xo = yo * (-1 / tan(a));
-		while (i < 64)
-		{
-			if (cub->ray_c.ys_h <= 0 || (int)cub->ray_c.ys_h / cub->game.map.scale_y >= cub->game.map.nline
-			|| cub->ray_c.xs_h <= 0 || (int)cub->ray_c.xs_h  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)]))
-				break;
-			// printf("px = %f\n", cub->ray_c.xs_h);
-			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)][(int)(cub->ray_c.xs_h / cub->game.map.scale_x)] != '0')
-				break;
-			if ((int)(cub->ray_c.ys_h) % (int)cub->game.map.scale_y == 0)
-				break ;
-			cub->ray_c.ys_h += 1;
-			cub->ray_c.xs_h += xo;
-			i++;
-		}
+		// while (i < 64)
+		// {
+		// 	if (cub->ray_c.ys_h <= 0 || (int)cub->ray_c.ys_h / cub->game.map.scale_y >= cub->game.map.nline
+		// 	|| cub->ray_c.xs_h <= 0 || (int)cub->ray_c.xs_h  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)]))
+		// 		break;
+		// 	// printf("px = %f\n", cub->ray_c.xs_h);
+		// 	if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h / cub->game.map.scale_y)][(int)(cub->ray_c.xs_h / cub->game.map.scale_x)] != '0')
+		// 		break;
+		// 	if ((int)(cub->ray_c.ys_h) % (int)cub->game.map.scale_y == 0)
+		// 		break ;
+		// 	cub->ray_c.ys_h += 1;
+		// 	cub->ray_c.xs_h += xo;
+		// 	i++;
+		// }
 		cub->ray_c.ys_h += 1;
 		yo = 64;
 		xo = yo * (-1 / tan(a));
@@ -429,19 +429,19 @@ float	check_vertical(t_cub *cub, float a)
 		cub->ray_c.ys_v = ((px - cub->ray_c.xs_v) * (-tan(a))) * -1 + py;
 		xo = 1;
 		yo = -xo * (-tan(a));
-		while (i < 64)
-		{
-			if (cub->ray_c.ys_v <= 0 || (int)cub->ray_c.ys_v / cub->game.map.scale_y >= cub->game.map.nline
-			|| cub->ray_c.xs_v <= 0 || (int)cub->ray_c.xs_v  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)]))
-				break;
-			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)][(int)(cub->ray_c.xs_v / cub->game.map.scale_x)] != '0')
-				break;
-			if ((int)floor(cub->ray_c.xs_v) % (int)cub->game.map.scale_x == 0)
-				break ;
-			cub->ray_c.ys_v -= yo;
-			cub->ray_c.xs_v += 1;
-			i++;
-		}
+		// while (i < 64)
+		// {
+		// 	if (cub->ray_c.ys_v <= 0 || (int)cub->ray_c.ys_v / cub->game.map.scale_y >= cub->game.map.nline
+		// 	|| cub->ray_c.xs_v <= 0 || (int)cub->ray_c.xs_v  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)]))
+		// 		break;
+		// 	if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)][(int)(cub->ray_c.xs_v / cub->game.map.scale_x)] != '0')
+		// 		break;
+		// 	if ((int)floor(cub->ray_c.xs_v) % (int)cub->game.map.scale_x == 0)
+		// 		break ;
+		// 	cub->ray_c.ys_v -= yo;
+		// 	cub->ray_c.xs_v += 1;
+		// 	i++;
+		// }
 		cub->ray_c.xs_v += 1;
 		xo = 64 ;
 		yo = -xo * (-tan(a));
@@ -475,19 +475,19 @@ float	check_vertical(t_cub *cub, float a)
 		yo = -xo * (-tan(a));
 		// printf("x = %f\n", cub->ray_c.xs_v / 64);
 		// printf("y = %f\n", cub->ray_c.ys_v / 64);
-		while (i < 64)
-		{
-			if (cub->ray_c.ys_v <= 0 || (int)cub->ray_c.ys_v / cub->game.map.scale_y >= cub->game.map.nline
-			|| cub->ray_c.xs_v <= 0 || (int)cub->ray_c.xs_v  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)]))
-				break;
-			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)][(int)(cub->ray_c.xs_v / cub->game.map.scale_x)] != '0')
-				break;
-			if ((int)floor(cub->ray_c.xs_v) % (int)cub->game.map.scale_x == 0)
-				break ;
-			cub->ray_c.ys_v += yo;
-			cub->ray_c.xs_v -= 1;
-			i++;
-		}
+		// while (i < 64)
+		// {
+		// 	if (cub->ray_c.ys_v <= 0 || (int)cub->ray_c.ys_v / cub->game.map.scale_y >= cub->game.map.nline
+		// 	|| cub->ray_c.xs_v <= 0 || (int)cub->ray_c.xs_v  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)]))
+		// 		break;
+		// 	if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)][(int)(cub->ray_c.xs_v / cub->game.map.scale_x)] != '0')
+		// 		break;
+		// 	if ((int)floor(cub->ray_c.xs_v) % (int)cub->game.map.scale_x == 0)
+		// 		break ;
+		// 	cub->ray_c.ys_v += yo;
+		// 	cub->ray_c.xs_v -= 1;
+		// 	i++;
+		// }
 		cub->ray_c.xs_v -= 1;
 		xo = 64;
 		yo = -xo * (-tan(a));
@@ -514,19 +514,19 @@ float	check_vertical(t_cub *cub, float a)
 		cub->ray_c.ys_v = ((px - cub->ray_c.xs_v) * (-tan(a))) * -1 + py;
 		xo = 1;
 		yo = -xo * (-tan(a));
-		while (i < 64)
-		{
-			if (cub->ray_c.ys_v <= 0 || (int)cub->ray_c.ys_v / cub->game.map.scale_y >= cub->game.map.nline
-			|| cub->ray_c.xs_v <= 0 || (int)cub->ray_c.xs_v  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)]))
-				break;
-			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)][(int)(cub->ray_c.xs_v / cub->game.map.scale_x)] != '0')
-				break;
-			if ((int)(cub->ray_c.xs_v) % (int)cub->game.map.scale_x == 0)
-				break ;
-			cub->ray_c.ys_v += yo;
-			cub->ray_c.xs_v -= 1;
-			i++;
-		}
+		// while (i < 64)
+		// {
+		// 	if (cub->ray_c.ys_v <= 0 || (int)cub->ray_c.ys_v / cub->game.map.scale_y >= cub->game.map.nline
+		// 	|| cub->ray_c.xs_v <= 0 || (int)cub->ray_c.xs_v  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)]))
+		// 		break;
+		// 	if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)][(int)(cub->ray_c.xs_v / cub->game.map.scale_x)] != '0')
+		// 		break;
+		// 	if ((int)(cub->ray_c.xs_v) % (int)cub->game.map.scale_x == 0)
+		// 		break ;
+		// 	cub->ray_c.ys_v += yo;
+		// 	cub->ray_c.xs_v -= 1;
+		// 	i++;
+		// }
 		cub->ray_c.xs_v -= 1;
 		xo = 64;
 		yo = -xo * (-tan(a));
@@ -561,19 +561,19 @@ float	check_vertical(t_cub *cub, float a)
 		cub->ray_c.ys_v = ((px - cub->ray_c.xs_v) * (-tan(a))) * -1 + py;
 		xo = 1;
 		yo = -xo * (-tan(a));
-		while (i < 64)
-		{
-			if (cub->ray_c.ys_v <= 0 || (int)cub->ray_c.ys_v / cub->game.map.scale_y >= cub->game.map.nline
-			|| cub->ray_c.xs_v <= 0 || (int)cub->ray_c.xs_v  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)]))
-				break;
-			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)][(int)(cub->ray_c.xs_v / cub->game.map.scale_x)] != '0')
-				break;
-			if ((int)(cub->ray_c.xs_v) % (int)cub->game.map.scale_x == 0)
-				break ;
-			cub->ray_c.ys_v -= yo;
-			cub->ray_c.xs_v += 1;
-			i++;
-		}
+		// while (i < 64)
+		// {
+		// 	if (cub->ray_c.ys_v <= 0 || (int)cub->ray_c.ys_v / cub->game.map.scale_y >= cub->game.map.nline
+		// 	|| cub->ray_c.xs_v <= 0 || (int)cub->ray_c.xs_v  / cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)]))
+		// 		break;
+		// 	if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)][(int)(cub->ray_c.xs_v / cub->game.map.scale_x)] != '0')
+		// 		break;
+		// 	if ((int)(cub->ray_c.xs_v) % (int)cub->game.map.scale_x == 0)
+		// 		break ;
+		// 	cub->ray_c.ys_v -= yo;
+		// 	cub->ray_c.xs_v += 1;
+		// 	i++;
+		// }
 		cub->ray_c.xs_v += 1;
 		xo = 64;
 		yo = -xo * (-tan(a));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:35 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/06 18:16:02 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:42:01 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int ac, char **av)
 	cub.mlx.mlx_win = mlx_new_window(cub.mlx.mlx, WIDTH,
 			HEIGHT, "cub3d");
 	drawing(&cub);
-	mlx_key_hook(cub.mlx.mlx_win, key_hook, &cub);
+	mlx_hook(cub.mlx.mlx_win, 2, 0, key_hook, &cub);
 	mlx_hook(cub.mlx.mlx_win, 17, 0, exit_w, &cub);
 	mlx_loop(cub.mlx.mlx);
 	cu_freedom(&cub);
