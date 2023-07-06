@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 23:35:38 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/04 21:04:20 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:05:36 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	drawing(t_cub *cub)
 {
-	int		i;
-	int		j;
+	// int		i;
+	// int		j;
 	int		x;
 	int		y;
 
 	x = 0;
-	i = 0;
-	j = 0;
+	// i = 0;
+	// j = 0;
 	y = 0;
 	cub->img.img = mlx_new_image(cub->mlx.mlx, WIDTH,
 				HEIGHT);
@@ -29,7 +29,7 @@ void	drawing(t_cub *cub)
 			&cub->img.line_length, &cub->img.endian);
 	while (cub->game.map.map_2d[y])
 	{
-		j = 0;
+		// j = 0;
 		x = 0;
 		while (cub->game.map.map_2d[y][x])
 		{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/04 21:27:26 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:03:48 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,23 @@
 # define SPEED 8
 # define WIDTH 1500
 # define HEIGHT 850
+# ifdef __APPLE__
+	#define UP 13
+	#define DOWN 1
+	#define LEFT 0
+	#define RIGHT 2
+	#define A_LEFT 123
+	#define A_RIGHT 124
+	#define ESC 53
+# elif __linux__
+	#define UP 17
+	#define DOWN 31
+	#define LEFT 30
+	#define RIGHT 32
+	#define A_LEFT 105
+	#define A_RIGHT 106
+	#define ESC 1
+#endif
 # include "libft/libft.h"
 # include "gnl/get_next_line.h"
 # include <stdio.h>

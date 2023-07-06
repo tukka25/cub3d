@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:33:32 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/25 18:51:08 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:58:01 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 int	key_hook(int keycode, t_cub *cub)
 {
-	if (keycode == 123 || keycode == 124 || keycode == 0 || keycode == 1
-		|| keycode == 2 || keycode == 13)
+	if (keycode == UP || keycode == RIGHT || keycode == DOWN || keycode == LEFT
+		|| keycode == A_RIGHT || keycode == A_LEFT)
 	{
-		if (keycode == 13)
+		if (keycode == UP)
 			move_up(cub);
-		else if (keycode == 2)
+		else if (keycode == RIGHT)
 			move_right(cub);
-		else if (keycode == 1)
+		else if (keycode == DOWN)
 			move_down(cub);
-		else if (keycode == 0)
+		else if (keycode == LEFT)
 			move_left(cub);
-		else if (keycode == 124)
+		else if (keycode == A_RIGHT)
 			rotate_right(cub);
-		else if (keycode == 123)
+		else if (keycode == A_LEFT)
 			rotate_left(cub);
 	}
-	else if (keycode == 53)
+	else if (keycode == ESC)
 		exit(0);
 	mlx_destroy_image(cub->mlx.mlx, cub->img.img);
 	drawing(cub);

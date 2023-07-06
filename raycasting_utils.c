@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:34:50 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/04 22:10:28 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:07:43 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ void	scaling(t_cub *cub)
 void	draw_floor_ceiling(t_cub *cub, int c1, int c2)
 {
 	int	i;
-	int	j;
+	// int	j;
 	int	arr[4];
 
 	i = 0;
-	j = 0;
+	// j = 0;
 	(void)c2;
 	arr[0] = 0;
 	arr[1] = WIDTH;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/04 22:08:33 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:07:19 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	cast_rays(t_cub *cub)
 {
-	int	i;
-	int	pos;
+	// int	i;
+	// int	pos;
 
-	i = 0;
-	pos = cub->game.map.py_pix;
+	// i = 0;
+	// pos = cub->game.map.py_pix;
 	float 	a = 0;
 	int	x1;
-	int	y1;
+	// int	y1;
 	int	h = 0;
 	float f = 0;
 	int *arr = malloc(4 * sizeof(int));
 	x1 = cub->game.map.px_pix;
-	y1 = cub->game.map.py_pix;
+	// y1 = cub->game.map.py_pix;
 	// printf("i = %c\n", cub->game.map.map_2d[cub->game.map.py_pix / cub->game.map.scale_x][cub->game.map.px_pix / cub->game.map.scale_x]);
 	a = cub->ray_c.angle - deg_to_rad(45, cub);
 	// printf("a = %d\n", rad_to_deg(a, cub));
@@ -35,8 +35,8 @@ void	cast_rays(t_cub *cub)
 		a += 2 * M_PI;
 		// printf("d = %f\n", (M_PI / 2) / (WIDTH) - 0.0003);
 		// exit(0);
-		arr[0] = 0;
-		arr[1] = 0;
+	arr[0] = 0;
+	arr[1] = 0;
 	cu_texture(cub);
 	while (h < WIDTH)
 	{
@@ -82,16 +82,20 @@ void	check_horizontal(t_cub *cub, float a)
 	float	py;
 	float	yo;
 	float	xo;
-	int		flag;
+	// int		flag;
 	int		arr[4];
 
 	px = cub->game.map.px_pix;
 	py = cub->game.map.py_pix;
-	flag = 0;
+	// flag = 0;
 	cub->ray_c.ys_h = (int)cub->game.map.py_pix;
 	cub->ray_c.xs_h = 1 / tan(a);
 	(void)yo;
 	(void)xo;
+	arr[0] = 0;
+	arr[1] = 0;
+	arr[2] = 0;
+	arr[3] = 0;
 	// printf("a = %d\n", rad_to_deg(a, cub));
 	int i = 0;
 	if (a == 0 || a == 2 * M_PI)
@@ -281,6 +285,10 @@ float	check_vertical(t_cub *cub, float a)
 	px = cub->game.map.px_pix;
 	py = cub->game.map.py_pix;
 	cub->ray_c.ys_v = -tan(a);
+	arr[0] = 0;
+	arr[1] = 0;
+	arr[2] = 0;
+	arr[3] = 0;
 	if (a == M_PI / 2)
 	{
 		// printf("here\n");
@@ -295,7 +303,7 @@ float	check_vertical(t_cub *cub, float a)
 				break;
 			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)][(int)round((cub->ray_c.xs_v / cub->game.map.scale_x))]  != '0')
 				break;
-				printf("1");
+			printf("1");
 			// cub->ray_c.xs_v += 1;
 			cub->ray_c.ys_v -= 1;
 			// i++;

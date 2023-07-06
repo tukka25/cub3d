@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:35 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/24 20:59:20 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:04:54 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ static void	first_init(t_cub *cub)
 int	main(int ac, char **av)
 {
 	t_cub	cub;
-	int		x;
-	int		y;
+	// int		x;
+	// int		y;
 
-	x = 64;
-	y = 0;
+	// x = 64;
+	// y = 0;
 	
 	cu_init(&cub);
 	if (ac != 2)
