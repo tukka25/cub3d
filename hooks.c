@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:33:32 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/06 15:10:20 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:36:33 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	move_up(t_cub *cub)
 
 void	move_down(t_cub *cub)
 {
-	cub->game.map.px_pix -= round(SPEED  * cos(cub->ray_c.angle));
+	cub->game.map.px_pix -= round(SPEED * cos(cub->ray_c.angle));
 	cub->game.map.py_pix += round(SPEED * sin(cub->ray_c.angle));
 	cub->move_y += round(SPEED * sin(cub->ray_c.angle));
 	cub->move_x -= round(SPEED * cos(cub->ray_c.angle));

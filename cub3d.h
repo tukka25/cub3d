@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/06 15:03:30 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:41:12 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,24 @@
 # define WIDTH 1500
 # define HEIGHT 850
 # ifdef __APPLE__
-	#define UP 13
-	#define DOWN 1
-	#define LEFT 0
-	#define RIGHT 2
-	#define A_LEFT 123
-	#define A_RIGHT 124
-	#define ESC 53
-	# include "mlx/mlx.h"
+#  define UP 13
+#  define DOWN 1
+#  define LEFT 0
+#  define RIGHT 2
+#  define A_LEFT 123
+#  define A_RIGHT 124
+#  define ESC 53
+#  include "mlx/mlx.h"
 # elif __linux__
-	#define UP 119
-	#define DOWN 115
-	#define LEFT 97
-	#define RIGHT 100
-	#define A_LEFT 65361
-	#define A_RIGHT 65363
-	#define ESC 65307
-	# include "mlx_linux/mlx.h"
-#endif
+#  define UP 119
+#  define DOWN 115
+#  define LEFT 97
+#  define RIGHT 100
+#  define A_LEFT 65361
+#  define A_RIGHT 65363
+#  define ESC 65307
+#  include "mlx_linux/mlx.h"
+# endif
 # include "libft/libft.h"
 # include "gnl/get_next_line.h"
 # include <stdio.h>
@@ -42,8 +42,6 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <math.h>
-// # include "mlx/mlx.h"
-
 
 typedef struct s_ray_c
 {
@@ -103,8 +101,8 @@ typedef struct s_game
 	int		ceiling;
 }				t_game;
 
-typedef struct	s_img
-{	
+typedef struct s_img
+{
 	void	*background_img;
 	void	*wall_img;
 	void	*img;

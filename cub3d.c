@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:35 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/06 15:09:05 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:35:22 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,10 @@ static void	first_init(t_cub *cub)
 	cub->ray_c.pdy = sin(cub->ray_c.angle) * 5;
 }
 
-
 int	main(int ac, char **av)
 {
 	t_cub	cub;
-	// int		x;
-	// int		y;
 
-	// x = 64;
-	// y = 0;
 	cu_init(&cub);
 	if (ac != 2)
 		cu_print_error("Invalid number of arguments", &cub);
