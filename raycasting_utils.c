@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:34:50 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/03 18:14:09 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/06 05:10:02 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ void	scaling(t_cub *cub)
 {
 	printf("c = %d\n", cub->game.map.map_width - 1);
 	cub->game.map.scale_x = round(WIDTH / (cub->game.map.map_width - 1));
+	cub->game.map.scale_x = 64;
 	// printf("s_x = %d\n", HEIGHT / cub->game.map.nline);
 	// printf("floor = %d\n", cub->game.floor);
 	// printf("ceiling = %d\n", cub->game.ceiling);
 	// exit(0);
 	cub->game.map.scale_y = round(HEIGHT / cub->game.map.nline);
+	cub->game.map.scale_y = 64;
 	cub->game.map.px_pix = round(cub->game.map.scale_x * cub->game.map.p_x);
 	cub->game.map.py_pix = round(cub->game.map.scale_y * cub->game.map.p_y);
 }
