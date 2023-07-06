@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   moves_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:30:41 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/25 18:53:07 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:42:07 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
+#include "cub3d.h"
 
 void	check_horz_vert(t_cub *cub, int flag)
 {

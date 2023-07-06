@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cu_saving_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 10:56:24 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/24 20:55:05 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:33:56 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ char	**cu_file_to_2d(char **pre, char *line, int nline, t_cub *cub)
 }
 
 void	cu_saving_file(t_cub *cub)
-{	
+{
 	cub->game.file.line = get_next_line(cub->game.file.fd);
 	if (!cub->game.file.line)
 		cu_print_error("File is empty", cub);
 	while (cub->game.file.line)
 	{
 		cub->game.file.nline++;
-		cub->game.file.file_2d = cu_file_to_2d(cub->game.file.file_2d, cub->game.file.line,
-				cub->game.file.nline, cub);
+		cub->game.file.file_2d = cu_file_to_2d(cub->game.file.file_2d,
+				cub->game.file.line, cub->game.file.nline, cub);
 		cub->game.file.line = get_next_line(cub->game.file.fd);
 	}
 	return ;

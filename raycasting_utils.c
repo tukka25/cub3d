@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:34:50 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/06 05:10:02 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:16:43 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ void	scaling(t_cub *cub)
 void	draw_floor_ceiling(t_cub *cub, int c1, int c2)
 {
 	int	i;
-	int	j;
+	// int	j;
 	int	arr[4];
 
 	i = 0;
-	j = 0;
+	// j = 0;
 	(void)c2;
 	arr[0] = 0;
 	arr[1] = WIDTH;

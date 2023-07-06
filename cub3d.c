@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:35 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/05 15:13:04 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:16:02 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,10 @@ static void	first_init(t_cub *cub)
 	cub->ray_c.pdy = sin(cub->ray_c.angle) * 5;
 }
 
-
 int	main(int ac, char **av)
 {
 	t_cub	cub;
-	int		x;
-	int		y;
 
-	x = 64;
-	y = 0;
-	
 	cu_init(&cub);
 	if (ac != 2)
 		cu_print_error("Invalid number of arguments", &cub);
@@ -53,7 +47,7 @@ int	main(int ac, char **av)
 	cub.mlx.mlx_win = mlx_new_window(cub.mlx.mlx, WIDTH,
 			HEIGHT, "cub3d");
 	drawing(&cub);
-	mlx_hook(cub.mlx.mlx_win, 2, 0, key_hook, &cub);
+	mlx_key_hook(cub.mlx.mlx_win, key_hook, &cub);
 	mlx_hook(cub.mlx.mlx_win, 17, 0, exit_w, &cub);
 	mlx_loop(cub.mlx.mlx);
 	cu_freedom(&cub);

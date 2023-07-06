@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cu_check_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:54:17 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/26 19:21:22 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:32:50 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	cu_get_width(t_cub *cub)
 	int	y;
 
 	y = 0;
-	while(cub->game.map.map_2d[y])
+	while (cub->game.map.map_2d[y])
 	{
 		if (ft_strlen(cub->game.map.map_2d[y]) > cub->game.map.map_width)
 			cub->game.map.map_width = ft_strlen(cub->game.map.map_2d[y]);

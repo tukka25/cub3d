@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+         #
+#    By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 00:30:54 by talsaiaa          #+#    #+#              #
-#    Updated: 2023/06/24 21:54:41 by abdamoha         ###   ########.fr        #
+#    Updated: 2023/07/06 13:40:05 by talsaiaa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,13 +31,32 @@ OBJS	=	$(SRCS:.c=.o)
 
 LIBFT	=	cd libft && make
 
-MLX		=	cd mlx && make
+MLX		:=
 
-LIB		=	libft/libft.a mlx/libmlx.a
+LIB		:=
+
+INCLUDE	:=
+
+LINKS	:=
 
 GCC		=	gcc
 
 FLAGS	=	-g -Wall -Wextra -Werror -fsanitize=address
+
+OS		=	$(shell uname)
+
+ifeq ($(OS), Linux)
+	MLX += cd mlx_linux && make
+	LIB += libft/libft.a mlx/libmlx.a
+	INCLUDE += -I/usr/include -Imlx_linux -Iutils -O3
+	LINKS += -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+endif
+ifeq ($(OS), Darwin)
+	MLX += cd mlx && make
+	LIB += libft/libft.a mlx/libmlx.a
+	INCLUDE += -I mlx
+	LINKS += -L mlx -l mlx -framework OpenGL -framework AppKit
+endif
 
 all: comp_start $(NAME) 
 	@printf '		          ▓▓▓▓▓▓▓▓                                                                 \n'
@@ -92,7 +111,7 @@ all: comp_start $(NAME)
 	@printf '                        ▓▓████▓▓██    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓██                                    \n'
 
 $(NAME): $(OBJS)
-	@$(GCC) $(FLAGS) $(OBJS) $(LIB) -Lmlx -lmlx -framework OpenGL -framework AppKit  -o $(NAME)
+	@$(GCC) $(FLAGS) $(OBJS) $(LINKS) $(LIB) -o $(NAME)
 	@tput setaf 2
 	@printf 'Executable ready\n'
 	@tput setaf 7
@@ -105,7 +124,7 @@ comp_start:
 	@tput setaf 7
 
 .c.o:
-	@$(GCC) $(FLAGS) -c $< -o $(<:.c=.o)
+	@$(GCC) $(FLAGS) $(INCLUDE) -c $< -o $(<:.c=.o)
 
 clean:
 	@rm -rf $(OBJS)
@@ -124,3 +143,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all comp_start clean fclean re
+
