@@ -6,26 +6,27 @@
 #    By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 00:30:54 by talsaiaa          #+#    #+#              #
-#    Updated: 2023/07/08 19:59:46 by talsaiaa         ###   ########.fr        #
+#    Updated: 2023/07/08 22:08:24 by talsaiaa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	cub3d
 
-SRCS =	cub3d.c              \
-		drawing.c            \
-		hooks.c              \
-		rotation.c           \
-		raycasting.c         \
-		raycasting_utils.c	\
-		utils.c              \
-		moves_utils.c         \
-		gnl/get_next_line.c gnl/get_next_line_utils.c \
-		parsing/cu_utils.c parsing/cu_saving_file.c \
-		parsing/cu_saving_components.c parsing/freedom.c \
-		parsing/cu_strtrimchar.c parsing/cu_texture_utils.c \
-		parsing/cu_saving_colors.c parsing/cu_saving_map.c \
-		parsing/cu_check_map.c parsing/cu_map_utils.c \
+SRCS =	cub3d.c												\
+		drawing.c											\
+		hooks.c												\
+		rotation.c											\
+		raycasting.c										\
+		raycasting_utils.c									\
+		utils.c												\
+		moves_utils.c										\
+		utils2.c											\
+		gnl/get_next_line.c gnl/get_next_line_utils.c		\
+		parsing/cu_utils.c parsing/cu_saving_file.c			\
+		parsing/cu_saving_components.c parsing/freedom.c	\
+		parsing/cu_strtrimchar.c parsing/cu_texture_utils.c	\
+		parsing/cu_saving_colors.c parsing/cu_saving_map.c	\
+		parsing/cu_check_map.c parsing/cu_map_utils.c		\
 
 OBJS	=	$(SRCS:.c=.o)
 
@@ -145,4 +146,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all comp_start clean fclean re
-

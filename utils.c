@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 21:13:43 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/07/08 20:54:15 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/08 22:20:31 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < 0 || y < 0 || y >= HEIGHT
-	 || x >= WIDTH)
+	if (x < 0 || y < 0 || y >= HEIGHT || x >= WIDTH)
 		return ;
-	dst = cub->img.addr + (y * cub->img.line_length + x * (cub->img.bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	dst = cub->img.addr + (y * cub->img.line_length + x
+			* (cub->img.bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+	return ;
 }
 
 double	deg_to_rad(int i, t_cub *cub)
@@ -33,13 +34,12 @@ double	deg_to_rad(int i, t_cub *cub)
 	return (s);
 }
 
-int		rad_to_deg(double i, t_cub *cub)
+int	rad_to_deg(double i, t_cub *cub)
 {
 	int		s;
 
 	s = 0;
 	(void)cub;
-
 	s = i * 180 / M_PI;
 	return (s);
 }
