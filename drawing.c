@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 23:35:38 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/05 18:39:27 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/08 04:00:48 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,24 @@ void	drawing(t_cub *cub)
 				// my_mlx_pixel_put(&cub->img, (int)((j + cub->game.map.px_pix + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 2) + cub->ray_c.pdy), 0x0000FF00);
 				// my_mlx_pixel_put(&cub->img, (int)((j + cub->game.map.px_pix + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 3) + cub->ray_c.pdy), 0x0000FF00);
 				// my_mlx_pixel_put(&cub->img, (int)((j + cub->game.map.px_pix + 2) + cub->ray_c.pdx), (int)((i + cub->move_y - 4) + cub->ray_c.pdy), 0x0000FF00);
-				my_mlx_pixel_put(cub, cub->game.map.px_pix, cub->game.map.py_pix, 0x0000FF00);
-				my_mlx_pixel_put(cub, cub->game.map.px_pix + 1, cub->game.map.py_pix, 0x0000FF00);
-				my_mlx_pixel_put(cub, cub->game.map.px_pix + 2, cub->game.map.py_pix, 0x0000FF00);
-				my_mlx_pixel_put(cub, cub->game.map.px_pix + 3, cub->game.map.py_pix, 0x0000FF00);
-				my_mlx_pixel_put(cub, cub->game.map.px_pix, cub->game.map.py_pix + 1, 0x0000FF00);
-				my_mlx_pixel_put(cub, cub->game.map.px_pix + 1, cub->game.map.py_pix + 1, 0x0000FF00);
-				my_mlx_pixel_put(cub, cub->game.map.px_pix + 2, cub->game.map.py_pix + 1, 0x0000FF00);
-				my_mlx_pixel_put(cub, cub->game.map.px_pix + 3, cub->game.map.py_pix + 1, 0x0000FF00);
-				my_mlx_pixel_put(cub, cub->game.map.px_pix, cub->game.map.py_pix + 2, 0x0000FF00);
-				my_mlx_pixel_put(cub, cub->game.map.px_pix + 1, cub->game.map.py_pix + 2, 0x0000FF00);
-				my_mlx_pixel_put(cub, cub->game.map.px_pix + 2, cub->game.map.py_pix + 2, 0x0000FF00);
-				my_mlx_pixel_put(cub, cub->game.map.px_pix + 3, cub->game.map.py_pix + 2, 0x0000FF00);
+				// my_mlx_pixel_put(cub, cub->game.map.px_pix, cub->game.map.py_pix, 0x0000FF00);
+				// my_mlx_pixel_put(cub, cub->game.map.px_pix + 1, cub->game.map.py_pix, 0x0000FF00);
+				// my_mlx_pixel_put(cub, cub->game.map.px_pix + 2, cub->game.map.py_pix, 0x0000FF00);
+				// my_mlx_pixel_put(cub, cub->game.map.px_pix + 3, cub->game.map.py_pix, 0x0000FF00);
+				// my_mlx_pixel_put(cub, cub->game.map.px_pix, cub->game.map.py_pix + 1, 0x0000FF00);
+				// my_mlx_pixel_put(cub, cub->game.map.px_pix + 1, cub->game.map.py_pix + 1, 0x0000FF00);
+				// my_mlx_pixel_put(cub, cub->game.map.px_pix + 2, cub->game.map.py_pix + 1, 0x0000FF00);
+				// my_mlx_pixel_put(cub, cub->game.map.px_pix + 3, cub->game.map.py_pix + 1, 0x0000FF00);
+				// my_mlx_pixel_put(cub, cub->game.map.px_pix, cub->game.map.py_pix + 2, 0x0000FF00);
+				// my_mlx_pixel_put(cub, cub->game.map.px_pix + 1, cub->game.map.py_pix + 2, 0x0000FF00);
+				// my_mlx_pixel_put(cub, cub->game.map.px_pix + 2, cub->game.map.py_pix + 2, 0x0000FF00);
+				// my_mlx_pixel_put(cub, cub->game.map.px_pix + 3, cub->game.map.py_pix + 2, 0x0000FF00);
 				cub->game.map.map_2d[y][x] = '0';
 			}
 			else if (cub->game.map.map_2d[y][x] == '1')
 			{
 				// j++;
-				draw_wall(cub, x, y);
+				// draw_wall(cub, x, y);
 			}
 			x++;
 		}

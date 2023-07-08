@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/03 18:12:05 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/08 00:32:55 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <stdbool.h>
 # include <math.h>
 # include "mlx/mlx.h"
-
 
 typedef struct s_ray_c
 {
@@ -84,7 +83,7 @@ typedef struct s_game
 	int		ceiling;
 }				t_game;
 
-typedef struct	s_img
+typedef	struct	s_img
 {	
 	void	*background_img;
 	void	*wall_img;
@@ -93,6 +92,8 @@ typedef struct	s_img
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		t_width;
+	int		t_height;
 }	t_img;
 
 typedef struct s_mlx
@@ -115,6 +116,7 @@ typedef struct s_cub
 	float	pi;
 	t_mlx	mlx;
 	t_img	img;
+	t_img	texture;
 	t_ray_c	ray_c;
 	t_game	game;
 }	t_cub;
@@ -144,7 +146,7 @@ float	deg_to_rad(int i, t_cub *cub);
 int		rad_to_deg(float i, t_cub *cub);
 int		exit_w(t_cub *cub);
 void	cast_rays(t_cub *cub);
-void	draw_line(t_cub *cub, int *arr, int color);
+void	draw_line(t_cub *cub, float *arr, int color);
 void	check_horizontal(t_cub *cub, float a);
 float	check_vertical(t_cub *cub, float a);
 void	convert_angle(t_cub *cub);
@@ -182,5 +184,8 @@ int		cu_2d_len(char **arrays);
 void	cu_check_missing(t_cub *cub);
 void	cu_is_2_commas(char *line, t_cub *cub);
 void	cu_get_width(t_cub *cub);
+void	cu_draw_texture(t_cub *cub, int h, float *arr);
+int		cu_get_color(t_cub *cub, int x, int y);
+void	cu_texture(t_cub *cub);
 
 #endif
