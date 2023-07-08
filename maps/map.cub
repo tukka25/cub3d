@@ -1,11 +1,11 @@
-F 20,1,1
+F 255,255,255
 
 NO ./textures/barrel.xpm
 
     EA ./textures/wood.xpm
 WE ./textures/redbrick.xpm 
 
-C       2 , 3 ,   3  
+C       0, 255 ,   255
 
 SO ./textures/greystone.xpm
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cu_saving_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:47:00 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/24 20:55:05 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:31:45 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,13 @@ int	cu_2d_len(char **arrays)
 }
 
 void	cu_saving_map(char *line, int index, t_cub *cub)
-{	
+{
 	if (!cu_is_map_begininng(line) && cub->game.map.map_pos == -1)
 		return ;
 	if (cub->game.map.map_pos != -1)
 		return ;
-	if (!cub->game.north || !cub->game.south || !cub->game.west || !cub->game.east
-		|| cub->game.floor == -1 || cub->game.ceiling == -1)
+	if (!cub->game.north || !cub->game.south || !cub->game.west
+		|| !cub->game.east || cub->game.floor == -1 || cub->game.ceiling == -1)
 		cu_print_error("Map should be the last thing in the file", cub);
 	if (cub->game.map.map_pos == -1)
 	{

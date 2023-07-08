@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:33:32 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/06/25 18:51:08 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/08 14:05:56 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	key_hook(int keycode, t_cub *cub)
 {
-	if (keycode == 123 || keycode == 124 || keycode == 0 || keycode == 1
-		|| keycode == 2 || keycode == 13)
+	if (keycode == UP || keycode == RIGHT || keycode == DOWN || keycode == LEFT
+		|| keycode == A_RIGHT || keycode == A_LEFT)
 	{
 		if (keycode == 13)
 			move_up(cub);
@@ -25,12 +25,12 @@ int	key_hook(int keycode, t_cub *cub)
 			move_down(cub);
 		else if (keycode == 0)
 			move_left(cub);
-		else if (keycode == 124)
+		else if (keycode == A_RIGHT)
 			rotate_right(cub);
-		else if (keycode == 123)
+		else if (keycode == A_LEFT)
 			rotate_left(cub);
 	}
-	else if (keycode == 53)
+	else if (keycode == ESC)
 		exit(0);
 	mlx_destroy_image(cub->mlx.mlx, cub->img.img);
 	drawing(cub);
@@ -39,36 +39,36 @@ int	key_hook(int keycode, t_cub *cub)
 
 void	move_up(t_cub *cub)
 {
-	cub->game.map.px_pix += round(SPEED * cos(cub->ray_c.angle));
-	cub->game.map.py_pix -= round(SPEED * sin(cub->ray_c.angle));
-	cub->move_y -= round(SPEED * sin(cub->ray_c.angle));
-	cub->move_x += round(SPEED * cos(cub->ray_c.angle));
-	check_horz_vert(cub, 1);
+	cub->game.map.px_pix += SPEED * cos(cub->ray_c.angle);
+	cub->game.map.py_pix -= SPEED * sin(cub->ray_c.angle);
+	// cub->move_y -= SPEED * sin(cub->ray_c.angle);
+	// cub->move_x += SPEED * cos(cub->ray_c.angle);
+	// check_horz_vert(cub, 1);
 }
 
 void	move_down(t_cub *cub)
 {
-	cub->game.map.px_pix -= round(SPEED  * cos(cub->ray_c.angle));
-	cub->game.map.py_pix += round(SPEED * sin(cub->ray_c.angle));
-	cub->move_y += round(SPEED * sin(cub->ray_c.angle));
-	cub->move_x -= round(SPEED * cos(cub->ray_c.angle));
-	check_horz_vert(cub, 2);
+	cub->game.map.px_pix -= SPEED * cos(cub->ray_c.angle);
+	cub->game.map.py_pix += SPEED * sin(cub->ray_c.angle);
+	// cub->move_y += SPEED * sin(cub->ray_c.angle);
+	// cub->move_x -= SPEED * cos(cub->ray_c.angle);
+	// check_horz_vert(cub, 2);
 }
 
 void	move_right(t_cub *cub)
 {
-	cub->game.map.px_pix -= round(SPEED * sin(cub->ray_c.angle));
-	cub->game.map.py_pix -= round(SPEED * cos(cub->ray_c.angle));
-	cub->move_x += round(SPEED * sin(cub->ray_c.angle));
-	cub->move_y += round(SPEED * cos(cub->ray_c.angle));
-	check_left_right(cub, 1);
+	cub->game.map.px_pix -= SPEED * sin(cub->ray_c.angle);
+	cub->game.map.py_pix -= SPEED * cos(cub->ray_c.angle);
+	// cub->move_x += SPEED * sin(cub->ray_c.angle);
+	// cub->move_y += SPEED * cos(cub->ray_c.angle);
+	// check_left_right(cub, 1);
 }
 
 void	move_left(t_cub *cub)
 {
-	cub->game.map.px_pix += round(SPEED * sin(cub->ray_c.angle));
-	cub->game.map.py_pix += round(SPEED * cos(cub->ray_c.angle));
-	cub->move_x -= round(SPEED * sin(cub->ray_c.angle));
-	cub->move_y -= round(SPEED * cos(cub->ray_c.angle));
-	check_left_right(cub, 2);
+	cub->game.map.px_pix += SPEED * sin(cub->ray_c.angle);
+	cub->game.map.py_pix += SPEED * cos(cub->ray_c.angle);
+	// cub->move_x -= SPEED * sin(cub->ray_c.angle);
+	// cub->move_y -= SPEED * cos(cub->ray_c.angle);
+	// check_left_right(cub, 2);
 }

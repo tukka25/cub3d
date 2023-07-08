@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 21:13:43 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/26 00:28:27 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/08 13:47:30 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,19 @@ void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-float	deg_to_rad(int i, t_cub *cub)
+// int		cu_get_color(t_cub *cub, int x, int y)
+// {
+// 	int		color;
+// 	char	*dst;
+
+// 	dst = cub->texture.addr + (y * cub->texture.line_length + x * (cub->texture.bits_per_pixel / 8));
+// 	color = *(unsigned int*)dst;
+// 	return (color);
+// }
+
+double	deg_to_rad(int i, t_cub *cub)
 {
-	float	s;
+	double	s;
 
 	s = 0.0;
 	(void)cub;
@@ -33,7 +43,7 @@ float	deg_to_rad(int i, t_cub *cub)
 	return (s);
 }
 
-int		rad_to_deg(float i, t_cub *cub)
+int		rad_to_deg(double i, t_cub *cub)
 {
 	int		s;
 

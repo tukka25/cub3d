@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cu_saving_components.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 23:15:04 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/24 20:53:54 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:33:16 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,5 @@ void	cu_saving_components(t_cub *cub)
 	}
 	cu_check_missing(cub);
 	cu_get_width(cub);
-	printf("north: %s\n", cub->game.north);
-	printf("south: %s\n", cub->game.south);
-	printf("west: %s\n", cub->game.west);
-	printf("east: %s\n", cub->game.east);
-	printf("floor: %d\n", cub->game.floor);
-	printf("ceiling: %d\n", cub->game.ceiling);
-	for (int i = 0; cub->game.map.map_2d[i]; i++)
-		printf("%s", cub->game.map.map_2d[i]);
-	printf("\np_x: %d, p_y: %d, p_direction: %c\n", cub->game.map.p_x, cub->game.map.p_y, cub->game.map.p_direction);
 	return ;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cu_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 20:06:01 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/06/24 21:13:46 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:32:27 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ void	cu_print_error(char *msg, t_cub *cub)
 
 void	cu_check_missing(t_cub *cub)
 {
-	if (!cub->game.north || !cub->game.south || !cub->game.west || !cub->game.east)
+	if (!cub->game.north || !cub->game.south || !cub->game.west
+		|| !cub->game.east)
 		cu_print_error("Texture identifier not found", cub);
 	if (cub->game.floor == -1 || cub->game.ceiling == -1)
 		cu_print_error("Color identifier not found", cub);

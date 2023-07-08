@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/08 00:32:55 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/08 18:36:28 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,25 @@
 # define SPEED 8
 # define WIDTH 1500
 # define HEIGHT 850
+# ifdef __APPLE__
+#  define UP 13
+#  define DOWN 1
+#  define LEFT 0
+#  define RIGHT 2
+#  define A_LEFT 123
+#  define A_RIGHT 124
+#  define ESC 53
+#  include "mlx/mlx.h"
+# elif __linux__
+#  define UP 119
+#  define DOWN 115
+#  define LEFT 97
+#  define RIGHT 100
+#  define A_LEFT 65361
+#  define A_RIGHT 65363
+#  define ESC 65307
+#  include "mlx_linux/mlx.h"
+# endif
 # include "libft/libft.h"
 # include "gnl/get_next_line.h"
 # include <stdio.h>
@@ -26,7 +45,7 @@
 # include "mlx/mlx.h"
 
 typedef struct s_ray_c
-{
+{	
 	float	pdx;
 	float	pdy;
 	float	angle;
@@ -56,11 +75,11 @@ typedef struct s_map
 	int		px_index;
 	int		start_px;
 	int		start_py;
-	int		px_pix;
+	float		px_pix;
 	int		py_index;
-	int		py_pix;
-	float	scale_x;
-	float	scale_y;
+	int		scale_x;
+	int		scale_y;
+	float		py_pix;
 }	t_map;
 
 typedef struct s_file
@@ -113,7 +132,7 @@ typedef struct s_cub
 	int		*c_colors;
 	int		move_x;
 	int		move_y;
-	float	pi;
+	double	pi;
 	t_mlx	mlx;
 	t_img	img;
 	t_img	texture;
@@ -121,17 +140,6 @@ typedef struct s_cub
 	t_game	game;
 }	t_cub;
 
-void	pars(char **argv, t_cub *cub);
-void	error_exit(char *str);
-void	check_req(t_cub *cub, char *line);
-int		ft_strlen_2d(char **str);
-void	free_strings(char **str);
-void	check_map(t_cub *cub, char *av);
-int		all_spaces(char *str);
-int		len_till_nl(char *str);
-void	insert_map(t_cub *cub, char *av);
-void	map_pars(t_cub *cub);
-void	free_and_exit(t_cub *cub, char *str);
 void	drawing(t_cub *cub);
 int		key_hook(int keycode, t_cub *cub);
 void	move_up(t_cub *cub);
@@ -142,8 +150,8 @@ void	draw_wall(t_cub *cub, int x, int y);
 void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color);
 void	rotate_right(t_cub *cub);
 void	rotate_left(t_cub *cub);
-float	deg_to_rad(int i, t_cub *cub);
-int		rad_to_deg(float i, t_cub *cub);
+double	deg_to_rad(int i, t_cub *cub);
+int		rad_to_deg(double i, t_cub *cub);
 int		exit_w(t_cub *cub);
 void	cast_rays(t_cub *cub);
 void	draw_line(t_cub *cub, float *arr, int color);

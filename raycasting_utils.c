@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:34:50 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/08 02:33:51 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:01:33 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,35 @@ void	scaling(t_cub *cub)
 	cub->game.map.py_pix = cub->game.map.scale_y * cub->game.map.p_y;
 }
 
-void	cu_draw_texture(t_cub *cub, int h, float *arr)
-{
-	float		start;
-	float		end;
-	// int		wall_height;
-	float		xo;
-	float	y_step;
-	float		y = 0;
+// void	cu_draw_texture(t_cub *cub, int h, float *arr)
+// {
+// 	float		start;
+// 	float		end;
+// 	// int		wall_height;
+// 	float		xo;
+// 	float	y_step;
+// 	float		y = 0;
 
-	// (void)arr;
-	// wall_height = HEIGHT / cub->ray_c.ray_length;
-	start = arr[2];
-	end = arr[3];
-	// printf("ray length: %f, ray temp: %f\n", cub->ray_c.ray_length, cub->ray_c.tmp_length);
-	if (cub->ray_c.ray_length < cub->ray_c.tmp_length)
-		xo = (int)(cub->ray_c.xs_h / cub->game.map.scale_y * cub->texture.t_width) % (int)cub->texture.t_width;
-	else
-		xo = (int)(cub->ray_c.ys_v / cub->game.map.scale_x * cub->texture.t_width) % (int)cub->texture.t_width;
-	// printf("xo: %d\n", xo);
-	y_step = cub->texture.t_height / cub->ray_c.wall_length;
-	while (start <= end)
-	{
-		my_mlx_pixel_put(cub, h, start++, cu_get_color(cub, xo, y += y_step));
-		if (xo > cub->texture.t_width)
-			xo = cub->texture.t_width - 1;
-		if (y + y_step >= cub->texture.t_height)
-			y = cub->texture.t_height - y_step - 1;
-	}
-}
+// 	// (void)arr;
+// 	// wall_height = HEIGHT / cub->ray_c.ray_length;
+// 	start = arr[2];
+// 	end = arr[3];
+// 	// printf("ray length: %f, ray temp: %f\n", cub->ray_c.ray_length, cub->ray_c.tmp_length);
+// 	if (cub->ray_c.ray_length < cub->ray_c.tmp_length)
+// 		xo = (int)(cub->ray_c.xs_h / cub->game.map.scale_y * cub->texture.t_width) % (int)cub->texture.t_width;
+// 	else
+// 		xo = (int)(cub->ray_c.ys_v / cub->game.map.scale_x * cub->texture.t_width) % (int)cub->texture.t_width;
+// 	// printf("xo: %d\n", xo);
+// 	y_step = cub->texture.t_height / cub->ray_c.wall_length;
+// 	while (start <= end)
+// 	{
+// 		my_mlx_pixel_put(cub, h, start++, cu_get_color(cub, xo, y += y_step));
+// 		if (xo > cub->texture.t_width)
+// 			xo = cub->texture.t_width - 1;
+// 		if (y + y_step >= cub->texture.t_height)
+// 			y = cub->texture.t_height - y_step - 1;
+// 	}
+// }
 
 int		cu_get_color(t_cub *cub, int x, int y)
 {
