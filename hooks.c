@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:33:32 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/08 22:27:00 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/08 22:28:31 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	move_right(t_cub *cub)
 	// cub->move_x += SPEED * sin(cub->ray_c.angle);
 	// cub->move_y += SPEED * cos(cub->ray_c.angle);
 	// check_left_right(cub, 1);
+	return ;
 }
 
 void	move_left(t_cub *cub)
@@ -74,4 +75,5 @@ void	move_left(t_cub *cub)
 	// cub->move_x -= SPEED * sin(cub->ray_c.angle);
 	// cub->move_y -= SPEED * cos(cub->ray_c.angle);
 	// check_left_right(cub, 2);
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/08 19:53:48 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/08 22:16:25 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,11 @@ typedef struct s_map
 	int		px_index;
 	int		start_px;
 	int		start_py;
-	float		px_pix;
+	float	px_pix;
 	int		py_index;
 	int		scale_x;
 	int		scale_y;
-	float		py_pix;
+	float	py_pix;
 }	t_map;
 
 typedef struct s_file
@@ -102,7 +102,7 @@ typedef struct s_game
 	int		ceiling;
 }				t_game;
 
-typedef	struct	s_img
+typedef struct s_img
 {	
 	void	*background_img;
 	void	*wall_img;
@@ -198,5 +198,10 @@ void	cu_get_width(t_cub *cub);
 void	cu_draw_texture(t_cub *cub, int h, float *arr, float a);
 int		cu_get_color(t_cub *cub, int x, int y, float a);
 void	cu_texture(t_cub *cub);
+char	*cu_first_coordinate(t_cub *cub, int y, int x);
+char	*cu_second_coordinate(t_cub *cub, int y, int x);
+char	*cu_third_coordinate(t_cub *cub, int y, int x);
+char	*cu_fourth_coordinate(t_cub *cub, int y, int x);
+char	*cu_check_coordinate(t_cub *cub, float a, int y, int x);
 
 #endif

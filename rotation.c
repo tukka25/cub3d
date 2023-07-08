@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:37:47 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/08 20:57:15 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/08 22:24:16 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,16 @@ void	rotate_right(t_cub *cub)
 	cub->ray_c.pdx = cos(cub->ray_c.angle) * SPEED;
 	cub->ray_c.pdy = sin(cub->ray_c.angle) * SPEED;
 	printf("angle = %d\n", rad_to_deg(cub->ray_c.angle, cub));
+	return ;
 }
 
 void	rotate_left(t_cub *cub)
 {
 	if (cub->ray_c.angle + 0.05 > deg_to_rad(360, cub))
-		cub->ray_c.angle = deg_to_rad(0, cub);;
+		cub->ray_c.angle = deg_to_rad(0, cub);
 	cub->ray_c.angle += 0.05;
 	cub->ray_c.pdx = cos(cub->ray_c.angle) * SPEED;
 	cub->ray_c.pdy = sin(cub->ray_c.angle) * SPEED;
 	printf("angle = %d\n", rad_to_deg(cub->ray_c.angle, cub));
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:35 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/08 20:03:54 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/08 22:15:48 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	first_init(t_cub *cub)
 	scaling(cub);
 	cub->ray_c.pdx = cos(cub->ray_c.angle) * 5;
 	cub->ray_c.pdy = sin(cub->ray_c.angle) * 5;
+	return ;
 }
 
 int	main(int ac, char **av)
@@ -48,7 +49,7 @@ int	main(int ac, char **av)
 			HEIGHT, "cub3d");
 	cu_texture(&cub);
 	drawing(&cub);
-	mlx_hook(cub.mlx.mlx_win, 2, 1L<<0, key_hook, &cub);
+	mlx_hook(cub.mlx.mlx_win, 2, 1L << 0, key_hook, &cub);
 	mlx_hook(cub.mlx.mlx_win, 17, 0, exit_w, &cub);
 	mlx_loop(cub.mlx.mlx);
 	cu_freedom(&cub);

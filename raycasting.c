@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/08 20:58:13 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/08 22:22:26 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,15 +229,15 @@ void draw_line(t_cub *cub, float *arr, int color)
 
 void	cu_draw_texture(t_cub *cub, int h, float *arr, float a)
 {
-	float		start;
-	float		end;
-	float		xo;
+	float	start;
+	float	end;
+	float	xo;
 	float	y_step;
-	float		y = 0;
-
+	float	y;
 
 	start = arr[2];
 	end = arr[3];
+	y = 0;
 	if (cub->ray_c.ray_length < cub->ray_c.tmp_length)
 		xo = (int)(cub->ray_c.xs_h / cub->game.map.scale_x * (float)cub->n_texture.t_width) % cub->n_texture.t_width;
 	else
@@ -251,4 +251,5 @@ void	cu_draw_texture(t_cub *cub, int h, float *arr, float a)
 		if (y + y_step >= cub->n_texture.t_height)
 			y = cub->n_texture.t_height - y_step - 1;
 	}
+	return ;
 }
