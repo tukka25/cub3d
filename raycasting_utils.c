@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:34:50 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/08 17:01:33 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/08 20:53:00 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	convert_angle(t_cub *cub)
 {
-	// printf("p_direction = %d\n", cub->game.map.p_direction);
 	if (cub->game.map.p_direction == 'N')
 		cub->ray_c.angle = deg_to_rad(90, cub);
 	else if (cub->game.map.p_direction == 'S')
@@ -27,93 +26,78 @@ void	convert_angle(t_cub *cub)
 
 void	scaling(t_cub *cub)
 {
-	printf("c = %d\n", cub->game.map.map_width - 1);
-	// cub->game.map.scale_x = round(WIDTH / (cub->game.map.map_width - 1));
 	cub->game.map.scale_x = 64;
-	// printf("s_x = %d\n", HEIGHT / cub->game.map.nline);
-	// printf("floor = %d\n", cub->game.floor);
-	// printf("ceiling = %d\n", cub->game.ceiling);
-	// exit(0);
-	// cub->game.map.scale_y = round(HEIGHT / cub->game.map.nline);
 	cub->game.map.scale_y = 64;
 	cub->game.map.px_pix = cub->game.map.scale_x * cub->game.map.p_x;
 	cub->game.map.py_pix = cub->game.map.scale_y * cub->game.map.p_y;
 }
 
-// void	cu_draw_texture(t_cub *cub, int h, float *arr)
-// {
-// 	float		start;
-// 	float		end;
-// 	// int		wall_height;
-// 	float		xo;
-// 	float	y_step;
-// 	float		y = 0;
-
-// 	// (void)arr;
-// 	// wall_height = HEIGHT / cub->ray_c.ray_length;
-// 	start = arr[2];
-// 	end = arr[3];
-// 	// printf("ray length: %f, ray temp: %f\n", cub->ray_c.ray_length, cub->ray_c.tmp_length);
-// 	if (cub->ray_c.ray_length < cub->ray_c.tmp_length)
-// 		xo = (int)(cub->ray_c.xs_h / cub->game.map.scale_y * cub->texture.t_width) % (int)cub->texture.t_width;
-// 	else
-// 		xo = (int)(cub->ray_c.ys_v / cub->game.map.scale_x * cub->texture.t_width) % (int)cub->texture.t_width;
-// 	// printf("xo: %d\n", xo);
-// 	y_step = cub->texture.t_height / cub->ray_c.wall_length;
-// 	while (start <= end)
-// 	{
-// 		my_mlx_pixel_put(cub, h, start++, cu_get_color(cub, xo, y += y_step));
-// 		if (xo > cub->texture.t_width)
-// 			xo = cub->texture.t_width - 1;
-// 		if (y + y_step >= cub->texture.t_height)
-// 			y = cub->texture.t_height - y_step - 1;
-// 	}
-// }
-
-int		cu_get_color(t_cub *cub, int x, int y)
+char	*cu_get_coordinate(t_cub *cub, float a, int y, int x)
 {
-	int		color;
 	char	*dst;
 
-	dst = cub->texture.addr + (y * cub->texture.line_length + x * (cub->texture.bits_per_pixel / 8));
-	color = *(unsigned int*)dst;
+	if (a > 0 && a < M_PI / 2)
+	{
+		if (cub->ray_c.tmp_length > cub->ray_c.ray_length)
+			dst = cub->n_texture.addr + (y * cub->n_texture.line_length + x * (cub->n_texture.bits_per_pixel / 8));
+		else
+			dst = cub->e_texture.addr + (y * cub->e_texture.line_length + x * (cub->e_texture.bits_per_pixel / 8));
+	}
+	if (a > M_PI / 2 && a < M_PI)
+	{
+		if (cub->ray_c.tmp_length > cub->ray_c.ray_length)
+			dst = cub->n_texture.addr + (y * cub->n_texture.line_length + x * (cub->n_texture.bits_per_pixel / 8));
+		else
+			dst = cub->w_texture.addr + (y * cub->w_texture.line_length + x * (cub->w_texture.bits_per_pixel / 8));
+	}
+	if (a > M_PI && a < 3 * M_PI / 2)
+	{
+		if (cub->ray_c.tmp_length > cub->ray_c.ray_length)
+			dst = cub->s_texture.addr + (y * cub->s_texture.line_length + x * (cub->s_texture.bits_per_pixel / 8));
+		else
+			dst = cub->w_texture.addr + (y * cub->w_texture.line_length + x * (cub->w_texture.bits_per_pixel / 8));
+	}
+	if (a > 3 * M_PI / 2 && a < 2 * M_PI)
+	{
+		if (cub->ray_c.tmp_length > cub->ray_c.ray_length)
+			dst = cub->s_texture.addr + (y * cub->s_texture.line_length + x * (cub->s_texture.bits_per_pixel / 8));
+		else
+			dst = cub->e_texture.addr + (y * cub->e_texture.line_length + x * (cub->e_texture.bits_per_pixel / 8));
+	}
+	return (dst);
+}
+
+int		cu_get_color(t_cub *cub, int x, int y, float a)
+{
+	int		color;
+
+	color = *(unsigned int*)cu_get_coordinate(cub, a, y, x);
 	return (color);
 }
 
 void	cu_texture(t_cub *cub)
 {
-	cub->texture.img = mlx_xpm_file_to_image(cub->mlx.mlx, cub->game.west,
-	&cub->texture.t_width, &cub->texture.t_height);
-	cub->texture.addr = mlx_get_data_addr(cub->texture.img,
-	&cub->texture.bits_per_pixel, &cub->texture.line_length,
-	&cub->texture.endian);
+	cub->n_texture.img = mlx_xpm_file_to_image(cub->mlx.mlx, cub->game.north,
+	&cub->n_texture.t_width, &cub->n_texture.t_height);
+	cub->s_texture.img = mlx_xpm_file_to_image(cub->mlx.mlx, cub->game.south,
+	&cub->s_texture.t_width, &cub->s_texture.t_height);
+	cub->e_texture.img = mlx_xpm_file_to_image(cub->mlx.mlx, cub->game.east,
+	&cub->e_texture.t_width, &cub->e_texture.t_height);
+	cub->w_texture.img = mlx_xpm_file_to_image(cub->mlx.mlx, cub->game.west,
+	&cub->w_texture.t_width, &cub->w_texture.t_height);
+	if (!cub->n_texture.img || !cub->s_texture.img || !cub->e_texture.img || !cub->w_texture.img)
+		cu_print_error("invalid texture", cub);
+	cub->e_texture.addr = mlx_get_data_addr(cub->e_texture.img,
+	&cub->e_texture.bits_per_pixel, &cub->e_texture.line_length,
+	&cub->e_texture.endian);
+	cub->s_texture.addr = mlx_get_data_addr(cub->s_texture.img,
+	&cub->s_texture.bits_per_pixel, &cub->s_texture.line_length,
+	&cub->s_texture.endian);
+	cub->n_texture.addr = mlx_get_data_addr(cub->n_texture.img,
+	&cub->n_texture.bits_per_pixel, &cub->n_texture.line_length,
+	&cub->n_texture.endian);
+	cub->w_texture.addr = mlx_get_data_addr(cub->w_texture.img,
+	&cub->w_texture.bits_per_pixel, &cub->w_texture.line_length,
+	&cub->w_texture.endian);
 }
 
-// void	draw_floor_ceiling(t_cub *cub, int c1, int c2)
-// {
-// 	int	i;
-// 	int	j;
-// 	int	arr[4];
-
-// 	i = 0;
-// 	j = 0;
-// 	(void)c2;
-// 	arr[0] = 0;
-// 	arr[1] = WIDTH;
-// 	arr[2] = 0;
-// 	arr[3] = 0;
-// 	while (i < HEIGHT / 2)
-// 	{
-// 		draw_line(cub, arr, c1);
-// 		arr[2]++;
-// 		arr[3]++;
-// 		i++;
-// 	}
-// 	while (i < HEIGHT)
-// 	{
-// 		draw_line(cub, arr, c2);
-// 		arr[2]++;
-// 		arr[3]++;
-// 		i++;
-// 	}
-// }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+         #
+#    By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 00:30:54 by talsaiaa          #+#    #+#              #
-#    Updated: 2023/07/06 13:40:05 by talsaiaa         ###   ########.fr        #
+#    Updated: 2023/07/08 19:59:46 by talsaiaa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ LINKS	:=
 
 GCC		=	gcc
 
-FLAGS	=	-g -Wall -Wextra -Werror -fsanitize=address
+FLAGS	=	-Wall -Wextra -Werror -Ofast
 
 OS		=	$(shell uname)
 
@@ -129,6 +129,8 @@ comp_start:
 clean:
 	@rm -rf $(OBJS)
 	@cd libft && make clean
+	@cd mlx && make clean
+	@cd mlx_linux && make clean
 	@tput setaf 2
 	@printf '.o files are removed\n'
 	@tput setaf 7

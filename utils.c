@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 21:13:43 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/07/08 13:47:30 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/08 20:54:15 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,6 @@ void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color)
 	dst = cub->img.addr + (y * cub->img.line_length + x * (cub->img.bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
-
-// int		cu_get_color(t_cub *cub, int x, int y)
-// {
-// 	int		color;
-// 	char	*dst;
-
-// 	dst = cub->texture.addr + (y * cub->texture.line_length + x * (cub->texture.bits_per_pixel / 8));
-// 	color = *(unsigned int*)dst;
-// 	return (color);
-// }
 
 double	deg_to_rad(int i, t_cub *cub)
 {
@@ -50,9 +40,7 @@ int		rad_to_deg(double i, t_cub *cub)
 	s = 0;
 	(void)cub;
 
-	// printf("i = %f\n", i * M_PI);
 	s = i * 180 / M_PI;
-	// printf("s = %d\n", s);
 	return (s);
 }
 

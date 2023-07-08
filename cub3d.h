@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/08 18:36:28 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/08 19:53:48 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,10 @@ typedef struct s_cub
 	double	pi;
 	t_mlx	mlx;
 	t_img	img;
-	t_img	texture;
+	t_img	n_texture;
+	t_img	s_texture;
+	t_img	e_texture;
+	t_img	w_texture;
 	t_ray_c	ray_c;
 	t_game	game;
 }	t_cub;
@@ -192,8 +195,8 @@ int		cu_2d_len(char **arrays);
 void	cu_check_missing(t_cub *cub);
 void	cu_is_2_commas(char *line, t_cub *cub);
 void	cu_get_width(t_cub *cub);
-void	cu_draw_texture(t_cub *cub, int h, float *arr);
-int		cu_get_color(t_cub *cub, int x, int y);
+void	cu_draw_texture(t_cub *cub, int h, float *arr, float a);
+int		cu_get_color(t_cub *cub, int x, int y, float a);
 void	cu_texture(t_cub *cub);
 
 #endif
