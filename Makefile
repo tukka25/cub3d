@@ -6,7 +6,7 @@
 #    By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 00:30:54 by talsaiaa          #+#    #+#              #
-#    Updated: 2023/07/08 19:00:10 by talsaiaa         ###   ########.fr        #
+#    Updated: 2023/07/08 19:59:46 by talsaiaa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ LINKS	:=
 
 GCC		=	gcc
 
-FLAGS	=	-g -Wall -Wextra -Werror -fsanitize=address
+FLAGS	=	-Wall -Wextra -Werror -Ofast
 
 OS		=	$(shell uname)
 

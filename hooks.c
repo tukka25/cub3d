@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:33:32 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/08 14:05:56 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/08 20:50:59 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ int	key_hook(int keycode, t_cub *cub)
 			rotate_left(cub);
 	}
 	else if (keycode == ESC)
-		exit(0);
+	{
+		mlx_destroy_image(cub->mlx.mlx, cub->img.img);
+		cu_print_error("Game Over!", cub);
+	}
 	mlx_destroy_image(cub->mlx.mlx, cub->img.img);
 	drawing(cub);
 	return (0);
