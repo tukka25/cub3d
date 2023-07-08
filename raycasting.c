@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/08 18:49:00 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/08 19:18:11 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	cast_rays(t_cub *cub)
 		cub->ray_c.ray_length = cub->ray_c.ray_length * cos(f);
 		cub->ray_c.wall_length = (((64 * HEIGHT) / cub->ray_c.ray_length) / 2);
 		// draw_line(cub, arr, 0xFF0000);
-		draw_line(cub, (float []){arr[0], arr[1], 0, arr[2]}, cub->game.floor);
-		draw_line(cub, (float []){arr[0], arr[1], arr[3], HEIGHT}, cub->game.ceiling);
+		draw_line(cub, (float []){arr[0], arr[1], 0, arr[2]}, cub->game.ceiling);
+		draw_line(cub, (float []){arr[0], arr[1], arr[3], HEIGHT}, cub->game.floor);
 		arr[0]++;
 		arr[1]++;
 		h++;
