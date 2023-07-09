@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:34:50 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/08 22:19:15 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/09 18:45:22 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	scaling(t_cub *cub)
 {
 	cub->game.map.scale_x = 64;
 	cub->game.map.scale_y = 64;
-	cub->game.map.px_pix = cub->game.map.scale_x * cub->game.map.p_x;
-	cub->game.map.py_pix = cub->game.map.scale_y * cub->game.map.p_y;
+	cub->game.map.px_pix = cub->game.map.scale_x * cub->game.map.p_x + 32;
+	cub->game.map.py_pix = cub->game.map.scale_y * cub->game.map.p_y + 32;
 	return ;
 }
 

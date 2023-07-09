@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/09 01:59:26 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/09 18:46:17 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,16 +228,20 @@ void	draw_line(t_cub *cub, float *arr, int color)
 	int	y1;
 	int	x2;
 	int	y2;
+	x1 = arr[0];
+	y1 = arr[2];
+	x2 = arr[1];
+	y2 = arr[3];
     int	dx = abs(x2 - x1);
     int	dy = abs(y2 - y1);
     int	sx = x1 < x2 ? 1 : -1;
     int	sy = y1 < y2 ? 1 : -1;
     int	err = dx - dy;
 
-	x1 = arr[0];
-	y1 = arr[2];
-	x2 = arr[1];
-	y2 = arr[3];
+	// x1 = arr[0];
+	// y1 = arr[2];
+	// x2 = arr[1];
+	// y2 = arr[3];
 	dx = abs(x2 - x1);
 	dy = abs(y2 - y1);
 	sx = x1 < x2 ? 1 : -1;
