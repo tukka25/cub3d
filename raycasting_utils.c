@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:34:50 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/09 19:57:01 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/09 22:25:17 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,27 @@ void	scaling(t_cub *cub)
 	return ;
 }
 
-char	*cu_check_coordinate(t_cub *cub, float a, int y, int x)
+void	cu_check_coordinate(t_cub *cub, float a)
 {
-	char	*dst;
-
-	dst = NULL;
-	if (a > 0 && a < M_PI / 2)
-		dst = cu_first_coordinate(cub, y, x);
-	if (a > M_PI / 2 && a < M_PI)
-		dst = cu_second_coordinate(cub, y, x);
-	if (a > M_PI && a < 3 * M_PI / 2)
-		dst = cu_third_coordinate(cub, y, x);
-	if (a > 3 * M_PI / 2 && a < 2 * M_PI)
-		dst = cu_fourth_coordinate(cub, y, x);
-	return (dst);
+	if (a >= 0 && a < M_PI / 2)
+		cub->texture = cu_first_coordinate(cub);
+	if (a >= M_PI / 2 && a < M_PI)
+		cub->texture = cu_second_coordinate(cub);
+	if (a >= M_PI && a < 3 * M_PI / 2)
+		cub->texture = cu_third_coordinate(cub);
+	if (a >= 3 * M_PI / 2 && a <= 2 * M_PI)
+		cub->texture = cu_fourth_coordinate(cub);
 }
 
-int	cu_get_color(t_cub *cub, int x, int y, float a)
+int	cu_get_color(t_cub *cub, int x, int y)
 {
-	return (*(unsigned int *)cu_check_coordinate(cub, a, y, x));
+	char	*dst;
+	int		color;
+
+	dst = cub->texture->addr + (y * cub->texture->line_length + x
+				* (cub->texture->bits_per_pixel / 8));
+	color = *(unsigned int *)dst;
+	return (color);
 }
 
 void	cu_texture(t_cub *cub)

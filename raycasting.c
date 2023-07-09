@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/09 20:07:54 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/09 22:25:21 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,21 +273,22 @@ void	cu_draw_texture(t_cub *cub, int h, float *arr, float a)
 	start = arr[2];
 	end = arr[3];
 	y = 0;
+	cu_check_coordinate(cub, a);
 	if (cub->ray_c.ray_length < cub->ray_c.tmp_length)
 		xo = (int)(cub->ray_c.xs_h / cub->game.map.scale_x
-				* (float)cub->n_texture.t_width) % cub->n_texture.t_width;
+				* (float)cub->texture->t_width) % cub->texture->t_width;
 	else
 		xo = (int)(cub->ray_c.ys_v / cub->game.map.scale_y
-				* (float)cub->n_texture.t_width) % cub->n_texture.t_width;
-	y_step = cub->n_texture.t_height / cub->ray_c.wall_length;
+				* (float)cub->texture->t_width) % cub->texture->t_width;
+	y_step = cub->texture->t_height / cub->ray_c.wall_length;
 	while (start <= end)
 	{
+		if (xo > cub->texture->t_width)
+			xo = cub->texture->t_width - 1;
+		if (y + y_step >= cub->texture->t_height)
+			y = cub->texture->t_height - y_step - 1;
 		my_mlx_pixel_put(cub, h, start++,
-			cu_get_color(cub, xo, y += y_step, a));
-		if (xo > cub->n_texture.t_width)
-			xo = cub->n_texture.t_width - 1;
-		if (y + y_step >= cub->n_texture.t_height)
-			y = cub->n_texture.t_height - y_step - 1;
+			cu_get_color(cub, xo, y += y_step));
 	}
 	return ;
 }

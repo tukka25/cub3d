@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/08 22:16:25 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/09 22:25:26 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ typedef struct s_cub
 	t_img	w_texture;
 	t_ray_c	ray_c;
 	t_game	game;
+	t_img	*texture;
 }	t_cub;
 
 void	drawing(t_cub *cub);
@@ -196,12 +197,12 @@ void	cu_check_missing(t_cub *cub);
 void	cu_is_2_commas(char *line, t_cub *cub);
 void	cu_get_width(t_cub *cub);
 void	cu_draw_texture(t_cub *cub, int h, float *arr, float a);
-int		cu_get_color(t_cub *cub, int x, int y, float a);
+int		cu_get_color(t_cub *cub, int x, int y);
 void	cu_texture(t_cub *cub);
-char	*cu_first_coordinate(t_cub *cub, int y, int x);
-char	*cu_second_coordinate(t_cub *cub, int y, int x);
-char	*cu_third_coordinate(t_cub *cub, int y, int x);
-char	*cu_fourth_coordinate(t_cub *cub, int y, int x);
-char	*cu_check_coordinate(t_cub *cub, float a, int y, int x);
+void	cu_check_coordinate(t_cub *cub, float a);
+t_img	*cu_first_coordinate(t_cub *cub);
+t_img	*cu_second_coordinate(t_cub *cub);
+t_img	*cu_third_coordinate(t_cub *cub);
+t_img	*cu_fourth_coordinate(t_cub *cub);
 
 #endif
