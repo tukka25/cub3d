@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/09 18:46:17 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/09 20:07:54 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	cast_rays(t_cub *cub)
 	y1 = cub->game.map.py_pix;
 	h = 0;
 	f = 0;
-	a = cub->ray_c.angle + deg_to_rad(45, cub);
-	if (a > 2 * M_PI)
-		a -= 2 * M_PI;
+	a = cub->ray_c.angle - deg_to_rad(45, cub);
+	if (a < 0)
+		a += 2 * M_PI;
 	arr[0] = 0;
 	arr[1] = 0;
 	while (h < WIDTH)
@@ -52,9 +52,9 @@ void	cast_rays(t_cub *cub)
 		arr[0]++;
 		arr[1]++;
 		h++;
-		a -= 0.001;
-		if (a < 0)
-			a += 2 * M_PI;
+		a += 0.001;
+		if (a > 2 * M_PI)
+			a -= 2 * M_PI;
 	}
 }
 
