@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:34:50 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/10 20:54:14 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/10 21:35:39 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	convert_angle(t_cub *cub)
 		cub->ray_c.angle = deg_to_rad(180, cub);
 	else if (cub->game.map.p_direction == 'E')
 		cub->ray_c.angle = deg_to_rad(0, cub);
-	return ;
 }
 
 void	scaling(t_cub *cub)
@@ -31,7 +30,6 @@ void	scaling(t_cub *cub)
 	cub->game.map.scale_y = 64;
 	cub->game.map.px_pix = cub->game.map.scale_x * cub->game.map.p_x + 32;
 	cub->game.map.py_pix = cub->game.map.scale_y * cub->game.map.p_y + 32;
-	return ;
 }
 
 void	cu_check_coordinate(t_cub *cub, float a)

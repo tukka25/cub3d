@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 21:13:43 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/07/08 22:20:31 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/10 21:28:23 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,15 @@ int	rad_to_deg(double i, t_cub *cub)
 	return (s);
 }
 
-int	exit_w(t_cub *cub)
+void	init_vals(t_cub *cub, int arr[])
 {
-	(void)cub;
-	exit(0);
-	return (0);
+	cub->ray_c.sx = -1;
+	cub->ray_c.sy = -1;
+	if (arr[0] < arr[2])
+		cub->ray_c.sx = 1;
+	if (arr[1] < arr[3])
+		cub->ray_c.sy = 1;
+	cub->ray_c.dx = abs(arr[2] - arr[0]);
+	cub->ray_c.dy = abs(arr[3] - arr[1]);
+	cub->ray_c.err = cub->ray_c.dx - cub->ray_c.dy;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/10 20:35:19 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/10 21:22:00 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,32 +96,25 @@ void	draw_line(t_cub *cub, float *arr, int color)
 	int	y1;
 	int	x2;
 	int	y2;
+
 	x1 = arr[0];
 	y1 = arr[2];
 	x2 = arr[1];
 	y2 = arr[3];
-    int	dx = abs(x2 - x1);
-    int	dy = abs(y2 - y1);
-    int	sx = x1 < x2 ? 1 : -1;
-    int	sy = y1 < y2 ? 1 : -1;
-    int	err = dx - dy;
-
-	dx = abs(x2 - x1);
-	dy = abs(y2 - y1);
-	sx = x1 < x2 ? 1 : -1;
-    while (x1 != x2 || y1 != y2)
+	init_vals(cub, (int []){x1, y1, x2, y2});
+	while (x1 != x2 || y1 != y2)
 	{
 		my_mlx_pixel_put(cub, x1, y1, color);
-		int err2 = 2 * err;
-		if (err2 > -dy)
+		cub->ray_c.err2 = 2 * cub->ray_c.err;
+		if (cub->ray_c.err2 > -cub->ray_c.dy)
 		{
-			err -= dy;
-			x1 += sx;
+			cub->ray_c.err -= cub->ray_c.dy;
+			x1 += cub->ray_c.sx;
 		}
-		if (err2 < dx)
+		if (cub->ray_c.err2 < cub->ray_c.dx)
 		{
-			err += dx;
-			y1 += sy;
+			cub->ray_c.err += cub->ray_c.dx;
+			y1 += cub->ray_c.sy;
 		}
 	}
 }
