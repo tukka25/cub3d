@@ -1,0 +1,1 @@
+valgrind --suppressions=suppresion.supp --track-origins=yes --leak-check=full --show-leak-kinds=all ./cub3d test_maps/small_map.cub 2> leaks.txt  

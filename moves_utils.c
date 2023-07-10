@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:30:41 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/10 21:35:23 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/11 02:29:45 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	check_left_right(t_cub *cub, int flag)
 
 void	rayc_init(t_cub *cub)
 {
-	cub->ray_c.arr = malloc(4 * sizeof(float));
+	cub->ray_c.arr = ft_calloc(4, sizeof(float));
 	cub->ray_c.x1 = cub->game.map.px_pix;
 	cub->ray_c.h = 0;
 	cub->ray_c.f = 0;
