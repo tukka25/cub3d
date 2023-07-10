@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/10 19:59:49 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:35:19 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	cast_rays(t_cub *cub)
 		if (cub->ray_c.a > 2 * M_PI)
 			cub->ray_c.a -= 2 * M_PI;
 	}
+	free(cub->ray_c.arr);
 }
 
 void	check_horizontal(t_cub *cub, float a)
@@ -49,13 +50,9 @@ void	check_horizontal(t_cub *cub, float a)
 	yo = 0.0;
 	xo = 0.0;
 	if (a < M_PI)
-	{
 		looking_up_cal(cub, yo, xo, a);
-	}
 	else if (a > M_PI)
-	{
 		looking_down_cal(cub, xo, yo, a);
-	}
 	else
 	{
 		cub->ray_c.ys_h = cub->game.map.py_pix;
@@ -77,13 +74,9 @@ float	check_vertical(t_cub *cub, float a)
 	yo = 0.0;
 	xo = 0.0;
 	if ((a < M_PI / 2 || a > 3 * M_PI / 2))
-	{
 		looking_right_cal(cub, xo, yo, a);
-	}
 	else if (a > M_PI / 2 && a < 3 * M_PI / 2)
-	{
 		looking_left_cal(cub, xo, yo, a);
-	}
 	else
 	{
 		cub->ray_c.ys_v = cub->game.map.py_pix;
@@ -113,10 +106,6 @@ void	draw_line(t_cub *cub, float *arr, int color)
     int	sy = y1 < y2 ? 1 : -1;
     int	err = dx - dy;
 
-	// x1 = arr[0];
-	// y1 = arr[2];
-	// x2 = arr[1];
-	// y2 = arr[3];
 	dx = abs(x2 - x1);
 	dy = abs(y2 - y1);
 	sx = x1 < x2 ? 1 : -1;

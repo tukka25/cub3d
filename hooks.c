@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:33:32 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/10 20:23:03 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:26:41 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	key_hook(int keycode, t_cub *cub)
 	if (keycode == UP || keycode == RIGHT || keycode == DOWN || keycode == LEFT
 		|| keycode == A_RIGHT || keycode == A_LEFT)
 	{
-		if (keycode == 13)
+		if (keycode == UP)
 			move_up(cub);
-		else if (keycode == 2)
+		else if (keycode == RIGHT)
 			move_right(cub);
-		else if (keycode == 1)
+		else if (keycode == DOWN)
 			move_down(cub);
-		else if (keycode == 0)
+		else if (keycode == LEFT)
 			move_left(cub);
 		else if (keycode == A_RIGHT)
 			rotate_right(cub);

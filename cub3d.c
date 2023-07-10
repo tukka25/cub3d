@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:35 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/10 20:23:14 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:28:17 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	main(int ac, char **av)
 	cu_saving_file(&cub);
 	cu_saving_components(&cub);
 	first_init(&cub);
-	printf("fl = %d\n", rad_to_deg(cub.ray_c.angle, &cub));
 	cub.mlx.mlx = mlx_init();
 	cub.mlx.mlx_win = mlx_new_window(cub.mlx.mlx, WIDTH,
 			HEIGHT, "cub3d");

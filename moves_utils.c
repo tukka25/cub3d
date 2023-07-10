@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:30:41 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/10 20:20:45 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:34:09 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	check_horz_vert(t_cub *cub, int flag)
 	k = SPEED * sin(cub->ray_c.angle);
 	x = cub->game.map.px_pix;
 	y = cub->game.map.py_pix;
-	if ((cub->game.map.map_2d[(int)floor((y - k * 2) / cub->game.map.scale_y)]
-		[(int)floor((cub->game.map.px_pix - n * 2) / cub->game.map.scale_x)] != '0'
+	if ((cub->game.map.map_2d[(int)floor((y - k * 4) / cub->game.map.scale_y)]
+		[(int)floor((cub->game.map.px_pix - n * 4) / cub->game.map.scale_x)] == '1'
 			&& flag == 1))
 	{
 		return(1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:37:47 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/10 20:21:42 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:29:39 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	rotate_right(t_cub *cub)
 	cub->ray_c.angle += 0.05;
 	cub->ray_c.pdx = cos(cub->ray_c.angle) * SPEED;
 	cub->ray_c.pdy = sin(cub->ray_c.angle) * SPEED;
-	printf("angle = %d\n", rad_to_deg(cub->ray_c.angle, cub));
 	return ;
 }
 
@@ -30,7 +29,6 @@ void	rotate_left(t_cub *cub)
 	cub->ray_c.angle -= 0.05;
 	cub->ray_c.pdx = cos(cub->ray_c.angle) * SPEED;
 	cub->ray_c.pdy = sin(cub->ray_c.angle) * SPEED;
-	printf("angle = %d\n", rad_to_deg(cub->ray_c.angle, cub));
 	return ;
 }
 

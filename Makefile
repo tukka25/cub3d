@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+         #
+#    By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 00:30:54 by talsaiaa          #+#    #+#              #
-#    Updated: 2023/07/09 22:21:12 by talsaiaa         ###   ########.fr        #
+#    Updated: 2023/07/10 20:25:55 by talsaiaa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ OS		=	$(shell uname)
 
 ifeq ($(OS), Linux)
 	MLX += cd mlx_linux && make
-	LIB += libft/libft.a mlx/libmlx.a
+	LIB += libft/libft.a mlx_linux/libmlx.a
 	INCLUDE += -I/usr/include -Imlx_linux -Iutils -O3
 	LINKS += -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 endif
