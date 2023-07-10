@@ -176,8 +176,16 @@ int		check_horz_vert(t_cub *cub, int flag);
 void	draw_floor_ceiling(t_cub *cub, int c1, int c2);
 void	rayc_init(t_cub *cub);
 void	floor_ceiling(t_cub *cub);
-void	looking_up(t_cub *cub, int a, float yo, float xo);
+void	looking_right(t_cub *cub, int a, float yo, float xo);
 void	looking_up_calculations(t_cub *cub, int a);
+void	looking_up(t_cub *cub, float yo, float xo);
+void	looking_down(t_cub *cub, float yo, float xo);
+void	looking_left(t_cub *cub, float xo, float yo);
+void	looking_up_cal(t_cub *cub, float yo, float xo, float a);
+void	looking_down_cal(t_cub *cub, float xo, float yo, float a);
+void	ray_len_cal(t_cub *cub, float a, float arr[]);
+void	looking_right_cal(t_cub *cub, float xo, float yo, float a);
+void	looking_left_cal(t_cub *cub, float xo, float yo, float a);
 
 void	cu_args_check(char *av, t_cub *cub);
 int		cu_atoi(char *str);

@@ -46,143 +46,58 @@ void	check_horizontal(t_cub *cub, float a)
 	float	xo;
 	float	arr[4];
 
+	yo = 0.0;
+	xo = 0.0;
 	if (a < M_PI)
 	{
-		cub->ray_c.ys_h = (((int)cub->game.map.py_pix >> 6) << 6) - 0.0001;
-		cub->ray_c.xs_h = (cub->game.map.py_pix - cub->ray_c.ys_h) * (-1 / tan(a)) + cub->game.map.px_pix;
-		yo = -64;
-		xo = -yo * (-1 / tan(a));
-		while (1)
-		{
-			if ((int)cub->ray_c.ys_h <= 0 || (int)cub->ray_c.ys_h
-				/ cub->game.map.scale_y >= cub->game.map.nline
-				|| (int)cub->ray_c.xs_h <= 0 || (int)cub->ray_c.xs_h
-				/ cub->game.map.scale_x
-				>= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_h
-						/ cub->game.map.scale_y)]))
-				break ;
-			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h
-					/ cub->game.map.scale_y)][(int)(cub->ray_c.xs_h
-				/ cub->game.map.scale_x)] != '0')
-				break ;
-			cub->ray_c.ys_h += yo;
-			cub->ray_c.xs_h += xo;
-		}
-		arr[0] = cub->game.map.px_pix;
-		arr[1] = cub->ray_c.xs_h;
-		arr[2] = cub->game.map.py_pix;
-		arr[3] = cub->ray_c.ys_h;
+		looking_up_cal(cub, yo, xo, a);
 	}
 	else if (a > M_PI)
 	{
-		cub->ray_c.ys_h = (((int)cub->game.map.py_pix >> 6) << 6) + 64;
-		cub->ray_c.xs_h = (cub->game.map.py_pix - cub->ray_c.ys_h) * (-1 / tan(a)) + cub->game.map.px_pix;
-		yo = 64;
-		xo = -yo * (-1 / tan(a));
-		while (1)
-		{
-			if ((int)cub->ray_c.ys_h <= 0 || (int)cub->ray_c.ys_h
-				/ cub->game.map.scale_y >= cub->game.map.nline
-				|| (int)cub->ray_c.xs_h <= 0 || (int)cub->ray_c.xs_h
-				/ cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)
-						(cub->ray_c.ys_h / cub->game.map.scale_y)]))
-				break ;
-			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h
-					/ cub->game.map.scale_y)][(int)(cub->ray_c.xs_h
-				/ cub->game.map.scale_x)] != '0')
-				break ;
-			cub->ray_c.ys_h += yo;
-			cub->ray_c.xs_h += xo;
-		}
-		arr[0] = cub->game.map.px_pix;
-		arr[1] = cub->ray_c.xs_h;
-		arr[2] = cub->game.map.py_pix;
-		arr[3] = cub->ray_c.ys_h;
+		looking_down_cal(cub, xo, yo, a);
 	}
 	else
 	{
 		cub->ray_c.ys_h = cub->game.map.py_pix;
 		cub->ray_c.xs_h = cub->game.map.px_pix;
-		arr[0] = cub->game.map.px_pix;
-		arr[1] = cub->game.map.py_pix;
-		arr[2] = cub->game.map.px_pix;
-		arr[3] = cub->game.map.py_pix;
 	}
-	cub->ray_c.ray_length = sqrt(((arr[1] - arr[0]) * (arr[1] - arr[0]))
-			+ ((arr[3] - arr[2]) * (arr[3] - arr[2])));
-	cub->ray_c.tmp_length = check_vertical(cub, a);
-	if (cub->ray_c.tmp_length < cub->ray_c.ray_length)
-	{
-		cub->ray_c.ray_length = cub->ray_c.tmp_length;
-		cub->ray_c.ys_h = cub->ray_c.ys_v;
-		cub->ray_c.xs_h = cub->ray_c.xs_v;
-	}
+	arr[0] = cub->game.map.px_pix;
+	arr[1] = cub->ray_c.xs_h;
+	arr[2] = cub->game.map.py_pix;
+	arr[3] = cub->ray_c.ys_h;
+	ray_len_cal(cub, a, arr);
 }
 
 float	check_vertical(t_cub *cub, float a)
 {
 	float	yo;
 	float	xo;
-	float	k;
 	float	arr[4];
 
-	arr[0] = 0;
-	arr[1] = 0;
-	arr[2] = 0;
-	arr[3] = 0;
+	yo = 0.0;
+	xo = 0.0;
 	if ((a < M_PI / 2 || a > 3 * M_PI / 2))
 	{
-		cub->ray_c.xs_v = (((int)cub->game.map.px_pix >> 6) << 6) - 0.0001;
-		cub->ray_c.ys_v = (cub->game.map.px_pix - cub->ray_c.xs_v) * (-tan(a)) + cub->game.map.py_pix;
-		xo = -64;
-		yo = -xo * (-tan(a));
-		looking_up(cub, a, yo, xo);
-		arr[0] = cub->game.map.px_pix;
-		arr[1] = cub->ray_c.xs_v;
-		arr[2] = cub->game.map.py_pix;
-		arr[3] = cub->ray_c.ys_v;
+		looking_right_cal(cub, xo, yo, a);
 	}
 	else if (a > M_PI / 2 && a < 3 * M_PI / 2)
 	{
-		cub->ray_c.xs_v = (((int)cub->game.map.px_pix >> 6) << 6) + 64;
-		cub->ray_c.ys_v = (cub->game.map.px_pix - cub->ray_c.xs_v) * (-tan(a)) + cub->game.map.py_pix;
-		xo = 64;
-		yo = -xo * (-tan(a));
-		while (1)
-		{
-			if ((int)cub->ray_c.ys_v <= 0 || (int)cub->ray_c.ys_v
-				/ cub->game.map.scale_y >= cub->game.map.nline
-				|| (int)cub->ray_c.xs_v <= 0 || (int)cub->ray_c.xs_v
-				/ cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)
-						(cub->ray_c.ys_v / cub->game.map.scale_y)]))
-				break ;
-			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v
-					/ cub->game.map.scale_y)][(int)(cub->ray_c.xs_v
-			/ cub->game.map.scale_x)] != '0')
-				break ;
-			cub->ray_c.xs_v += xo;
-			cub->ray_c.ys_v += yo;
-		}
-		arr[0] = cub->game.map.px_pix;
-		arr[1] = cub->ray_c.xs_v;
-		arr[2] = cub->game.map.py_pix;
-		arr[3] = cub->ray_c.ys_v;
+		looking_left_cal(cub, xo, yo, a);
 	}
 	else
 	{
 		cub->ray_c.ys_v = cub->game.map.py_pix;
 		cub->ray_c.xs_v = cub->game.map.px_pix;
-		arr[0] = cub->game.map.px_pix;
-		arr[1] = cub->ray_c.xs_v;
-		arr[2] = cub->game.map.py_pix;
-		arr[3] = cub->ray_c.ys_v;
 	}
-	k = sqrt(((arr[1] - arr[0]) * (arr[1] - arr[0]))
-			+ ((arr[3] - arr[2]) * (arr[3] - arr[2])));
-	return (k);
+	arr[0] = cub->game.map.px_pix;
+	arr[1] = cub->ray_c.xs_v;
+	arr[2] = cub->game.map.py_pix;
+	arr[3] = cub->ray_c.ys_v;
+	return (sqrt(((arr[1] - arr[0]) * (arr[1] - arr[0]))
+			+ ((arr[3] - arr[2]) * (arr[3] - arr[2]))));
 }
 
-void	draw_line(t_cub *cub, float *arr, int color)
+/*void	draw_line(t_cub *cub, float *arr, int color)
 {
 	int	x1;
 	int	y1;
@@ -220,7 +135,7 @@ void	draw_line(t_cub *cub, float *arr, int color)
 			y1 += sy;
 		}
 	}
-}
+}*/
 
 void	cu_draw_texture(t_cub *cub, int h, float *arr, float a)
 {
@@ -247,8 +162,6 @@ void	cu_draw_texture(t_cub *cub, int h, float *arr, float a)
 			xo = cub->texture->t_width - 1;
 		if (y + y_step >= cub->texture->t_height)
 			y = cub->texture->t_height - y_step - 1;
-		my_mlx_pixel_put(cub, h, start++,
-			cu_get_color(cub, xo, y += y_step));
+		my_mlx_pixel_put(cub, h, start++, cu_get_color(cub, xo, y += y_step));
 	}
-	return ;
 }
