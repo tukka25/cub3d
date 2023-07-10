@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/11 02:52:40 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/11 02:57:04 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,6 @@ void	cu_draw_texture(t_cub *cub, int h, float *arr, float a)
 		xo = (int)(cub->ray_c.ys_v / cub->game.map.scale_y
 				* (float)cub->texture->t_width) % cub->texture->t_width;
 	y_step = cub->texture->t_height / cub->ray_c.wall_length;
-	printf("start: %f\n", cub->ray_c.wall_length);
 	while (start <= end)
 	{
 		if (xo > cub->texture->t_width)
