@@ -56,6 +56,14 @@ typedef struct s_ray_c
 	float	ys_v;
 	float	xs_v;
 	float	tmp_length;
+	float	a;
+	float	x1;
+	float	h;
+	float	f;
+	float	*arr;
+	float	yo;
+	float	xo;
+	float	arr2[4];
 }	t_ray_c;
 
 typedef struct s_map
@@ -164,8 +172,11 @@ float	check_vertical(t_cub *cub, float a);
 void	convert_angle(t_cub *cub);
 void	scaling(t_cub *cub);
 void	check_left_right(t_cub *cub, int flag);
-void	check_horz_vert(t_cub *cub, int flag);
+int		check_horz_vert(t_cub *cub, int flag);
 void	draw_floor_ceiling(t_cub *cub, int c1, int c2);
+void	rayc_init(t_cub *cub);
+void	floor_ceiling(t_cub *cub);
+void	looking_up(t_cub *cub, int a);
 
 void	cu_args_check(char *av, t_cub *cub);
 int		cu_atoi(char *str);

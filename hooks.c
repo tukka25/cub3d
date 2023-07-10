@@ -42,8 +42,9 @@ int	key_hook(int keycode, t_cub *cub)
 
 void	move_up(t_cub *cub)
 {
-	cub->game.map.px_pix -= SPEED * cos(cub->ray_c.angle);
-	cub->game.map.py_pix -= SPEED * sin(cub->ray_c.angle);
+	// {
+		cub->game.map.px_pix -= round(SPEED * cos(cub->ray_c.angle));
+		cub->game.map.py_pix -= round(SPEED * sin(cub->ray_c.angle));
 	check_horz_vert(cub, 1);
 }
 
