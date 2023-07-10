@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/10 20:14:53 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/10 21:31:23 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # include "mlx/mlx.h"
 
 typedef struct s_ray_c
-{	
+{
 	float	pdx;
 	float	pdy;
 	float	angle;
@@ -64,6 +64,12 @@ typedef struct s_ray_c
 	float	yo;
 	float	xo;
 	float	arr2[4];
+	int		sx;
+	int		sy;
+	int		err;
+	int		dx;
+	int		dy;
+	int		err2;
 }	t_ray_c;
 
 typedef struct s_map
@@ -111,7 +117,7 @@ typedef struct s_game
 }				t_game;
 
 typedef struct s_img
-{	
+{
 	void	*background_img;
 	void	*wall_img;
 	void	*img;
@@ -186,6 +192,7 @@ void	looking_down_cal(t_cub *cub, float xo, float yo, float a);
 void	ray_len_cal(t_cub *cub, float a, float arr[]);
 void	looking_right_cal(t_cub *cub, float xo, float yo, float a);
 void	looking_left_cal(t_cub *cub, float xo, float yo, float a);
+void	init_vals(t_cub *cub, int arr[]);
 
 void	cu_args_check(char *av, t_cub *cub);
 int		cu_atoi(char *str);

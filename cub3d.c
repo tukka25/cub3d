@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:35 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/10 20:36:29 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/10 21:28:28 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,12 @@ void	looking_left(t_cub *cub, float xo, float yo)
 		cub->ray_c.xs_v += xo;
 		cub->ray_c.ys_v += yo;
 	}
+}
+
+int	exit_w(t_cub *cub)
+{
+	mlx_destroy_image(cub->mlx.mlx, cub->img.img);
+	mlx_destroy_window(cub->mlx.mlx, cub->mlx.mlx_win);
+	cu_print_error("Game Over!", cub);
+	return (0);
 }
