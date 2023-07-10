@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:33:32 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/09 01:20:16 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:23:03 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,29 +42,36 @@ int	key_hook(int keycode, t_cub *cub)
 
 void	move_up(t_cub *cub)
 {
-	// {
-		cub->game.map.px_pix -= round(SPEED * cos(cub->ray_c.angle));
-		cub->game.map.py_pix -= round(SPEED * sin(cub->ray_c.angle));
-	check_horz_vert(cub, 1);
+	if (check_horz_vert(cub, 1) == 0)
+	{
+		cub->game.map.px_pix -= SPEED * cos(cub->ray_c.angle);
+		cub->game.map.py_pix -= SPEED * sin(cub->ray_c.angle);
+	}
 }
 
 void	move_down(t_cub *cub)
 {
-	cub->game.map.px_pix += SPEED * cos(cub->ray_c.angle);
-	cub->game.map.py_pix += SPEED * sin(cub->ray_c.angle);
-	check_horz_vert(cub, 2);
+	if (check_horz_vert(cub, 2) == 0)
+	{
+		cub->game.map.px_pix += SPEED * cos(cub->ray_c.angle);
+		cub->game.map.py_pix += SPEED * sin(cub->ray_c.angle);
+	}
 }
 
 void	move_right(t_cub *cub)
 {
-	cub->game.map.px_pix -= SPEED * sin(cub->ray_c.angle);
-	cub->game.map.py_pix += SPEED * cos(cub->ray_c.angle);
-	check_left_right(cub, 1);
+	if (check_left_right(cub, 1) == 0)
+	{
+		cub->game.map.px_pix += SPEED * sin(cub->ray_c.angle);
+		cub->game.map.py_pix -= SPEED * cos(cub->ray_c.angle);
+	}
 }
 
 void	move_left(t_cub *cub)
 {
-	cub->game.map.px_pix += SPEED * sin(cub->ray_c.angle);
-	cub->game.map.py_pix -= SPEED * cos(cub->ray_c.angle);
-	check_left_right(cub, 2);
+	if (check_left_right(cub, 2) == 0)
+	{
+		cub->game.map.px_pix -= SPEED * sin(cub->ray_c.angle);
+		cub->game.map.py_pix += SPEED * cos(cub->ray_c.angle);
+	}
 }

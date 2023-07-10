@@ -6,7 +6,7 @@
 /*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:30:41 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/09 01:22:48 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:20:45 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,23 @@ int	check_horz_vert(t_cub *cub, int flag)
 {
 	float	x;
 	float	y;
+	float	n;
+	float	k;
 
 	x = (((int)cub->game.map.px_pix >> 6) << 6);
 	y = (((int)cub->game.map.py_pix >> 6) << 6);
-	printf("y = %d\n", (((int)(y) / cub->game.map.scale_y)));
-	printf("y = %d\n", (int)floor((x) / cub->game.map.scale_x));
-	if ((cub->game.map.map_2d[(int)((y) / cub->game.map.scale_y)]
-		[(int)((cub->game.map.px_pix) / cub->game.map.scale_x)] != '0'
+	n = SPEED * cos(cub->ray_c.angle);
+	k = SPEED * sin(cub->ray_c.angle);
+	x = cub->game.map.px_pix;
+	y = cub->game.map.py_pix;
+	if ((cub->game.map.map_2d[(int)floor((y - k * 2) / cub->game.map.scale_y)]
+		[(int)floor((cub->game.map.px_pix - n * 2) / cub->game.map.scale_x)] != '0'
 			&& flag == 1))
 	{
-		printf("hi\n");
-		cub->game.map.px_pix += round(16 * cos(cub->ray_c.angle));
-		cub->game.map.py_pix += round(16 * sin(cub->ray_c.angle));
+		return(1);
 	}
-	else if (cub->game.map.map_2d[(int)(y
-			/ cub->game.map.scale_y)]
-	[(int)(cub->game.map.px_pix / cub->game.map.scale_x)] == '1'
+	else if (cub->game.map.map_2d[(int)floor((y + k * 2) / cub->game.map.scale_y)]
+	[(int)((x + n * 2) / cub->game.map.scale_x)] == '1'
 			&& flag == 2)
 	{
 		return (1);
@@ -39,23 +40,31 @@ int	check_horz_vert(t_cub *cub, int flag)
 	return (0);
 }
 
-void	check_left_right(t_cub *cub, int flag)
+int	check_left_right(t_cub *cub, int flag)
 {
-	if (cub->game.map.map_2d[(int)(cub->game.map.py_pix
-			/ cub->game.map.scale_y)]
-	[(int)(cub->game.map.px_pix / cub->game.map.scale_x)] == '1' && flag == 1)
+	float	x;
+	float	y;
+	float	n;
+	float	k;
+
+	x = (((int)cub->game.map.px_pix >> 6) << 6);
+	y = (((int)cub->game.map.py_pix >> 6) << 6);
+	n = SPEED * cos(cub->ray_c.angle);
+	k = SPEED * sin(cub->ray_c.angle);
+	x = cub->game.map.px_pix;
+	y = cub->game.map.py_pix;
+	if (cub->game.map.map_2d[(int)((y - n * 2)/ cub->game.map.scale_y)]
+	[(int)((x + k * 2) / cub->game.map.scale_x)] == '1' && flag == 1)
 	{
-		cub->game.map.px_pix += 16 * sin(cub->ray_c.angle);
-		cub->game.map.py_pix -= 16 * cos(cub->ray_c.angle);
+		return (1);
 	}
-	else if (cub->game.map.map_2d[(int)(cub->game.map.py_pix
+	else if (cub->game.map.map_2d[(int)((y + n * 2)
 			/ cub->game.map.scale_y)]
-	[(int)(cub->game.map.px_pix / cub->game.map.scale_x)] == '1' && flag == 2)
+	[(int)((x - k * 2) / cub->game.map.scale_x)] == '1' && flag == 2)
 	{
-		cub->game.map.px_pix -= 16 * sin(cub->ray_c.angle);
-		cub->game.map.py_pix += 16 * cos(cub->ray_c.angle);
+		return (1);
 	}
-	return ;
+	return (0);
 }
 
 void	rayc_init(t_cub *cub)
@@ -78,16 +87,22 @@ void	floor_ceiling(t_cub *cub)
 		cub->ray_c.h++;
 }
 
-// void	looking_up_calculations(t_cub *cub, int a)
-// {
-// 	float	xo;
-// 	float	yo;
-
-// 	xo = 0.0;
-// 	yo = 0.0;
-// 	cub->ray_c.xs_v = (((int)cub->game.map.px_pix >> 6) << 6) - 0.0001;
-// 	cub->ray_c.ys_v = (cub->game.map.px_pix - cub->ray_c.xs_v) * (-tan(a)) + cub->game.map.py_pix;
-// 	xo = -64;
-// 	yo = -xo * (-tan(a));
-// 	looking_up(cub, a, yo, xo);
-// }
+void	looking_up(t_cub *cub, float yo, float xo)
+{
+	while (1)
+	{
+		if ((int)cub->ray_c.ys_h <= 0 || (int)cub->ray_c.ys_h
+			/ cub->game.map.scale_y >= cub->game.map.nline
+			|| (int)cub->ray_c.xs_h <= 0 || (int)cub->ray_c.xs_h
+			/ cub->game.map.scale_x
+			>= ft_strlen(cub->game.map.map_2d[(int)(cub->ray_c.ys_h
+					/ cub->game.map.scale_y)]))
+			break ;
+		if (cub->game.map.map_2d[(int)(cub->ray_c.ys_h
+				/ cub->game.map.scale_y)][(int)(cub->ray_c.xs_h
+			/ cub->game.map.scale_x)] != '0')
+			break ;
+		cub->ray_c.ys_h += yo;
+		cub->ray_c.xs_h += xo;
+	}
+}

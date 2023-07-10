@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/09 22:25:26 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:14:53 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ void	check_horizontal(t_cub *cub, float a);
 float	check_vertical(t_cub *cub, float a);
 void	convert_angle(t_cub *cub);
 void	scaling(t_cub *cub);
-void	check_left_right(t_cub *cub, int flag);
+int		check_left_right(t_cub *cub, int flag);
 int		check_horz_vert(t_cub *cub, int flag);
 void	draw_floor_ceiling(t_cub *cub, int c1, int c2);
 void	rayc_init(t_cub *cub);

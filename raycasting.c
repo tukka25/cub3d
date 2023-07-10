@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/09 22:25:21 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:59:49 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ float	check_vertical(t_cub *cub, float a)
 			+ ((arr[3] - arr[2]) * (arr[3] - arr[2]))));
 }
 
-/*void	draw_line(t_cub *cub, float *arr, int color)
+void	draw_line(t_cub *cub, float *arr, int color)
 {
 	int	x1;
 	int	y1;
@@ -135,7 +135,7 @@ float	check_vertical(t_cub *cub, float a)
 			y1 += sy;
 		}
 	}
-}*/
+}
 
 void	cu_draw_texture(t_cub *cub, int h, float *arr, float a)
 {
