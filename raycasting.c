@@ -136,21 +136,7 @@ float	check_vertical(t_cub *cub, float a)
 		cub->ray_c.ys_v = (cub->game.map.px_pix - cub->ray_c.xs_v) * (-tan(a)) + cub->game.map.py_pix;
 		xo = -64;
 		yo = -xo * (-tan(a));
-		while (1)
-		{
-			if ((int)cub->ray_c.ys_v <= 0 || (int)cub->ray_c.ys_v
-				/ cub->game.map.scale_y >= cub->game.map.nline
-				|| (int)cub->ray_c.xs_v <= 0 || (int)cub->ray_c.xs_v
-				/ cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)
-						(cub->ray_c.ys_v / cub->game.map.scale_y)]))
-				break ;
-			if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v
-					/ cub->game.map.scale_y)][(int)(cub->ray_c.xs_v
-				/ cub->game.map.scale_x)] != '0')
-				break ;
-			cub->ray_c.xs_v += xo;
-			cub->ray_c.ys_v += yo;
-		}
+		looking_up(cub, a, yo, xo);
 		arr[0] = cub->game.map.px_pix;
 		arr[1] = cub->ray_c.xs_v;
 		arr[2] = cub->game.map.py_pix;

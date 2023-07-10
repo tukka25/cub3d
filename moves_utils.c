@@ -77,3 +77,17 @@ void	floor_ceiling(t_cub *cub)
 		cub->ray_c.arr[1]++;
 		cub->ray_c.h++;
 }
+
+void	looking_up_calculations(t_cub *cub, int a)
+{
+	float	xo;
+	float	yo;
+
+	xo = 0.0;
+	yo = 0.0;
+	cub->ray_c.xs_v = (((int)cub->game.map.px_pix >> 6) << 6) - 0.0001;
+	cub->ray_c.ys_v = (cub->game.map.px_pix - cub->ray_c.xs_v) * (-tan(a)) + cub->game.map.py_pix;
+	xo = -64;
+	yo = -xo * (-tan(a));
+	looking_up(cub, a, yo, xo);
+}
