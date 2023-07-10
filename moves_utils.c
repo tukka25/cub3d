@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:30:41 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/10 20:34:09 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:48:04 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,20 @@ int	check_horz_vert(t_cub *cub, int flag)
 	float	n;
 	float	k;
 
-	x = (((int)cub->game.map.px_pix >> 6) << 6);
-	y = (((int)cub->game.map.py_pix >> 6) << 6);
 	n = SPEED * cos(cub->ray_c.angle);
 	k = SPEED * sin(cub->ray_c.angle);
 	x = cub->game.map.px_pix;
 	y = cub->game.map.py_pix;
 	if ((cub->game.map.map_2d[(int)floor((y - k * 4) / cub->game.map.scale_y)]
-		[(int)floor((cub->game.map.px_pix - n * 4) / cub->game.map.scale_x)] == '1'
+			[(int)floor((x - n * 4) / cub->game.map.scale_x)] == '1'
 			&& flag == 1))
 	{
-		return(1);
+		return (1);
 	}
-	else if (cub->game.map.map_2d[(int)floor((y + k * 2) / cub->game.map.scale_y)]
-	[(int)((x + n * 2) / cub->game.map.scale_x)] == '1'
-			&& flag == 2)
+	else if (cub->game.map.map_2d[(int)floor((y + k * 2)
+				/ cub->game.map.scale_y)]
+		[(int)((x + n * 2) / cub->game.map.scale_x)] == '1'
+				&& flag == 2)
 	{
 		return (1);
 	}
@@ -47,13 +46,11 @@ int	check_left_right(t_cub *cub, int flag)
 	float	n;
 	float	k;
 
-	x = (((int)cub->game.map.px_pix >> 6) << 6);
-	y = (((int)cub->game.map.py_pix >> 6) << 6);
 	n = SPEED * cos(cub->ray_c.angle);
 	k = SPEED * sin(cub->ray_c.angle);
 	x = cub->game.map.px_pix;
 	y = cub->game.map.py_pix;
-	if (cub->game.map.map_2d[(int)((y - n * 2)/ cub->game.map.scale_y)]
+	if (cub->game.map.map_2d[(int)((y - n * 2) / cub->game.map.scale_y)]
 	[(int)((x + k * 2) / cub->game.map.scale_x)] == '1' && flag == 1)
 	{
 		return (1);
@@ -79,12 +76,12 @@ void	rayc_init(t_cub *cub)
 void	floor_ceiling(t_cub *cub)
 {
 	draw_line(cub, (float []){cub->ray_c.arr[0], cub->ray_c.arr[1],
-			0, cub->ray_c.arr[2]}, cub->game.ceiling);
-		draw_line(cub, (float []){cub->ray_c.arr[0], cub->ray_c.arr[1],
-			cub->ray_c.arr[3], HEIGHT}, cub->game.floor);
-		cub->ray_c.arr[0]++;
-		cub->ray_c.arr[1]++;
-		cub->ray_c.h++;
+		0, cub->ray_c.arr[2]}, cub->game.ceiling);
+	draw_line(cub, (float []){cub->ray_c.arr[0], cub->ray_c.arr[1],
+		cub->ray_c.arr[3], HEIGHT}, cub->game.floor);
+	cub->ray_c.arr[0]++;
+	cub->ray_c.arr[1]++;
+	cub->ray_c.h++;
 }
 
 void	looking_up(t_cub *cub, float yo, float xo)

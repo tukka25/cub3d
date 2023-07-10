@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:37:47 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/10 20:29:39 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:49:20 by abdamoha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	looking_down(t_cub *cub, float yo, float xo)
 void	looking_up_cal(t_cub *cub, float yo, float xo, float a)
 {
 	cub->ray_c.ys_h = (((int)cub->game.map.py_pix >> 6) << 6) - 0.0001;
-	cub->ray_c.xs_h = (cub->game.map.py_pix - cub->ray_c.ys_h) * (-1 / tan(a)) + cub->game.map.px_pix;
+	cub->ray_c.xs_h = (cub->game.map.py_pix - cub->ray_c.ys_h)
+		* (-1 / tan(a)) + cub->game.map.px_pix;
 	yo = -64;
 	xo = -yo * (-1 / tan(a));
 	looking_up(cub, yo, xo);
@@ -63,7 +64,8 @@ void	looking_up_cal(t_cub *cub, float yo, float xo, float a)
 void	looking_down_cal(t_cub *cub, float xo, float yo, float a)
 {
 	cub->ray_c.ys_h = (((int)cub->game.map.py_pix >> 6) << 6) + 64;
-	cub->ray_c.xs_h = (cub->game.map.py_pix - cub->ray_c.ys_h) * (-1 / tan(a)) + cub->game.map.px_pix;
+	cub->ray_c.xs_h = (cub->game.map.py_pix - cub->ray_c.ys_h)
+		* (-1 / tan(a)) + cub->game.map.px_pix;
 	yo = 64;
 	xo = -yo * (-1 / tan(a));
 	looking_down(cub, yo, xo);
