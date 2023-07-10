@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:34:50 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/09 22:25:17 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:54:14 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	cu_get_color(t_cub *cub, int x, int y)
 	int		color;
 
 	dst = cub->texture->addr + (y * cub->texture->line_length + x
-				* (cub->texture->bits_per_pixel / 8));
+			* (cub->texture->bits_per_pixel / 8));
 	color = *(unsigned int *)dst;
 	return (color);
 }

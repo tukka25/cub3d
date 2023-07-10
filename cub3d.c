@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:35 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/10 20:36:29 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:51:10 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,8 @@ void	looking_left(t_cub *cub, float xo, float yo)
 			/ cub->game.map.scale_x >= ft_strlen(cub->game.map.map_2d[(int)
 					(cub->ray_c.ys_v / cub->game.map.scale_y)]))
 			break ;
-		if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v
-				/ cub->game.map.scale_y)][(int)(cub->ray_c.xs_v
-		/ cub->game.map.scale_x)] != '0')
+		if (cub->game.map.map_2d[(int)(cub->ray_c.ys_v / cub->game.map.scale_y)]
+			[(int)(cub->ray_c.xs_v / cub->game.map.scale_x)] != '0')
 			break ;
 		cub->ray_c.xs_v += xo;
 		cub->ray_c.ys_v += yo;

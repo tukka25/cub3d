@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:30:41 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/10 20:34:09 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:43:13 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	check_horz_vert(t_cub *cub, int flag)
 	x = cub->game.map.px_pix;
 	y = cub->game.map.py_pix;
 	if ((cub->game.map.map_2d[(int)floor((y - k * 4) / cub->game.map.scale_y)]
-		[(int)floor((cub->game.map.px_pix - n * 4) / cub->game.map.scale_x)] == '1'
+		[(int)floor((cub->game.map.px_pix - n * 4) / cub->game.map.scale_x)] != '0'
 			&& flag == 1))
 	{
 		return(1);
 	}
 	else if (cub->game.map.map_2d[(int)floor((y + k * 2) / cub->game.map.scale_y)]
-	[(int)((x + n * 2) / cub->game.map.scale_x)] == '1'
+	[(int)((x + n * 2) / cub->game.map.scale_x)] != '0'
 			&& flag == 2)
 	{
 		return (1);
@@ -54,13 +54,13 @@ int	check_left_right(t_cub *cub, int flag)
 	x = cub->game.map.px_pix;
 	y = cub->game.map.py_pix;
 	if (cub->game.map.map_2d[(int)((y - n * 2)/ cub->game.map.scale_y)]
-	[(int)((x + k * 2) / cub->game.map.scale_x)] == '1' && flag == 1)
+	[(int)((x + k * 2) / cub->game.map.scale_x)] != '0' && flag == 1)
 	{
 		return (1);
 	}
 	else if (cub->game.map.map_2d[(int)((y + n * 2)
 			/ cub->game.map.scale_y)]
-	[(int)((x - k * 2) / cub->game.map.scale_x)] == '1' && flag == 2)
+	[(int)((x - k * 2) / cub->game.map.scale_x)] != '0' && flag == 2)
 	{
 		return (1);
 	}

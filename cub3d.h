@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:55:21 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/10 20:14:53 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:48:36 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # include "mlx/mlx.h"
 
 typedef struct s_ray_c
-{	
+{
 	float	pdx;
 	float	pdy;
 	float	angle;
@@ -111,7 +111,7 @@ typedef struct s_game
 }				t_game;
 
 typedef struct s_img
-{	
+{
 	void	*background_img;
 	void	*wall_img;
 	void	*img;
