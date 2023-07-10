@@ -6,7 +6,7 @@
 /*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:44:01 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/11 02:57:04 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/11 03:02:51 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,10 +122,10 @@ void	draw_line(t_cub *cub, float *arr, int color)
 
 void	cu_draw_texture(t_cub *cub, int h, float *arr, float a)
 {
-	float	start = 0.0f;
-	float	end = 0.0f;
-	float	xo = 0.0f;
-	float	y_step = 0.0f;
+	float	start;
+	float	end;
+	float	xo;
+	float	y_step;
 	float	y;
 
 	start = arr[2];
