@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 23:35:38 by abdamoha          #+#    #+#             */
-/*   Updated: 2023/07/10 20:22:37 by abdamoha         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:37:04 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	ray_len_cal(t_cub *cub, float a, float arr[])
 void	looking_right_cal(t_cub *cub, float xo, float yo, float a)
 {
 	cub->ray_c.xs_v = (((int)cub->game.map.px_pix >> 6) << 6) - 0.0001;
-	cub->ray_c.ys_v = (cub->game.map.px_pix - cub->ray_c.xs_v) * (-tan(a)) + cub->game.map.py_pix;
+	cub->ray_c.ys_v = (cub->game.map.px_pix - cub->ray_c.xs_v)
+		* (-tan(a)) + cub->game.map.py_pix;
 	xo = -64;
 	yo = -xo * (-tan(a));
 	looking_right(cub, a, yo, xo);
@@ -50,7 +51,8 @@ void	looking_right_cal(t_cub *cub, float xo, float yo, float a)
 void	looking_left_cal(t_cub *cub, float xo, float yo, float a)
 {
 	cub->ray_c.xs_v = (((int)cub->game.map.px_pix >> 6) << 6) + 64;
-	cub->ray_c.ys_v = (cub->game.map.px_pix - cub->ray_c.xs_v) * (-tan(a)) + cub->game.map.py_pix;
+	cub->ray_c.ys_v = (cub->game.map.px_pix - cub->ray_c.xs_v)
+		* (-tan(a)) + cub->game.map.py_pix;
 	xo = 64;
 	yo = -xo * (-tan(a));
 	looking_left(cub, xo, yo);
