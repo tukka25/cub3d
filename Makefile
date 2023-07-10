@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+         #
+#    By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 00:30:54 by talsaiaa          #+#    #+#              #
-#    Updated: 2023/07/10 20:25:55 by talsaiaa         ###   ########.fr        #
+#    Updated: 2023/07/10 21:50:04 by talsaiaa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ LINKS	:=
 
 GCC		=	gcc
 
-FLAGS	=	-Wall -Wextra -Werror -Ofast -fsanitize=address -g3
+FLAGS	=	-Wall -Wextra -Werror -Ofast
 
 OS		=	$(shell uname)
 
