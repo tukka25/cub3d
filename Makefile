@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	cub3d
+NAME	=	cub3D
 
 SRCS =	cub3d.c												\
 		drawing.c											\
@@ -40,7 +40,7 @@ INCLUDE	:=
 
 LINKS	:=
 
-GCC		=	gcc
+CC		=	cc
 
 FLAGS	=	-Wall -Wextra -Werror -Ofast
 
@@ -112,7 +112,7 @@ all: comp_start $(NAME)
 	@printf '                        ▓▓████▓▓██    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓██                                    \n'
 
 $(NAME): $(OBJS)
-	@$(GCC) $(FLAGS) $(OBJS) $(LINKS) $(LIB) -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJS) $(LINKS) $(LIB) -o $(NAME)
 	@tput setaf 2
 	@printf 'Executable ready\n'
 	@tput setaf 7
@@ -125,7 +125,7 @@ comp_start:
 	@tput setaf 7
 
 .c.o:
-	@$(GCC) $(FLAGS) $(INCLUDE) -c $< -o $(<:.c=.o)
+	@$(CC) $(FLAGS) $(INCLUDE) -c $< -o $(<:.c=.o)
 
 clean:
 	@rm -rf $(OBJS)
