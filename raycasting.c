@@ -23,10 +23,7 @@ void	cast_rays(t_cub *cub)
 	{
 		check_horizontal(cub, cub->ray_c.a);
 		cub->ray_c.f = cub->ray_c.a - cub->ray_c.angle;
-		if (cub->ray_c.f < 0)
-			cub->ray_c.f += 2 * M_PI;
-		else if (cub->ray_c.f > 2 * M_PI)
-			cub->ray_c.f -= 2 * M_PI;
+		convert_fisheye_a(cub);
 		cub->ray_c.ray_length = cub->ray_c.ray_length * cos(cub->ray_c.f);
 		cub->ray_c.tmp_length = cub->ray_c.tmp_length * cos(cub->ray_c.f);
 		cub->ray_c.wall_length = (((64 * HEIGHT) / cub->ray_c.ray_length) / 2);

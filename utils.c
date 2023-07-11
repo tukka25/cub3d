@@ -56,3 +56,11 @@ void	init_vals(t_cub *cub, int arr[])
 	cub->ray_c.dy = abs(arr[3] - arr[1]);
 	cub->ray_c.err = cub->ray_c.dx - cub->ray_c.dy;
 }
+
+void	convert_fisheye_a(t_cub *cub)
+{
+	if (cub->ray_c.f < 0)
+		cub->ray_c.f += 2 * M_PI;
+	else if (cub->ray_c.f > 2 * M_PI)
+		cub->ray_c.f -= 2 * M_PI;
+}

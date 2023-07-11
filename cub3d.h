@@ -193,6 +193,7 @@ void	ray_len_cal(t_cub *cub, float a, float arr[]);
 void	looking_right_cal(t_cub *cub, float xo, float yo, float a);
 void	looking_left_cal(t_cub *cub, float xo, float yo, float a);
 void	init_vals(t_cub *cub, int arr[]);
+void	convert_fisheye_a(t_cub *cub);
 
 void	cu_args_check(char *av, t_cub *cub);
 int		cu_atoi(char *str);
