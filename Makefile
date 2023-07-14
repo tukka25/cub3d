@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+         #
+#    By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 00:30:54 by talsaiaa          #+#    #+#              #
-#    Updated: 2023/07/10 21:50:04 by talsaiaa         ###   ########.fr        #
+#    Updated: 2023/07/14 21:03:51 by abdamoha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ LINKS	:=
 
 CC		=	cc
 
-FLAGS	=	-Wall -Wextra -Werror -Ofast
+CFLAGS	=	-Wall -Wextra -Werror -Ofast
 
 OS		=	$(shell uname)
 
