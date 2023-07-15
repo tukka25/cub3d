@@ -6,21 +6,21 @@
 /*   By: talsaiaa <talsaiaa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 02:11:44 by talsaiaa          #+#    #+#             */
-/*   Updated: 2023/05/23 16:28:44 by talsaiaa         ###   ########.fr       */
+/*   Updated: 2023/07/15 18:19:20 by talsaiaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef     GET_NEXT_LINE_H
-# define     GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
 
-# include    <unistd.h>
-# include    <stdlib.h>
-# include    <fcntl.h>
-# include    <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <stdio.h>
 
 int		gnl_strlen(char *s);
 char	*gnl_strjoin(char *s1, char *s2);
