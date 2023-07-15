@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abdamoha <abdamoha@student.42.fr>          +#+  +:+       +#+         #
+#    By: talsaiaa <talsaiaa@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 00:30:54 by talsaiaa          #+#    #+#              #
-#    Updated: 2023/07/14 21:03:51 by abdamoha         ###   ########.fr        #
+#    Updated: 2023/07/15 17:35:29 by talsaiaa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ LINKS	:=
 
 CC		=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror -Ofast
+CFLAGS	=	-Wall -Wextra -Werror
 
 OS		=	$(shell uname)
 
@@ -112,7 +112,7 @@ all: comp_start $(NAME)
 	@printf '                        ▓▓████▓▓██    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓██                                    \n'
 
 $(NAME): $(OBJS)
-	@$(CC) $(FLAGS) $(OBJS) $(LINKS) $(LIB) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LINKS) $(LIB) -o $(NAME)
 	@tput setaf 2
 	@printf 'Executable ready\n'
 	@tput setaf 7
@@ -125,7 +125,7 @@ comp_start:
 	@tput setaf 7
 
 .c.o:
-	@$(CC) $(FLAGS) $(INCLUDE) -c $< -o $(<:.c=.o)
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $(<:.c=.o)
 
 clean:
 	@rm -rf $(OBJS)
